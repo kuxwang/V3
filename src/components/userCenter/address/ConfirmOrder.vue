@@ -181,11 +181,13 @@
         let params = {
           data: {
             cartids: this.myOrders.cartids || '',
-            optionid: this.myOrders.optionid || '',
+//            optionid: this.myOrders.optionid || '',
             total: this.myOrders.total || '',
-            goodsid: this.myOrders.goodsid || ''
+            goodsid: Number(this.myOrders.goodsid) || ''
           }
         };
+        console.log('参数')
+        console.log(params.data)
 
         // 首次进入，初始化展示内容。
         GET_ORDER1(params, res => {
@@ -198,8 +200,10 @@
            _this.DELIVERY(res.data.dispatches[0])
             _this.dispatches = res.data.dispatches[0]
             _this.dispatchesprice = res.data.dispatches[0].price
-            _this.shopSet = res.data.shopSet;
+            _this.shopSet = res.data.shopSet.style;
             _this.ADDRESS(res.data.addressLists)
+          }else {
+            alert(res.data)
           }
         })
       },
@@ -224,9 +228,11 @@
           if (this.orderGoods) {
             for (let i = 0, j = this.orderGoods.length; i < j; i++) {
               if (i != j - 1) {
-                goods += this.orderGoods[i].goodsid + ',' + this.orderGoods[i].optionid  + ',' + this.orderGoods[i].total + '|'
+//                goods += this.orderGoods[i].goodsid + ',' + this.orderGoods[i].optionid  + ',' + this.orderGoods[i].total + '|'
+                goods += this.orderGoods[i].goodsid + ',' + 0  + ',' + this.orderGoods[i].total + '|'
               } else {
-                goods += this.orderGoods[i].goodsid + ',' + this.orderGoods[i].optionid  + ',' + this.orderGoods[i].total
+//                goods += this.orderGoods[i].goodsid + ',' + this.orderGoods[i].optionid  + ',' + this.orderGoods[i].total
+                goods += this.orderGoods[i].goodsid + ',' + 0 + ',' + this.orderGoods[i].total
               }
             }
           }
@@ -293,7 +299,6 @@
         'ADDTYPE','DELIVERY'
       ])
     },
-
     computed: {
       ...mapState([
         'delivery', 'myOrders'
