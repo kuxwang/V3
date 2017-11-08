@@ -15,15 +15,16 @@
         <li class="coupon__cell" v-for="(i,index) in list">
         <!--<li class="coupon__cell" >-->
           <div class="logo">
-            <img v-if="i.type==1" :src="logo1"/>
-            <img v-if="i.type==2" :src="logo2"/>
-            <img v-if="i.type==3" :src="logo3"/>
+            <img v-if="i.credittype=='credit1'" :src="logo1"/>
+            <img v-if="i.credittype=='credit2'" :src="logo2"/>
+            <img v-if="i.credittype=='credit3'" :src="logo3"/>
           </div>
           <div class="info">
-            <h5>优源定制纸巾</h5>
-            <span class="time">09-05 11:12</span>
+            <!--<h5>优源定制纸巾</h5>-->
+            <h5>{{i.remark}}</h5>
+            <span class="time">{{i.createtime}}</span>
           </div>
-          <div class="price">-99</div>
+          <div class="price">{{i.num}}</div>
         </li>
       </ul>
     </div>
@@ -31,13 +32,13 @@
 </template>
 
 <script>
-  import { Attributes } from '../../../api/api';
+  import { CreditRecord } from '../../../api/api';
   export default {
     data(){
       return {
         money: 0,
         list:[
-          {
+         /* {
             type:1
           },
           {
@@ -45,7 +46,7 @@
           },
           {
             type:3
-          },
+          },*/
         ],
         logo1: require('../../../assets/images/youhuiche.png'),
         logo2: require('../../../assets/images/jingbi1.png'),
@@ -60,14 +61,18 @@
       init(){
         let  params={
           data:{
-
+//            psize:this.psizes,
+            page:this.page
           }
         }
-        Attributes(params,(res)=>{
+        CreditRecord(params,(res)=>{
           if (res.statusCode === 1) {
             this.loading = false;
             if (res.data.length > 0) {
               this.list = this.list.concat(res.data);
+              console.log('列表数据')
+              console.log(this.list)
+
               setTimeout(() => {
                 this.loading = false;
               }, 1000)
@@ -90,7 +95,7 @@
           }
         };
 
-        History(params, res => {
+        CreditRecord(params, res => {
           console.log('无限滚动数据')
           console.log(this.page)
           console.log(this.psizes)
@@ -111,7 +116,7 @@
       }
     },
     created(){
-
+      this.init()
     }
   }
 </script>

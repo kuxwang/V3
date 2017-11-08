@@ -31,6 +31,9 @@
 
 <script>
   import {_webapp} from '../../../config/webapp.js';
+  import {Feedbacks} from '../../../api/api';
+  import {Toast} from 'mint-ui';
+
   export default {
     data(){
       return {
@@ -48,12 +51,27 @@
       },
       submit(){
         if(this.text){
+          let len=this.pic.length
           let params={
-            data:{}
+            data:{
+              reason:this.text,
+            }
           }
-
-
-
+          for(let i=0;i<len;i++){
+            params.data[`img[${i}]`]=this.img[i]
+          }
+          Feedbacks(params,(res)=>{
+              if(res.statusCode===1){
+                Toast({
+                  message: '提交成功',
+                  position: 'middle',
+                  duration: 2000
+                });
+                setTimeout(() => {
+                  this.$router.go(-1)
+                }, 2000)
+              }
+          })
         }
       }
     },

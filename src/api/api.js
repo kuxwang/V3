@@ -256,6 +256,7 @@ const commissions = {
    */
   withdrawals_get: {url: `${base}/commissions/withdrawals`, method: 'GET', header, dataType},
   withdrawals_post: {url: `${base}/commissions/withdrawals`, method: 'POST', header, dataType},
+  buyLevel: {url: `${base}/commissions/buyLevel`, method: 'GET', header, dataType},
 };
 
 const goods = {
@@ -360,12 +361,19 @@ const MYCARTS1 = {url: `${base}/carts`, method: 'GET', header, dataType}
 
 const MYCARTS3 = {url: `${base}/carts`, method: 'DELETE', header, dataType}
 
-const USERAVATARS = {url: `${base}/uploads`, method: 'PUT', header, dataType}
 
 /**
- * 个人中心 yellowStar
+ * 个人中心
  */
-const USERINFO = {url: `${base}/members`, method: 'PUT', header, dataType}
+const USERINFO = {
+  userinfo : {url: `${base}/members`, method: 'PUT', header, dataType},
+  useravatars:{url: `${base}/uploads`, method: 'PUT', header, dataType},
+  feedbacks : {url: `${base}/feedbacks`, method: 'POST', header, dataType},
+  creditRecord : {url: `${base}/members/creditRecord`, method: 'GET', header, dataType},
+
+}
+
+
 
 /**
  * 购物车数量 yellowStar
@@ -445,6 +453,9 @@ export const withdrawals_get = function (params, callback) {
 };
 export const withdrawals_post = function (params, callback) {
   setParams(Object.assign(params, commissions.withdrawals_post), callback)
+};
+export const BuyLevel = function (params, callback) {
+  setParams(Object.assign(params, commissions.buyLevel), callback)
 };
 
 /**
@@ -645,10 +656,18 @@ export const QrimgSave = function (url) {
  * 个人中心 yellowStar
  */
 export const PUT_USERINFO = function (params, callback) {
-  setParams(Object.assign(params, USERINFO), callback)
+  setParams(Object.assign(params, USERINFO.userinfo), callback)
+};
+
+
+export const Feedbacks = function (params, callback) {
+  setParams(Object.assign(params, USERINFO.feedbacks), callback)
 };
 export const PUT_USERAVATARS = function (params, callback) {
-  setParams(Object.assign(params, USERAVATARS), callback)
+  setParams(Object.assign(params, USERINFO.useravatars), callback)
+};
+export const CreditRecord = function (params, callback) {
+  setParams(Object.assign(params, USERINFO.creditRecord), callback)
 };
 export const USERPHOTO = function () {
   _webapp.uploadImg((res) => {

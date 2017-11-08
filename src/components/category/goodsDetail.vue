@@ -2,7 +2,7 @@
   <transition name="slide">
     <div class="main">
       <mt-header title="商品详情" class="header">
-        <a  slot="left" class="pro-white" @click="goBack()">
+        <a slot="left" class="pro-white" @click="goBack()">
           <mt-button icon="back"></mt-button>
         </a>
       </mt-header>
@@ -67,7 +67,7 @@
             <div class="bottom-nav" id="bottom-nav">
               图文详情
             </div>
-            <div class="intro" id="intro">
+            <div class="intro" id="intro" v-html="content">
             </div>
           </div>
         </div>
@@ -189,7 +189,8 @@
             title:'PICC承保',
             thumb:require('../../assets/images/p-4.png'),
           }
-        ]
+        ],
+        content:''
       }
     },
     methods: {
@@ -236,9 +237,13 @@
         console.log('长度')
         console.log(_this.spec)
         console.log(_this.specs_arr)
-
 //        if (!_this.spec || _this.spec.length == _this.specs_arr.length) {
 //        if (!_this.spec.length || _this.selectoption == '已选：') {
+
+       /* if(){
+
+        }*/
+
         if (!_this.spec.length || _this.optionId) {
           if (this.myStata === 1) {//加入购物车
             _this.popupVisible = false;
@@ -294,13 +299,15 @@
             this.$router.push({name: 'confirmorder'})
           }
 //        } else if (_this.spec.length > _this.specs_arr.length || _this.specs_arr.some((item)=>{item == ""})) {
-        } else if (_this.selectoption == '请选择') {
+        }
+        else if (_this.selectoption == '请选择') {
           Toast({
             message: '请选择规格',
             position: 'bottom',
             duration: 1800
           });
-        } else if (!_this.total) {
+        }
+        else if (!_this.total) {
           Toast({
             message: '暂无库存',
             position: 'bottom',
@@ -347,7 +354,8 @@
             that.opitions=res.data.options;
             console.log(that.opitions)
             that.spec=res.data.specs
-            document.getElementById("intro").innerHTML = goods.content;
+//            document.getElementById("intro").innerHTML = goods.content;
+            that.content=goods.content
 //            Indicator.close();
 
             if (res.data.level.levelname) {
