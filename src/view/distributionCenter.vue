@@ -229,7 +229,7 @@
   @import '../assets/css/fonts/iconfont.css';
 
   .page {
-    .page-view();
+    .page-view(1);
   }
   .container {
     /*margin-top: .64rem;*/

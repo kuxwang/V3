@@ -28,7 +28,7 @@
               <span class="price">￥{{marketPrice}}</span>
               <span class="marketPrice">市场价&nbsp;<s>{{maxprice}}</s></span>
               <div class="memberprice">
-                ￥{{minprice}}
+                ￥{{marketPrice-deduct}}
                 <span class="tip">会员券后价</span>
               </div>
             </div>
@@ -170,7 +170,7 @@
         selectoption:'请选择',
         noselected:true,
         hasselect:false,
-        minprice:'',
+        deduct:'',
         maxprice:'',
         advpic:[
           {
@@ -234,9 +234,9 @@
       },
       toast: function () {
         let _this = this;
-        console.log('长度')
+     /*   console.log('长度')
         console.log(_this.spec)
-        console.log(_this.specs_arr)
+        console.log(_this.specs_arr)*/
 //        if (!_this.spec || _this.spec.length == _this.specs_arr.length) {
 //        if (!_this.spec.length || _this.selectoption == '已选：') {
 
@@ -345,7 +345,7 @@
             that.goodsId = goods.id;
             that.name = goods.title;
             that.marketPrice = goods.marketprice;
-            that.minprice = goods.minprice;
+            that.deduct = goods.deduct;
             that.maxprice = goods.maxprice;
             that.bandimg = res.data.pics;
             that.total = goods.total;

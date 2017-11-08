@@ -26,7 +26,6 @@
     <div class="noDeliveryAddress" v-if="defaultAddress==''" @click="addtype">设置收货地址</div>
 
 
-
     <ul class="goodsList">
       <li>
         <div class="goodsList-tp">
@@ -63,6 +62,15 @@
             {{delivery.dispatchname}}
           </div>
         </router-link>
+        <div class="deliveryMode bt switchgroup">
+          <div class="deliveryMode-lf fl">
+            优惠券
+          </div>
+          <div class="fr">
+            <mt-switch v-model="ifuse" @change="switchuse"></mt-switch>
+          </div>
+        </div>
+
         <div class="deliveryMode deflist clearfix">
           <div class="deliveryMode-lf fl">
             给卖家留言:
@@ -114,14 +122,14 @@
 					<span class="goods-folatPrice">{{memberDiscount.discountprice | calculatePrice2}}</span>
 				</span>
       </li>
-      <li class="clearfix">
+      <!--<li class="clearfix">
         <div class="exhibition-lf fl">
           优惠券
         </div>
         <span class="mygoods-price fr">
           <input class="coupon" type="number"  placeholder="请输入优惠券" v-model.number="coupon"/>
 				</span>
-      </li>
+      </li>-->
     </ul>
       </div>
 
@@ -136,7 +144,7 @@
       			</span>
         <span class="mygoods-price">
 					¥
-					<span class="goods-intPrice">{{memberDiscount.realprice-coupon + dispatchesprice | calculatePrice1}}.</span>
+					<span class="goods-intPrice">{{memberDiscount.realprice-integral + dispatchesprice | calculatePrice1}}.</span>
 					<span class="goods-folatPrice">{{memberDiscount.realprice | calculatePrice2}}</span>
 				</span>
       </div>
@@ -154,7 +162,7 @@
   </div>
 </template>
 <script>
-  import {Header, MessageBox, Toast} from 'mint-ui';
+  import {Header, MessageBox, Toast,Switch} from 'mint-ui';
   import {GET_MYADDRESS1, GET_ORDER1, confirm_post, DispatchMoney} from '../../../api/api';
   import {mapMutations, mapState, mapGetters} from 'Vuex';
   //  import _ from 'lodash'
@@ -171,13 +179,15 @@
         payed: false,
         send:{},
         new:false,
-        coupon: 0,
-        couonnum:20
+        ifuse:false,  //是否使用积分
+        integral:0,
+        usenum:'',
       }
     },
     methods: {
       init() {
         let _this = this;
+        _this.ifuse=false
         let params = {
           data: {
             cartids: this.myOrders.cartids || '',
@@ -186,8 +196,8 @@
             goodsid: Number(this.myOrders.goodsid) || ''
           }
         };
-        console.log('参数')
-        console.log(params.data)
+        /*console.log('参数')
+        console.log(params.data)*/
 
         // 首次进入，初始化展示内容。
         GET_ORDER1(params, res => {
@@ -202,6 +212,19 @@
             _this.dispatchesprice = res.data.dispatches[0].price
             _this.shopSet = res.data.shopSet.style;
             _this.ADDRESS(res.data.addressLists)
+
+            let backmoney;
+            if(_this.memberDiscount.credit1>=_this.memberDiscount.deductprice){   //总数大于等于优惠
+              backmoney=_this.memberDiscount.deductprice
+            }else if(_this.memberDiscount.credit1<_this.memberDiscount.deductprice) {  //总数小于优惠
+              backmoney=_this.memberDiscount.credit1
+            }
+            _this.usenum=backmoney;    //实际使用了多少积分
+
+
+
+
+
           }else {
             alert(res.data)
           }
@@ -249,6 +272,7 @@
               addressid: addressid,
               cartids,
               remark,
+              deduct: Number(_this.ifuse)
 //              optionid: this.myOrders.optionid || '',
 
             }
@@ -290,6 +314,13 @@
       goProducts(v) {
         let goodsId = v.goodsid;
         this.$router.push({name: 'details', query: {goodsId: goodsId}})
+      },
+      switchuse(){
+        if(this.ifuse){
+          this.integral=this.usenum
+        }else {
+          this.integral=0
+        }
       },
       ...mapMutations([
         'ADDRESS', 'ORDERINFO',
@@ -401,7 +432,7 @@
           this.defaultAddress=''
         }
       },
-      coupon(a,b){
+      /*coupon(a,b){
         console.log(`a${a}`)
         console.log(`b${b}`)
         if(a>this.memberDiscount.realprice){
@@ -410,11 +441,12 @@
         if(a>this.couonnum){
           this.coupon=this.couonnum
         }
-      }
+      }*/
 
     },
     activated(){
       this.init();
+
     },
     /*created() {
       this.init();
@@ -627,6 +659,7 @@
   .deliveryMode-lf {
     font-size: 0.14rem;
     color: #666;
+    line-height: .46rem;
   }
 
   .deliveryMode.bt {
@@ -789,4 +822,20 @@
   .mygoods-price, .goods-price, .goods-num {
     color: red !important;
   }
+
+
+  .switchgroup {
+    height: 0.46rem;
+    line-height: 0.46rem;
+    color: #999;
+    font-size: 0.14rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mint-switch {
+    top:.07rem;
+  }
+
+
 </style>

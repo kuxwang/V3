@@ -8,7 +8,7 @@
     <div class="container">
       <div class="coupon__num">
         <span class="up">优惠券余额（元）</span>
-        <span class="down">{{money}}</span>
+        <span class="down">{{$route.query.money}}</span>
       </div>
       <div class="title">交易明细</div>
       <ul class="coupon__list">
@@ -129,7 +129,7 @@
   @import '../../../assets/css/fonts/iconfont.css';
 
   .page {
-    .page-view(1);
+    .page-view(10);
   }
   .container {
     .coupon__num{

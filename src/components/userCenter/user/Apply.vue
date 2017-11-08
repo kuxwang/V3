@@ -9,13 +9,17 @@
       </a>
     </mt-header>
     <div class="container">
-      <div class="title">
+      <!--<div class="title">
         <h1>优源店主</h1>
         <div>六大特权 &nbsp荣耀惠赠</div>
       </div>
       <div class="adv">
         <img src="../../../assets/images/shop-bg.png"/>
-      </div>
+      </div>-->
+      <div class="content" v-html="goods.content"></div>
+
+
+
 
       <div class="bottom">
         <div class="footer">
@@ -25,7 +29,7 @@
           <input id="agree" type="radio" value="1" v-model="isChecked" />
            <label for="agree">我已阅读并同意<span>优源店主服务协议</span></label>
         </div>
-        <button @click="apply">申请￥888/年 优源店主</button>
+        <div class="btn" @click="apply">申请￥888/年 优源店主</div>
       </div>
     </div>
 
@@ -33,24 +37,53 @@
 </template>
 
 <script>
+  import { BuyLevel } from '../../../api/api';
+  import {mapMutations, mapState, mapGetters} from 'Vuex';
+
   export default {
     data(){
       return {
-        isChecked:""
+        isChecked:"",
+        goods:''
       }
     },
     methods:{
+      init(){
+        let params={
+          data:{}
+        }
+        BuyLevel(params,(res)=>{
+          if(res.statusCode === 1){
+            console.log(res)
+            console.log('数据')
+            this.goods = res.data.goods
+          }
+        })
+      },
       apply(){
         if(this.isChecked==1){
           console.log('111')
+          let myOrders = {
+//            goodsid:this.goodsId,
+            goodsid: this.goods.id,
+            optionid: '',
+            cartids: '',
+            total: 1
+          }
+          console.log(myOrders)
+          this.getMyorders(myOrders);
+          this.$router.push({name: 'confirmorder'})
         }
       },
       goBack(){
         this.$router.go(-1)
-      }
+      },
+      ...mapMutations({
+        getMyorders: 'GET_MYORDERS'
+      })
     },
     created(){
-
+      this.init()
     }
   }
 </script>
@@ -63,7 +96,7 @@
   @import '../../../assets/css/fonts/iconfont.css';
 
   .page {
-    .page-view(100);
+    .page-view(10);
   }
   .container {
     .scroll-view(100%);
@@ -113,7 +146,7 @@
       .tip {
 
       }
-      button {
+      .btn {
         width: 96%;
         -webkit-border-radius: 10px;
         -moz-border-radius: 10px;
@@ -123,9 +156,13 @@
         margin: .095rem 2% .135rem 2%;
         font-size: .16rem;
         color: #fff;
+        line-height: .45rem;
 
       }
 
+    }
+    .content {
+      margin-top: .45rem;
     }
   }
 

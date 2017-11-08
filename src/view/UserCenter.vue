@@ -90,7 +90,7 @@
               <i class="iconfont right">&#xe649;</i>
             </router-link>
 
-            <router-link class="center-cell" :to="{name:'coupon'}" tag="li">
+            <router-link class="center-cell" :to="{name:'coupon',query:{money:memberInfo.credit1}}" tag="li">
               <div class="iconfont icon-grey">&#xe699;</div>
               <div class="title-list">现金券</div>
               <i class="iconfont right">&#xe649;</i>
@@ -195,6 +195,8 @@
         //用户信息
         memberInfo({data: {}}, function (res) {
           if (res.statusCode == 1) {
+            console.log(res.data)
+            console.log('用户信息')
             _this.memberInfo.nickname = res.data.nickname
             _this.memberInfo.id = res.data.id
             _this.memberInfo.level = res.data.level
