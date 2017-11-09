@@ -207,7 +207,6 @@
                 'identification': 'index'
               }
             };
-
             Adv(params,(res)=>{
               if(res.statusCode==1){
 //                this.adv= res.data

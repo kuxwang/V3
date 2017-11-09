@@ -26,7 +26,8 @@
             <div class="goodsTitle">
               <p>{{name}}</p>
               <span class="price">￥{{marketPrice}}</span>
-              <span class="marketPrice">市场价&nbsp;<s>{{maxprice}}</s></span>
+              <span class="marketPrice">库存&nbsp;{{total}}</span>
+              <span class="marketPrice">销量&nbsp;{{goods.sales}}</span>
               <div class="memberprice">
                 ￥{{marketPrice-deduct}}
                 <span class="tip">会员券后价</span>
@@ -190,7 +191,8 @@
             thumb:require('../../assets/images/p-4.png'),
           }
         ],
-        content:''
+        content:'',
+        goods:''
       }
     },
     methods: {
@@ -342,6 +344,7 @@
             console.log(res)
             that.goodNums = res.data.goodscount;
             let goods = res.data.goods
+            that.goods=res.data.goods
             that.goodsId = goods.id;
             that.name = goods.title;
             that.marketPrice = goods.marketprice;
@@ -354,7 +357,6 @@
             that.opitions=res.data.options;
             console.log(that.opitions)
             that.spec=res.data.specs
-//            document.getElementById("intro").innerHTML = goods.content;
             that.content=goods.content
 //            Indicator.close();
 
@@ -886,6 +888,9 @@
     font-size: .1rem;
     text-transform: uppercase;
     color: #999;
+    position: relative;
+    top: .2rem;
+    left: 1rem;
   }
   .goodsTitle .memberprice {
     font-size: .1rem;

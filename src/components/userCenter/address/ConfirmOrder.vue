@@ -64,8 +64,7 @@
         </router-link>
         <div class="deliveryMode bt switchgroup" v-if="memberDiscount.credit1 && memberDiscount.deductcreditmoney">
           <div class="deliveryMode-lf fl">
-            优惠券{{memberDiscount.credit1}}
-            可抵用{{memberDiscount.deductcredit }}
+            优惠券<i class="small">（剩余额度：{{memberDiscount.credit1}}，本次可使用：{{memberDiscount.deductcreditmoney }}）</i>
           </div>
           <div class="fr">
             <mt-switch v-model="ifuse" @change="switchuse"></mt-switch>
@@ -179,7 +178,6 @@
         shopSet: '',
         payed: false,
         send:{},
-        new:false,
         ifuse:false,  //是否使用积分
         integral:0,
         usenum:'',
@@ -619,6 +617,11 @@
   .deliveryMode-lf {
     font-size: 0.14rem;
     color: #666;
+    line-height: .46rem;
+  }
+  .deliveryMode-lf .small {
+    font-size: .1rem;
+    color: #333;
     line-height: .46rem;
   }
 

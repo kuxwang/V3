@@ -5,15 +5,12 @@
       优源生物
     </div>
     <div class="top-bar">
-      <div class="logo" v-if="!isSearch"><img :src="avatar"/></div>
-      <!--<v-search ref="search" @changetype="toggle()"></v-search>-->
-      <!--<input type="text" @click="goSearch()" placeholder="全球优质供应商直供" />-->
+      <div class="logo"><img :src="avatar"/></div>
       <div class="input" @click="goSearch()">
         <span class="iconfont">&#xe651;</span>
         全球优质供应商直供
       </div>
-
-      <div class="share" v-if="!isSearch" @click="share">
+      <div class="share"  @click="share">
         <span class="iconfont">&#xe71d;</span>
       </div>
     </div>
@@ -149,7 +146,6 @@
       this.getUserInfo();
       this.getNew();
       this.getHot()
-//      console.log(this.$refs.search.isfocus)
     },
     components: {
       vTabbar,
