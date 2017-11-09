@@ -141,7 +141,7 @@
 </template>
 <script>
   import vTabbar from '../components/mode/Tabbar.vue'
-  import {recordStatistics_get, teamsStatistics, orderStatistics, memberInfo, LOGINOUT} from '../api/api'
+  import {memberInfo, LOGINOUT,Adv} from '../api/api'
   import {mapMutations, mapGetters, mapState} from 'vuex'
   import {_webapp} from '../config/hook.js';
   import {MessageBox, Toast} from 'mint-ui';
@@ -151,12 +151,6 @@
       return {
         topStatus: '',
         disindex: 3,
-        orderStatistics: {
-          total: '0',//全部
-          lock: '0',//未结算
-          refund: '0',//已退款
-          ok: '0', //已结算
-        },
         memberInfo: {
           nickname: '',//昵称
           id: '',//会员id
@@ -171,7 +165,7 @@
           credit2: '',
         },
         defaultAvatar: '',
-        adv: advbanner
+        adv: require('../assets/images/banneradv.png'),
       }
     },
     components: {
@@ -196,7 +190,7 @@
         memberInfo({data: {}}, function (res) {
           if (res.statusCode == 1) {
             console.log(res.data)
-            console.log('用户信息')
+//            console.log('用户信息')
             _this.memberInfo.nickname = res.data.nickname
             _this.memberInfo.id = res.data.id
             _this.memberInfo.level = res.data.level
@@ -208,6 +202,21 @@
             _this.memberInfo.credit1 = res.data.credit1
             _this.setImgUrl(_this.memberInfo.avatar)
             _this.$refs.loadmore.onTopLoaded();
+            let params = {
+              data: {
+                'identification': 'index'
+              }
+            };
+
+            Adv(params,(res)=>{
+              if(res.statusCode==1){
+//                this.adv= res.data
+                console.log(res.data)
+              }else {
+                console.log(res)
+              }
+            })
+
           } else {
             console.log('会员接口数据异常')
             _this.$refs.loadmore.onTopLoaded();

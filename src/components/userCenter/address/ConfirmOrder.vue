@@ -322,7 +322,7 @@
       switchuse(){
         if(this.ifuse){
           if(this.memberDiscount.deductcreditmoney){
-            this.integral=this.memberDiscount.deductprice
+            this.integral=this.memberDiscount.deductcreditmoney
           }
         }else {
           this.integral=0

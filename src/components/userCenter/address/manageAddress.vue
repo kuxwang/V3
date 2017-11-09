@@ -17,7 +17,7 @@
           </div>
           <div class="set">
             <div :class="['default',{'blue':isChecked==i}]" @click="isDefault(v,i)">
-              <span :class="['iconfont',{'checked':v.isdefault==1} ]">&#xe69a;</span>
+              <span :class="['iconfont',{'checked':isChecked==i} ]">&#xe69a;</span>
               <span :class="['title',{'blue':isChecked==i}]">默认地址</span>
               <!--<input type="checkbox" :value="i" v-model="isChecked" />-->
             </div>

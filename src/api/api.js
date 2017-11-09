@@ -536,6 +536,9 @@ export const GoodsIndex = function (params, callback) {
 export const Advs = function (params, callback) {
   setParams(Object.assign(params, goods.advs), callback)
 }
+export const Adv = function (params, callback) {
+  setParams(Object.assign(params, goods.adv), callback)
+}
 export const Categorys = function (params, callback) {
   setParams(Object.assign(params, goods.categorys), callback)
 }
