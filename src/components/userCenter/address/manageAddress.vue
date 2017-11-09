@@ -1,51 +1,3 @@
-<!--<template>-->
-  <!--<div class="main">-->
-    <!--<mt-header fixed title="管理收货地址">-->
-      <!--<a slot="left" @click="goBack">-->
-        <!--<mt-button icon="back"></mt-button>-->
-      <!--</a>-->
-    <!--</mt-header>-->
-    <!--<ul class="deliveryAddress">-->
-      <!--<li v-for="(v,i) in addressLists" @click.prevent="getMyAddress(v,i)">-->
-        <!--<div class="clearfix deliveryAddress-tp">-->
-          <!--<div class="fl">-->
-            <!--{{v.realname}}-->
-          <!--</div>-->
-          <!--<div class="fr">-->
-            <!--{{v.mobile}}-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<p class="deliveryAddress-mid lr2">-->
-          <!--{{v.province}}{{v.city}}{{v.area}}{{v.address}}-->
-        <!--</p>-->
-        <!--<div class="div-hr"></div>-->
-        <!--<i class="iconfont mySelected" v-show="onActives==i">&#xe67f;</i>-->
-        <!--<i class="iconfont mySelected" >&#xe67f;</i>-->
-        <!--<label class="mint-checklist-label fl">-->
-            <!--<span class="mint-checkbox">-->
-              <!--<input type="checkbox" :checked="v.isdefault==1" class="mint-checkbox-input">-->
-              <!--<span class="mint-checkbox-core"></span>-->
-              <!--<span class="defaultcheck">设置为默认</span>-->
-            <!--</span>-->
-
-        <!--</label>-->
-        <!--<div class="edit" @click.stop="edit(v)">-->
-          <!--编辑-->
-        <!--</div>-->
-        <!--<div class="delete" @click="deleteAddress(v.id)">-->
-          <!--删除-->
-        <!--</div>-->
-      <!--</li>-->
-    <!--</ul>-->
-    <!--<div class="addDeliveryAddress" @click="addaddr">-->
-      <!--新增收货地址-->
-    <!--</div>-->
-    <!--<transition name="slide">-->
-      <!--<router-view></router-view>-->
-    <!--</transition>-->
-  <!--</div>-->
-<!--</template>-->
-
 <template>
   <div class="page">
     <mt-header fixed title="管理收货地址">
@@ -64,7 +16,7 @@
             {{v.province}}{{v.city}}{{v.area}}{{v.address}}
           </div>
           <div class="set">
-            <div :class="['default',{'blue':isChecked==i}]" @click="isDefault(i)">
+            <div :class="['default',{'blue':isChecked==i}]" @click="isDefault(v,i)">
               <span :class="['iconfont',{'checked':v.isdefault==1} ]">&#xe69a;</span>
               <span :class="['title',{'blue':isChecked==i}]">默认地址</span>
               <!--<input type="checkbox" :value="i" v-model="isChecked" />-->
@@ -89,16 +41,9 @@
   </div>
 </template>
 
-
-
-
-
-
-
-
 <script>
   import {mapGetters, mapMutations, mapState} from 'vuex';
-  import {addresses_get, addresses_delete} from '../../../api/api';
+  import {addresses_get, addresses_delete,addresses_put} from '../../../api/api';
   import {MessageBox} from 'mint-ui';
 
   export default {
@@ -106,7 +51,7 @@
       return {
         onActives: '',
         addressLists: [],
-        isChecked: -1
+        isChecked: ''
       }
     },
     methods: {
@@ -126,6 +71,22 @@
             _this.addressLists = res.data.list
             console.log('列表')
             console.log(res.data)
+
+            for(let i=0;i<_this.addressLists.length;i++){
+              if(_this.addressLists[i].isdefault ==1){
+                console.log('尽快拉上建档立卡')
+                console.log(i)
+                this.isChecked=i;
+                console.log(this.isChecked)
+              }
+            }
+
+
+
+
+
+
+
           } else {
             console.log('获取收货地址接口异常')
           }
@@ -196,8 +157,27 @@
 //          this.getOnActive(i);
         }
       },
-      isDefault(i){
-        this.isChecked=i;
+      isDefault(v,i){
+        let params={
+          data:{
+            addressid:v.id,
+            realname:v.realname,
+            mobile:v.mobile,
+            province:v.province,
+            city:v.city,
+            area:v.area,
+            address:v.address,
+            isdefault :1
+          }
+        }
+        addresses_put(params,(res)=>{
+          if(res.statusCode===1){
+            this.isChecked=i;
+            console.log('成功了')
+          }
+        })
+
+
         console.log(this.isChecked)
       },
       ...mapMutations({
@@ -218,18 +198,18 @@
         'addressListNum'
       ])
     },
-    watch: {
-      isChecked(a,b){
-        if(a>=0){
-          this.$set(this.addressLists[a],'isdefault','1')
-        }
-        console.log(this.addressLists)
-        if(Number(b)>=0 ){
-          this.$set(this.addressLists[b],'isdefault','0')
-          console.log(this.addressLists)
-        }
-      },
-    },
+//    watch: {
+//      isChecked(a,b){
+//        if(a>=0){
+//          this.$set(this.addressLists[a],'isdefault','1')
+//        }
+//        console.log(this.addressLists)
+//        if(Number(b)>=0 ){
+//          this.$set(this.addressLists[b],'isdefault','0')
+//          console.log(this.addressLists)
+//        }
+//      },
+//    },
     beforeRouteUpdate(to, from, next){
       if(from.path=='/address/add' || from.path =='/address/edit'){
         console.log('来自')
@@ -249,165 +229,7 @@
     }
   }
 </script>
-<!--<style scoped>
-  @import '../../../assets/css/fonts/iconfont.css';
-  @import '../../../assets/css/reset/reset.css';
 
-  .main {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #efeff4;
-    overflow: auto;
-    z-index: 50
-  }
-
-  .header {
-    font-size: 0.16rem;
-    height: 0.44rem;
-  }
-
-  .deliveryAddress {
-    /*margin-top: 0.7rem;*/
-    margin-top: .48rem;
-    margin-bottom: 0.58rem;
-  }
-
-  .deliveryAddress li {
-    height: 1.15rem;
-    padding: 0.1rem 0.58rem 0.1rem 0.1rem;
-    background: #fff;
-    border-bottom: 0.01rem solid #D8D8D8;
-    margin-bottom: .05rem;
-    position: relative;
-  }
-
-  .deliveryAddress-tp {
-    font-size: 0.16rem;
-    color: #666;
-  }
-
-  .deliveryAddress-mid {
-    font-size: 0.12rem;
-    color: #666;
-    text-align: left;
-    margin-top: 0.1rem;
-    margin-bottom: .05rem;
-    line-height: 0.20rem;
-
-  }
-
-  .deliveryAddress li.on {
-    /*background: #5e6b85;*/
-    background: #c3c3c3;
-  }
-
-  .deliveryAddress li.on .deliveryAddress-tp {
-    color: #fff;
-    /*color: #666;*/
-  }
-
-  .deliveryAddress li.on .deliveryAddress-mid {
-    color: #fff;
-    /*color: #666;*/
-  }
-
-  .addDeliveryAddress {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 0.48rem;
-    line-height: 0.48rem;
-    /*background: #F5751D;*/
-    background: #333;
-    text-align: center;
-    color: #fff;
-    font-size: 0.16rem;
-  }
-
-  .mySelected {
-    position: absolute;
-    top: 0.26rem;
-    right: 0.1rem;
-    font-size: 0.26rem;
-    color: #fff;
-  }
-
-  .div-hr {
-    position: absolute;
-    left: 0;
-    width: 3.75rem;
-    height: 1px;
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
-    top: .8rem;
-  }
-
-  .mint-checklist-label {
-    width: 2rem;
-    /*z-index: 1;*/
-    position: absolute;
-    margin-top: .08rem;
-  }
-
-  .mint-checkbox {
-    display: block;
-    height: .3rem;
-    float: left;
-  }
-
-  .mint-checkbox-core {
-    width: .15rem;
-    height: .15rem;
-    float: left;
-    display: block;
-    vertical-align: middle;
-    margin-top: .08rem;
-  }
-
-  .defaultcheck {
-    float: left;
-    font-size: .16rem;
-    line-height: .3rem;
-    margin-left: .1rem;
-    color: #666;
-  }
-
-  .mint-checkbox-input:checked + .mint-checkbox-core {
-    background-color: #F5751D;
-    border-color: #F5751D;
-  }
-
-  .mint-checkbox-core::after {
-    width: 3px;
-    height: 6px;
-    top: 3px;
-    left: 4px;
-  }
-
-  .edit {
-    position: absolute;
-    font-size: .16rem;
-    /*right: .5rem;*/
-    color: #666;
-    left: .1rem;
-    padding: 0 .05rem;
-    line-height: .5rem;
-    bottom: -0.07rem;
-  }
-
-  .delete {
-    position: absolute;
-    font-size: .16rem;
-    color: #666;
-    right: .1rem;
-    padding: 0 .05rem;
-    line-height: .5rem;
-    bottom: -0.07rem;
-  }
-</style>-->
 
 <style lang="less" scoped>
   @import '../../../assets/css/reset/reset.css';

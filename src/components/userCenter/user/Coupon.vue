@@ -132,6 +132,8 @@
     .page-view(10);
   }
   .container {
+    display: flex;
+    flex-direction: column;
     .coupon__num{
       margin-top: .45rem;
       width: 100%;
@@ -164,6 +166,13 @@
       border-bottom: 1px solid #e7e7e7;
     }
     .coupon__list {
+      flex: 1;
+      overflow: hidden;
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
+      height: 5rem;
+      /*padding-bottom: .5rem;*/
+      margin-bottom: .5rem;
       .coupon__cell {
         #img-text>.list(.75rem);
         padding: .145rem .1rem;

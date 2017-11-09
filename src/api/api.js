@@ -370,6 +370,7 @@ const USERINFO = {
   useravatars:{url: `${base}/uploads`, method: 'PUT', header, dataType},
   feedbacks : {url: `${base}/feedbacks`, method: 'POST', header, dataType},
   creditRecord : {url: `${base}/members/creditRecord`, method: 'GET', header, dataType},
+  topics : {url: `${base}/topics`, method: 'GET', header, dataType},
 
 }
 
@@ -663,13 +664,16 @@ export const PUT_USERINFO = function (params, callback) {
 export const Feedbacks = function (params, callback) {
   setParams(Object.assign(params, USERINFO.feedbacks), callback)
 };
+export const Topics = function (params, callback) {
+  setParams(Object.assign(params, USERINFO.topics), callback)
+};
 export const PUT_USERAVATARS = function (params, callback) {
   setParams(Object.assign(params, USERINFO.useravatars), callback)
 };
 export const CreditRecord = function (params, callback) {
   setParams(Object.assign(params, USERINFO.creditRecord), callback)
 };
-export const USERPHOTO = function () {
+export const USERPHOTO = function (callback) {
   _webapp.uploadImg((res) => {
     callback(res)
   })

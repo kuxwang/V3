@@ -62,7 +62,7 @@
             {{delivery.dispatchname}}
           </div>
         </router-link>
-        <div class="deliveryMode bt switchgroup">
+        <div class="deliveryMode bt switchgroup" v-if="memberDiscount.credit1 && memberDiscount.deductprice">
           <div class="deliveryMode-lf fl">
             优惠券
           </div>

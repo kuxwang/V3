@@ -13,7 +13,7 @@
 </template>
 
 <script>
-
+  import { Topics } from '../../../api/api';
   export default {
     data(){
       return {
@@ -21,8 +21,20 @@
       }
     },
     methods:{
-
+      init(){
+        let params={
+          data:{
+            identification:'aboutUs'
+          }
+        }
+        Topics(params,(res)=>{
+          console.log(res);
+        })
+      }
     },
+    created(){
+      this.init()
+    }
 
   }
 </script>
