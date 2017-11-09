@@ -62,9 +62,10 @@
             {{delivery.dispatchname}}
           </div>
         </router-link>
-        <div class="deliveryMode bt switchgroup" v-if="memberDiscount.credit1 && memberDiscount.deductprice">
+        <div class="deliveryMode bt switchgroup" v-if="memberDiscount.credit1 && memberDiscount.deductcreditmoney">
           <div class="deliveryMode-lf fl">
-            优惠券
+            优惠券{{memberDiscount.credit1}}
+            可抵用{{memberDiscount.deductcredit }}
           </div>
           <div class="fr">
             <mt-switch v-model="ifuse" @change="switchuse"></mt-switch>
@@ -182,6 +183,9 @@
         ifuse:false,  //是否使用积分
         integral:0,
         usenum:'',
+        credit1:'',//用户所剩余的 优惠券总额。
+        deductcredit :'',//本次可（需）使用的优惠券额度。
+        deductcreditmoney :'',//使用对应额度，可以减少的订单金额。
       }
     },
     methods: {
@@ -212,14 +216,13 @@
             _this.dispatchesprice = res.data.dispatches[0].price
             _this.shopSet = res.data.shopSet.style;
             _this.ADDRESS(res.data.addressLists)
-
-            let backmoney;
+            /*let backmoney;
             if(_this.memberDiscount.credit1>=_this.memberDiscount.deductprice){   //总数大于等于优惠
               backmoney=_this.memberDiscount.deductprice
             }else if(_this.memberDiscount.credit1<_this.memberDiscount.deductprice) {  //总数小于优惠
               backmoney=_this.memberDiscount.credit1
             }
-            _this.usenum=backmoney;    //实际使用了多少积分
+            _this.usenum=backmoney;    //实际使用了多少积分*/
 
 
 
@@ -290,7 +293,8 @@
               if (res.statusCode == 1) {
                 let ordersn = res.data.ordersn
                 _this.ORDERINFO(ordersn);
-
+                _this.integral=0;
+                _this.ifuse=false
                 _this.$router.replace({name: 'payselect', query: {orderid: ordersn}})
               } else if (res.statusCode == -1) {
                 Toast({
@@ -317,7 +321,9 @@
       },
       switchuse(){
         if(this.ifuse){
-          this.integral=this.usenum
+          if(this.memberDiscount.deductcreditmoney){
+            this.integral=this.memberDiscount.deductprice
+          }
         }else {
           this.integral=0
         }
@@ -369,39 +375,6 @@
         return value > this.memberDiscount.realprice ? this.memberDiscount.realprice : value
       }
     },
-//    beforeRouteEnter(to, from, next){
-//      if (from.name=='manageAddress' && to.name=='confirmorder'){
-//        next((vm)=>{
-//
-//          vm.defaultAddress = vm.userAddress;
-//          vm.dispatches=vm.delivery
-//
-//          let params = {
-//            data: {
-//              cartids: vm.myOrders.cartids || '',
-//              optionid: vm.myOrders.optionid || '',
-//              total: vm.myOrders.total || '',
-//              goodsid: vm.myOrders.goodsid || '',
-//              dispatchid:1,
-//              addressid: vm.defaultAddress.id
-//            }
-//          }
-//          console.log(params)
-//          DispatchMoney(params, res => {
-//            if (res.statusCode === 1) {
-//              console.log('请求数据')
-//              console.log(res)
-//              vm.dispatchesprice = res.data.dispatches.price
-//              vm.defaultAddress=res.data.addressLists
-//              vm.payed = false;
-//            }
-//          });
-//        })
-//      }else {
-//        next()
-//      }
-//
-//    },
     watch: {
       '$route'(to, from) {
         this.payed=false;
@@ -432,25 +405,12 @@
           this.defaultAddress=''
         }
       },
-      /*coupon(a,b){
-        console.log(`a${a}`)
-        console.log(`b${b}`)
-        if(a>this.memberDiscount.realprice){
-          this.coupon=this.memberDiscount.realprice
-        }
-        if(a>this.couonnum){
-          this.coupon=this.couonnum
-        }
-      }*/
-
     },
     activated(){
       this.init();
 
     },
-    /*created() {
-      this.init();
-    }*/
+
   }
 </script>
 <style scoped>
@@ -757,15 +717,6 @@
     font-size: .16rem;
     color: red;
   }
-
-
-
-
-
-
-
-
-
   .exhibition-lf {
     line-height: 0.46rem;
   }
@@ -835,6 +786,15 @@
 
   .mint-switch {
     top:.07rem;
+  }
+  .mint-switch .mint-switch-core {
+    background-color: #F5751D !important;
+    border-color: #F5751D  !important;
+  }
+
+  .fr .mint-switch .mint-switch-input:checked + .mint-switch-core {
+    background-color: #F5751D !important;
+    border-color: #F5751D  !important;
   }
 
 

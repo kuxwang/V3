@@ -164,6 +164,10 @@
     line-height: .2rem;
 
   }
+  .mint-switch-input:checked + .mint-switch-core {
+    border-color: #F5751D;
+    background-color: #F5751D;
+  }
 
 
 </style>
