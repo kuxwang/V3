@@ -214,10 +214,7 @@
           city: this.oldcity,
           area: this.oldarea
         }
-
       }, 100)
-
-
     }
   }
 </script>

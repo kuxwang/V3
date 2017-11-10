@@ -65,7 +65,12 @@
       },
       init(){
         let _this = this
-        addresses_get({data : {}}, res => {
+        let params={
+          data:{
+
+          }
+        }
+        addresses_get(params, res => {
           if (res.statusCode == 1) {
             _this.getaddressnum(res.data.list.length)
             _this.addressLists = res.data.list
@@ -80,13 +85,6 @@
                 console.log(this.isChecked)
               }
             }
-
-
-
-
-
-
-
           } else {
             console.log('获取收货地址接口异常')
           }
@@ -214,7 +212,6 @@
       if(from.path=='/address/add' || from.path =='/address/edit'){
         console.log('来自')
         console.log(from)
-        this.isChecked= -1
         this.init()
       }
       next()
@@ -222,10 +219,11 @@
 
     mounted() {
       console.log(this.$route.name)
+      this.init()
     },
 
     created() {
-      this.init()
+
     }
   }
 </script>

@@ -114,26 +114,13 @@
     components: {
       vTabbar,
       vSearch,
-    }
-    ,
+    },
     mounted() {
       this.init()
     }
-
-
-
   }
 
-
-
 </script>
-
-
-
-
-
-
-
 
 
 <style lang="less" scoped>
@@ -215,7 +202,8 @@
   }
 
   .r-item {
-    display: block;
+    display: flex;
+    flex-direction: column;
     /* width: .68rem;
      height: 1rem;*/
     width: .83156rem;
@@ -223,6 +211,8 @@
     /*border: 1px solid #2c3e50;*/
     padding: .05rem;
     margin: .05rem;
+    text-align: center;
+    justify-content:center;
   }
 
   .r-item img {
