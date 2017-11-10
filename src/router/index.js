@@ -115,7 +115,6 @@ export default new Router({
         }
       ]
     },
-
     /*分类*/
     {
       path: '/category',
@@ -136,14 +135,12 @@ export default new Router({
         }
       ]
     },
-
     //购物车
     {
       path: '/shoppingCart',
       name: 'shoppingCart',
       component: ShoppingCart
     },
-
     //分销
     {
       path: '/vipCenter',
@@ -204,7 +201,7 @@ export default new Router({
         },
       ]
     },
-
+    //提交订单
     {
       path: '/confirmorder',
       name: 'confirmorder',
@@ -228,7 +225,7 @@ export default new Router({
         },
         //地址
         {
-          path: '/address',
+          path: '/confirmorder/address',
           name: 'manageAddress',
           component: ManageAddress,
           // meta: { nokeepAlive: true },

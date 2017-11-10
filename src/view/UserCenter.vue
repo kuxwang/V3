@@ -1,10 +1,10 @@
 <template>
   <div class="main">
-    <mt-header title="个人中心">
+    <!--<mt-header title="个人中心">
       <router-link to="/userCenter" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
-    </mt-header>
+    </mt-header>-->
     <div class="container">
       <mt-loadmore :top-method="loadTop" @top-status-change="handleTopChange" :maxDistance="60"
                    :distanceIndex="disindex"
@@ -629,7 +629,7 @@
     /*-webkit-overflow-scrolling: touch;*/
     height: 100%;
     /*overflow-y: scroll;*/
-    padding:0 0 1.14rem 0
+    padding:0 0 .6rem 0
   }
 
   .nametype {

@@ -209,7 +209,7 @@
 //      },
 //    },
     beforeRouteUpdate(to, from, next){
-      if(from.path=='/address/add' || from.path =='/address/edit'){
+      if(from.name=='addaddress' || from.name=='editAddress' ||from.name=='useradd'||from.name=='useredit'){
         console.log('来自')
         console.log(from)
         this.init()
@@ -287,7 +287,7 @@
               color: #fff;
               border: 1px solid #000;
               border-radius: 50%;
-              font-size: .05rem;
+              font-size: .15rem;
             }
             .checked {
               color: #0076ff;
