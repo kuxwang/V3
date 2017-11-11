@@ -196,18 +196,6 @@
         'addressListNum'
       ])
     },
-//    watch: {
-//      isChecked(a,b){
-//        if(a>=0){
-//          this.$set(this.addressLists[a],'isdefault','1')
-//        }
-//        console.log(this.addressLists)
-//        if(Number(b)>=0 ){
-//          this.$set(this.addressLists[b],'isdefault','0')
-//          console.log(this.addressLists)
-//        }
-//      },
-//    },
     beforeRouteUpdate(to, from, next){
       if(from.name=='addaddress' || from.name=='editAddress' ||from.name=='useradd'||from.name=='useredit'){
         console.log('来自')

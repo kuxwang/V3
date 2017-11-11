@@ -78,10 +78,10 @@
       <div class="nogoods-tp">
         <img src="../assets/images/shoppingCart-02.png">
       </div>
-      <p class="nogoods-mid">
+      <div class="nogoods-mid">
         <h3>购物车居然是空的</h3>
         <h4>再忙，也要记得买点什么犒劳自己~</h4>
-      </p>
+      </div>
     </div>
   </div>
 </template>
@@ -310,7 +310,7 @@ export default {
       }
     }
   },
-  mounted() {
+  activated() {
     this.mycartsInt();
   }
 }
