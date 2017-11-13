@@ -204,7 +204,7 @@
             _this.$refs.loadmore.onTopLoaded();
             let params = {
               data: {
-                'identification': 'index'
+                'identification': 'userCenter'
               }
             };
             Adv(params,(res)=>{

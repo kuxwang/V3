@@ -8,12 +8,11 @@
     <div class="container">
 
     </div>
-
   </div>
 </template>
 
 <script>
-  import { Topics } from '../../../api/api';
+  import { Topics,Adv } from '../../../api/api';
   export default {
     data(){
       return {
@@ -24,10 +23,10 @@
       init(){
         let params={
           data:{
-            identification:'aboutUs'
+            identification:'contact'
           }
         }
-        Topics(params,(res)=>{
+        Adv(params,(res)=>{
           console.log(res);
         })
       }

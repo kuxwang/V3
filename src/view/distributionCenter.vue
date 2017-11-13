@@ -12,7 +12,9 @@
           </div>
           <div class="user__info">
             <h5>{{memberInfo.nickname}}</h5>
-            <div class="user__info__id">ID:{{memberInfo.id}}</div>
+
+            <div class="user__info__id"><span>等级：</span>{{memberInfo.level}}</div>
+            <div class="user__info__id"><span>ID：</span>{{memberInfo.id}}</div>
           </div>
           <div class="user__qcode">
             <img :src="img1"/>
@@ -258,6 +260,16 @@
         width: 100%;
         text-align: left;
         margin-left: .1rem;
+        span {
+          display: inline-block;
+          width: .36rem;
+        }
+        .user__info__id {
+          font-size: .12rem;
+          span {
+            font-size: .12rem;
+          }
+        }
       }
       .user__qcode {
         width: .4rem;

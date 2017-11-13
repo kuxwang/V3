@@ -573,7 +573,7 @@ export default {
 .search div {
   /*background-color: #f5751d;*/
   background-color: #f5751d;
-  display: block;
+  /*display: block;*/
   height: 0.4rem;
   -webkit-box-flex: 0.3;
   -ms-flex: 0.3;
@@ -590,15 +590,18 @@ export default {
 .nav-tab .tabActive {
   background-color: #fff;
   color: @themeColor1;
+  font-weight: 800;
 }
 
 .nav-tab .tabActive .title {
   color: @themeColor1;
+  font-weight: 800;
 }
 
 .tabActive .num,
 .tabActive .yuan {
   color: @themeColor1;
+  font-weight: 800;
 }
 
 .c-1 {
