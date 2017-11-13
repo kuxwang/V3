@@ -11,6 +11,9 @@
           <router-link  v-for="(v,k) in list" :to="{name:'details',query:{id:v.id}}" tag="li" class="scroll-goodslist-li" :key="k">
 
           <img :src="v.thumb" alt="">
+            <div class="nototal iconfont" v-if="v.total==0">
+              &#xe665;
+            </div>
           <p class="goodstitle lr1">
             {{v.title}}
           </p>
@@ -18,6 +21,7 @@
             ￥{{v.marketprice}}
             <span>￥{{v.productprice}}</span>
           </p>
+
           </router-link>
       </ul>
       <p>查看所有新品</p>
@@ -109,6 +113,7 @@
           -webkit-overflow-scrolling: touch;
           white-space: nowrap;
           .scroll-goodslist-li {
+            position: relative;
             display: inline-block;
             margin-right: .1rem;
             width: 1.4rem;
@@ -140,6 +145,15 @@
                  text-decoration: line-through;
                }
               }
+            .nototal{
+              width: 1.4rem;
+              height: 1.4rem;
+              z-index: 1;
+              position: absolute;
+              top:0;
+              font-size: 1rem;
+              line-height: 1.4rem;
+            }
           }
         }
       }

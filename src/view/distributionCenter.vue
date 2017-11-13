@@ -236,7 +236,8 @@
   .container {
     /*margin-top: .64rem;*/
     font-size: .14rem;
-    height: 100%;
+    /*height: 100%;*/
+    .scroll-view(100%);
     .user {
       /*height: 1.2rem;*/
       color: #fff;

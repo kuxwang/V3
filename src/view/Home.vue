@@ -2,7 +2,7 @@
   <div class="content">
     <div class="top-logo">
       <!--<img src= "" alt= "">-->
-      优源生物
+      麦麦国际
     </div>
     <div class="top-bar">
       <div class="logo"><img :src="avatar"/></div>
@@ -24,9 +24,11 @@
         </mt-swipe-item>
       </mt-swipe>
       <v-colrow :list="hot" v-if="hashot"></v-colrow>
+      <v-colrow :list="istime" v-if="hastime"></v-colrow>
       <v-colcol :list="newgoods" v-if="hasnew"></v-colcol>
       <div class="bottom-img">
-        <img class="bottom-pic" :src="logo2"/>
+        <!--<img class="bottom-pic" :src="logo2"/>-->
+        <img class="bottom-pic" :src="adv"/>
       </div>
     </div>
     <v-tabbar></v-tabbar>
@@ -40,7 +42,7 @@
   import vColcol from '../components/common/columnCol';
   import defalutAvatar from '../assets/images/defaultAvatar.png'
   import {fn} from '../config/myUtils';
-  import { Advs, memberInfo,Attributes,Share } from '../api/api';
+  import { Advs, memberInfo,Attributes,Share,Adv } from '../api/api';
   import {mapMutations, mapGetters, mapState} from 'vuex'
 
   export default{
@@ -55,12 +57,15 @@
         avatar: defalutAvatar,
         newgoods:[],
         hot:[],
-        hashot:true,
-        hasnew:true
+        istime:[],
+        hashot:false,
+        hasnew:false,
+        hastime:false,
+        adv:''
       }
     },
     methods: {
-      getAdv(){
+      getSilder(){
         let params = {
           data: {}
         };
@@ -97,8 +102,8 @@
           console.log(res)
           if (res.statusCode === 1) {
             this.newgoods = res.data;
-            if(!res.data.length){
-              this.hasnew=false
+            if(res.data.length){
+              this.hasnew=true
             }
           }else {
             this.hasnew=false
@@ -117,11 +122,31 @@
           console.log(res);
           if (res.statusCode === 1) {
             this.hot = res.data;
-            if(!res.data.length){
-              this.hashot=false
+            if(res.data.length){
+              this.hashot=true
             }
           }else {
             this.hashot=false
+          }
+        })
+      },
+      getTime(){
+        let parmas = {
+          data: {
+            attributes: "ishot:1",
+            page: 1,
+            psize: 10,
+          }
+        }
+        Attributes(parmas, (res) => {
+          console.log(res);
+          if (res.statusCode === 1) {
+            this.istime = res.data;
+            if(res.data.length){
+              this.hastime=true
+            }
+          }else {
+            this.hastime=false
           }
         })
       },
@@ -139,13 +164,27 @@
 
         })
       },
+      getAdv(){
+        let params = {
+          data: {}
+        };
+        Adv(params, (res) => {
+          if (res.statusCode === 1) {
+            this.adv = res.data;
+            console.log(this.slider)
+          }
+        })
+      },
+
 
     },
     mounted () {
-      this.getAdv();
+      this.getSilder();
       this.getUserInfo();
       this.getNew();
-      this.getHot()
+      this.getHot();
+      this.getTime();
+      this.getAdv();
     },
     components: {
       vTabbar,

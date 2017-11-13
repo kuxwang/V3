@@ -50,7 +50,7 @@
           </div>
 
           <div class="adv">
-            <div class="adv__title">
+            <!--<div class="adv__title">
               <div class="border"></div>
               <h2>品牌承诺</h2>
               <div class="border"></div>
@@ -60,7 +60,8 @@
                 <img :src='i.thumb'>
                 <span>{{i.title}}</span>
               </div>
-            </div>
+            </div>-->
+            <img :src="adv">
           </div>
         </div>
         <div class="details">
@@ -133,7 +134,7 @@
 
 <script>
   import {Header, Popup, Toast, Indicator, Loadmore} from 'mint-ui';
-  import {ProductDetail, addCart, GET_CARTNUMS,Favorite_add,Favorite_remove} from '../../api/api.js';
+  import {ProductDetail, addCart, GET_CARTNUMS,Favorite_add,Favorite_remove,Adv} from '../../api/api.js';
   import {setStore, getStore} from '../../config/myUtils';
   import {mapMutations, mapGetters} from 'Vuex';
   export default {
@@ -192,7 +193,8 @@
           }
         ],
         content:'',
-        goods:''
+        goods:'',
+        adv:''
       }
     },
     methods: {
@@ -364,8 +366,7 @@
               that.isVip = true;
               that.vipname = res.data.level.levelname;
               that.vipcount = res.data.level.discount;
-            }
-            ;
+            };
             let params = {data: {}};
             let _that = that;
             GET_CARTNUMS(params, function (res) {//获取购物车当前数量
@@ -374,6 +375,16 @@
               } else {
                 console.log('请求失败')
 //                Indicator.close();
+              }
+            })
+            let adv={
+              data:{
+
+              }
+            }
+            Adv(adv,(res)=>{
+              if(res.statusCode==1){
+                this.adv=res.data;
               }
             })
           } else {
@@ -1217,6 +1228,14 @@
     border-top: .1rem solid #f2f3f5;
     background-color: #ffffff;
   }
+
+  .adv img {
+    width: 100%;
+    height: 100%;
+  }
+
+
+
   .adv__title {
     height: .5rem;
     text-align: center;
