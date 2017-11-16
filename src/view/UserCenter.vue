@@ -73,7 +73,7 @@
             </router-link>
           </ul>
           <!--<section class="adv">-->
-          <router-link  tag="div" :to="{name:'applys'}">
+          <router-link class="advs"  tag="div" :to="{name:'applys'}">
             <img class="adv" :src="adv" alt="广告图">
           </router-link>
           <!--</section>-->
@@ -145,7 +145,7 @@
   import {mapMutations, mapGetters, mapState} from 'vuex'
   import {_webapp} from '../config/hook.js';
   import {MessageBox, Toast} from 'mint-ui';
-  import advbanner from '../assets/images/banneradv.png'
+  import defaultAvatar from '../assets/images/defaultAvatar.png'
   export default {
     data() {
       return {
@@ -195,7 +195,7 @@
             _this.memberInfo.id = res.data.id
             _this.memberInfo.level = res.data.level
             _this.memberInfo.leveldetail = res.data.leveldetail
-            _this.memberInfo.avatar = res.data.avatar
+            _this.memberInfo.avatar = res.data.avatar || defaultAvatar
             _this.memberInfo.from = res.data.parent_name
             _this.memberInfo.mobile = res.data.mobile
             _this.memberInfo.credit2 = res.data.credit2
@@ -250,7 +250,6 @@
       },
       getAddr(){
         this.addrtype(1)
-//        this.$router.push({name: 'deliveryaddress'});
         this.$router.push({name: 'address'});
       },
       ...mapMutations({
@@ -353,6 +352,9 @@
 
   .adv {
     width: 100%;
+  }
+  .advs {
+    margin-top: .1rem;
   }
 
   .message {

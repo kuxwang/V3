@@ -104,6 +104,7 @@
   import {mapMutations, mapGetters, mapState} from 'vuex'
   import {MessageBox} from 'mint-ui';
   import vTabbar from '../components/mode/Tabbar.vue'
+  import defaultAvatar from '../assets/images/defaultAvatar.png'
 
   export default {
     data(){
@@ -164,8 +165,8 @@
             _this.memberInfo.id = res.data.id
             _this.memberInfo.level = res.data.level
             _this.memberInfo.leveldetail = res.data.leveldetail
-            _this.memberInfo.avatar = res.data.avatar
-            _this.memberInfo.from = res.data.parent_name || '朵云家'
+            _this.memberInfo.avatar = res.data.avatar ||defaultAvatar
+            _this.memberInfo.from = res.data.parent_name || '麦麦国际'
             _this.memberInfo.level = res.data.agentleveldetail.levelname
 //            _this.setImgUrl(_this.memberInfo.avatar)
 

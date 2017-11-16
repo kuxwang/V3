@@ -82,7 +82,7 @@
       getUserInfo () {
           memberInfo({data: {}}, res => {
               if(res.statusCode == 1){
-                this.avatar = res.data.avatar
+                this.avatar = res.data.avatar ||defalutAvatar
               }else{
 //                console.log(用户接口请求错误)
               }
@@ -175,8 +175,7 @@
           }
         })
       },
-
-
+      
     },
     mounted () {
       this.getSilder();
