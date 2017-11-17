@@ -54,7 +54,7 @@
         <div class="title">
           <div class="icon"></div>
           <div class="text">直属团队</div>
-          <div class="right">邀请加入<span class="iconfont">&#xe61b;</span></div>
+          <div class="right" @click="share">邀请加入<span class="iconfont">&#xe61b;</span></div>
         </div>
         <div class="info">
           <div class="info__item1">
@@ -71,7 +71,7 @@
         <div class="title">
           <div class="icon"></div>
           <div class="text">收益</div>
-          <div class="right" @click="clickDetailed">每月明细<span class="iconfont">&#xe61b;</span></div>
+          <!--<div class="right" @click="clickDetailed">每月明细<span class="iconfont">&#xe61b;</span></div>-->
         </div>
         <div class="money">
           <div class="info__item3">

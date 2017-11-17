@@ -42,7 +42,7 @@
   import vColcol from '../components/common/columnCol';
   import defalutAvatar from '../assets/images/defaultlogo.png'
   import {fn} from '../config/myUtils';
-  import { Advs, memberInfo,Attributes,Share,Adv } from '../api/api';
+  import { Advs, memberInfo,Attributes,Share,Adv,iGetSessionKey } from '../api/api';
   import {mapMutations, mapGetters, mapState} from 'vuex'
 
   export default{
@@ -80,13 +80,23 @@
         this.isSearch=!this.isSearch;
       },
       getUserInfo () {
-          memberInfo({data: {}}, res => {
+        let _this=this;
+        iGetSessionKey(function(sessionKey){
+          if(sessionKey === true){
+            memberInfo({data: {}}, res => {
               if(res.statusCode == 1){
-                this.avatar = res.data.avatar ||defalutAvatar
+                console.log('首页用户信息')
+                console.log(res.data)
+                _this.avatar = res.data.parent_avatar ||defalutAvatar
               }else{
 //                console.log(用户接口请求错误)
               }
-          })
+            })
+          }else{
+
+          }
+        });
+
       },
       getNew(){
         let parmas = {
@@ -163,12 +173,16 @@
       },
       getAdv(){
         let params = {
-          data: {}
+          data: {
+            'identification': 'index'
+          }
         };
         Adv(params, (res) => {
           if (res.statusCode === 1) {
-            this.adv = res.data;
-            console.log(this.slider)
+            this.adv = res.data.thumb;
+//            console.log(this.slider)
+            console.log('广告数据')
+            console.log(res.data)
           }
         })
       },

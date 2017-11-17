@@ -46,8 +46,8 @@ iGetApiToken(function(apiToken){
 
     if(islogin){
       iGetSessionKey(function(sessionKey){
-        console.log(sessionKey);
-        console.log('sessionKey', sessionKey);
+        // console.log(sessionKey);
+        // console.log('sessionKey', sessionKey);
 
         if(sessionKey === false){
           MessageBox({
@@ -59,7 +59,7 @@ iGetApiToken(function(apiToken){
             _webapp.nativeLogin();
           });
         }else{
-          console.log('run sessionKey');
+          // console.log('run sessionKey');
 
           new Vue({
             router,

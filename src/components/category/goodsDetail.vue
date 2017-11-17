@@ -49,7 +49,7 @@
             </div>
           </div>
 
-          <div class="adv" v-if="adv">
+          <div class="adv" v-if="goodsadv">
             <!--<div class="adv__title">
               <div class="border"></div>
               <h2>品牌承诺</h2>
@@ -61,10 +61,10 @@
                 <span>{{i.title}}</span>
               </div>
             </div>-->
-            <img :src="adv">
+            <img :src="goodsadv">
           </div>
         </div>
-        <div class="details">
+        <div class="details" v-if="content">
           <div class="b-intro">
             <div class="bottom-nav" id="bottom-nav">
               图文详情
@@ -194,7 +194,7 @@
         ],
         content:'',
         goods:'',
-        adv:''
+        goodsadv:''
       }
     },
     methods: {
@@ -379,12 +379,14 @@
             })
             let adv={
               data:{
-
+                'identification': 'goods'
               }
             }
             Adv(adv,(res)=>{
               if(res.statusCode==1){
-                this.adv=res.data;
+                console.log('广告数据')
+                console.log(res.data)
+                that.goodsadv=res.data.thumb;
               }
             })
           } else {
@@ -925,8 +927,6 @@
     text-align: center;
   }
 
-
-
   .params {
     margin-top: .05rem;
     padding: .1rem;
@@ -956,20 +956,6 @@
     clear: both;
   }
 
-  /*.params-list > .title {*/
-    /*width: 30%;*/
-    /*float: left;*/
-    /*font-weight: bold;*/
-    /*font-size: .12rem;*/
-  /*}*/
-
-  /*.params-list > .value {*/
-    /*width: 70%;*/
-    /*float: left;*/
-    /*font-size: .12rem;*/
-    /*color: #858585;*/
-  /*}*/
-
   button {
     outline: none;
   }
@@ -979,11 +965,9 @@
     top: 0;
     width: 100%;
     overflow: auto;
-    /*overflow-y: scroll;*/
     -webkit-overflow-scrolling: touch;
-    /*height: 6.2rem;*/
     height: 100%;
-    /*overflow-y: scroll;*/
+    padding-bottom: .5rem;
 
   }
 

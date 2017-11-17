@@ -84,11 +84,11 @@
               <i class="iconfont right">&#xe649;</i>
             </router-link>
 
-            <router-link class="center-cell" :to="{name:'applys'}" tag="li" style="margin-bottom: .1rem;">
+            <li class="center-cell" @click="share" style="margin-bottom: .1rem;">
               <div class="iconfont icon-grey">&#xe633;</div>
               <div class="title-list">邀请好友</div>
               <i class="iconfont right">&#xe649;</i>
-            </router-link>
+            </li>
 
             <router-link class="center-cell" :to="{name:'coupon',query:{money:memberInfo.credit1}}" tag="li">
               <div class="iconfont icon-grey">&#xe699;</div>
@@ -166,7 +166,7 @@
           credit2: '',
         },
         defaultAvatar: '',
-        adv: require('../assets/images/banneradv.png'),
+        adv: '',
       }
     },
     components: {
@@ -210,7 +210,8 @@
             };
             Adv(params,(res)=>{
               if(res.statusCode==1){
-//                this.adv= res.data
+                _this.adv= res.data.thumb
+                console.log('广告数据')
                 console.log(res.data)
               }else {
                 console.log(res)
