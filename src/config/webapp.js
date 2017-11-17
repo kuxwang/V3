@@ -522,6 +522,7 @@ export var _webapp = {
       });
     }
 
+
     if (_env.android) {
       _webapp.connectWebViewJavascriptBridge(function (bridge) {
         if (_webapp.init === false) {
@@ -548,7 +549,6 @@ export var _webapp = {
       });
     }
   },
-
 
   share: function (data, callback) {
     var handler = 'share';

@@ -111,6 +111,8 @@
   import {memberInfo, PUT_USERINFO, PUT_USERAVATARS, USERPHOTO} from '../../../api/api';
   import {_webapp} from '../../../config/webapp.js';
   //  import {_webapp} from '../../config/webapp.js';
+  import myDefImg from "../../../assets/images/defaultlogo.png";
+
 
   export default{
     data(){
@@ -250,7 +252,7 @@
           console.log(res.data)
           if (res.statusCode === 1) {
             _this.initAddress();
-            _this.delImg = res.data.avatar;
+            _this.delImg = res.data.avatar || myDefImg;
             _this.myPhone = res.data.mobile;
             _this.myNc = res.data.nickname;
             _this.myName=res.data.realname;

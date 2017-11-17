@@ -156,11 +156,12 @@
       share(){
         let params = {
           data :{
-
+            url:'https://www.baidu.com/'
           }
         }
-        Share(params,res => {
-          console.log(res)
+        console.log(12)
+        Share(params,(res) => {
+          console.log(1)
 
         })
       },
