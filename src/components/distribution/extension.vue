@@ -572,12 +572,14 @@ export default {
   flex: 1;
   padding: 0 0.2rem;
   background: #fff;
-  margin-top: 0.15rem;
+  /*margin-top: 0.15rem;*/
+  margin: 0.075rem 0;
 }
 
 .search div {
   /*background-color: #f5751d;*/
-  background-color: #f5751d;
+  /*background-color: #f5751d;*/
+  background-color: #333;
   /*display: block;*/
   height: 0.4rem;
   -webkit-box-flex: 0.3;
@@ -585,7 +587,8 @@ export default {
   flex: 0.3;
   color: #fff;
   // line-height: 0.4rem;
-  margin-top: 0.15rem;
+  /*margin-top: 0.15rem;*/
+  margin: 0.075rem 0;
   font-size: 0.14rem;
   display: flex;
   align-items:center;
@@ -602,6 +605,13 @@ export default {
   color: @themeColor1;
   font-weight: 800;
 }
+
+.nav-tab .tabActive .iconfont {
+  color: @themeColor1;
+  font-weight: 800;
+}
+
+
 
 .tabActive .num,
 .tabActive .yuan {
