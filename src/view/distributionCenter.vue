@@ -99,7 +99,7 @@
 </template>
 
 <script>
-  import {recordStatistics_get, teamsStatistics, orderStatistics, memberInfo,BuyLevel,Qrimg } from '../api/api'
+  import {recordStatistics_get, teamsStatistics, orderStatistics, memberInfo,BuyLevel,Qrimg,Share } from '../api/api'
   import {_webapp} from '../config/hook.js';
   import {mapMutations, mapGetters, mapState} from 'vuex'
   import {MessageBox} from 'mint-ui';
@@ -248,7 +248,15 @@
             console.log(res.data)
           }
         })
-      }
+      },
+      share(){
+        let url=''
+        console.log(12)
+        Share(url,(res) => {
+          console.log(1)
+
+        })
+      },
     },
     components: {
       vTabbar: vTabbar

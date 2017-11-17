@@ -154,13 +154,9 @@
         this.$router.push('search')
       },
       share(){
-        let params = {
-          data :{
-            url:'https://www.baidu.com/'
-          }
-        }
+        let url=''
         console.log(12)
-        Share(params,(res) => {
+        Share(url,(res) => {
           console.log(1)
 
         })

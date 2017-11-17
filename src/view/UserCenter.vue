@@ -141,7 +141,7 @@
 </template>
 <script>
   import vTabbar from '../components/mode/Tabbar.vue'
-  import {memberInfo, LOGINOUT,Adv} from '../api/api'
+  import {memberInfo, LOGINOUT,Adv,Share} from '../api/api'
   import {mapMutations, mapGetters, mapState} from 'vuex'
   import {_webapp} from '../config/hook.js';
   import {MessageBox, Toast} from 'mint-ui';
@@ -252,6 +252,14 @@
       getAddr(){
         this.addrtype(1)
         this.$router.push({name: 'address'});
+      },
+      share(){
+        let url=''
+        console.log(12)
+        Share(url,(res) => {
+          console.log(1)
+
+        })
       },
       ...mapMutations({
         tabselect: 'TABSELECT',
