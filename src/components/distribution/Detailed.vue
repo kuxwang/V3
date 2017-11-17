@@ -36,7 +36,7 @@ import { mapMutations } from 'Vuex';
 import { memberInfo, PUT_USERINFO, PUT_USERAVATARS, USERPHOTO } from '../../api/api';
 import { _webapp } from '../../config/webapp.js';
 //  import {_webapp} from '../../config/webapp.js';
-
+import { orderStatistics, orderLists, orders } from "../../api/api";
 export default {
   data() {
     return {
@@ -63,6 +63,9 @@ export default {
   methods: {
     goBack() {
       this.$router.go(-1);
+    },
+    init(){
+
     }
   }
 }

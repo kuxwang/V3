@@ -275,9 +275,6 @@
     activated() {
       this.init();
     },
-    mounted() {
-
-    },
     beforeRouteUpdate(to, from, next) {
       if (from.name === 'userinfo') {
         this.init();

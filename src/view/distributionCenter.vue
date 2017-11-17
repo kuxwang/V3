@@ -17,7 +17,7 @@
             <div class="user__info__id"><span>ID：</span>{{memberInfo.id}}</div>
           </div>
           <div class="user__qcode">
-            <img :src="img1"/>
+            <img :src="qrimg"/>
           </div>
         <router-link class="user__update" :to="{name:'disapply'}"  tag="a" v-if="goods">
           升级店铺
@@ -328,9 +328,9 @@
         height: .68rem;
         display: block;
         img {
-          .imgfull(50%);
+          width: .4rem;
           height: .4rem;
-          vertical-align: middle;
+          /*vertical-align: middle;*/
           /*margin-top: .14rem;*/
         }
       };
