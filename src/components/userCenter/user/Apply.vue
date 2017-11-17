@@ -20,7 +20,7 @@
 
       <div class="bottom">
         <div class="footer">
-          已有<span>8888</span>人成为优源店主
+          已有<span>{{count}}</span>人成为优源店主
         </div>
         <div class="tip">
           <input id="agree" type="radio" value="1" v-model="isChecked" />
@@ -41,7 +41,8 @@
     data(){
       return {
         isChecked:"",
-        goods:''
+        goods:'',
+        count:''
       }
     },
     methods:{
@@ -53,7 +54,8 @@
           if(res.statusCode === 1){
             console.log(res)
             console.log('数据')
-            this.goods = res.data.goods
+            this.goods = res.data.goods;
+            this.count=res.data.count
           }
         })
       },
@@ -69,7 +71,7 @@
           }
           console.log(myOrders)
           this.getMyorders(myOrders);
-          this.$router.push({name: 'confirmorder'})
+          this.$router.push({name: 'confirmorder',query:{comedis:1}})
         }
       },
       goBack(){

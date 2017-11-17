@@ -255,6 +255,7 @@ const commissions = {
    *
    */
   withdrawals_get: {url: `${base}/commissions/withdrawals`, method: 'GET', header, dataType},
+  withdrawalStatus: {url: `${base}/commissions/withdrawalStatus`, method: 'GET', header, dataType},
   withdrawals_post: {url: `${base}/commissions/withdrawals`, method: 'POST', header, dataType},
   buyLevel: {url: `${base}/commissions/buyLevel`, method: 'GET', header, dataType},
 };
@@ -451,6 +452,9 @@ export const memberInfo = function (params, callback) {
  */
 export const withdrawals_get = function (params, callback) {
   setParams(Object.assign(params, commissions.withdrawals_get), callback)
+};
+export const withdrawalStatus = function (params, callback) {
+  setParams(Object.assign(params, commissions.withdrawalStatus), callback)
 };
 export const withdrawals_post = function (params, callback) {
   setParams(Object.assign(params, commissions.withdrawals_post), callback)

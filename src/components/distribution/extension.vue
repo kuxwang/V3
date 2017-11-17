@@ -61,7 +61,7 @@
             </div>
             <div class="down">
               <div class="logo">
-                <img :src="v.avatar" />
+                <img :src="v.avatar | dGoods" />
               </div>
               <div class="info">
                 <h5>{{v.nickname}}</h5>
@@ -92,7 +92,7 @@ import { mapMutations, mapGetters } from "vuex";
 import { orderStatistics, orderLists, orders } from "../../api/api";
 import defaultImg from "../mode/defaultImg";
 //import myDefImg from "../../assets/images/wdhb.png";
-import myDefImg from "../../assets/images/noorder.png";
+import myDefImg from "../../assets/images/defaultlogo.png";
 
 export default {
   data() {
@@ -254,6 +254,11 @@ export default {
   },
   components: {
     defaultImg
+  },
+  filters: {
+    dGoods (value) {
+      return value ? value : myDefImg
+    }
   },
   mounted() {
     let _this = this;

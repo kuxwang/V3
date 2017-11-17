@@ -14,19 +14,19 @@
     </div>
     <h5>收入</h5>
     <ul class="view">
+       <li class="cell">
+         今日收益
+         <span>{{today}}元</span>
+       </li>
+      <li class="cell">
+        本月收益
+        <!--<span class="iconfont">&#xe61b;</span>-->
+        <span>{{month}}元</span>
+      </li>
       <li class="cell">
         累计销售收益
-        <span>{{defaults}}元</span>
+        <span>{{total}}元</span>
       </li>
-      <li class="cell">
-        累计管理收益
-        <!--<span class="iconfont">&#xe61b;</span>-->
-        <span>{{manage}}元</span>
-      </li>
-      <!-- <li class="cell">
-         累计消费省钱
-         <span>1231元</span>
-       </li>-->
     </ul>
     <h5>支出</h5>
     <ul class="view">
@@ -38,6 +38,9 @@
       </router-link>
       <!--</li>-->
     </ul>
+
+      <p class="tips">{{text}}</p>
+
     <!--  <router-link to="./outmoney" tag="div" class="btn" >
         提现
       </router-link>-->
@@ -50,7 +53,7 @@
 </template>
 <script>
 
-  import {withdrawals_get, withdrawals_post, recordStatistics_get} from '../../api/api.js';
+  import {withdrawals_get, withdrawals_post, recordStatistics_get,withdrawalStatus} from '../../api/api.js';
   import {Toast} from 'mint-ui';
 
   export default{
@@ -59,30 +62,44 @@
         ok: '',
         pay: '',
         manage: '',
-        defaults: ''
+        defaults: '',
+        today:'',
+        month:'',
+        total:'',
+        cantake:false,
+        text:''
       }
     },
     created(){
-      /*console.log('run created.');
-       console.log(this.moneylist);*/
     },
     mounted(){
       this.init();
     },
     methods: {
-
       go1(){
         console.log('run');
         console.log(this.ok);
-        if(this.ok > 0){
-          this.$router.push({name: 'outmoney'})
-        }else{
+        let _this=this;
+        if(_this.cantake===false){
           Toast({
-            message: '没有可提现的金额',
+            message: '抱歉，没有满足提现条件',
             position: 'middle',
             duration: 2000
           });
+        }else {
+          if(_this.ok > 0){
+            _this.$router.push({name: 'outmoney'})
+          }else{
+            Toast({
+              message: '抱歉，暂无可提现的金额',
+              position: 'middle',
+              duration: 2000
+            });
+          }
         }
+
+
+
 
       },
       init(){
@@ -93,16 +110,30 @@
         }
         recordStatistics_get(params, (res) => {
           if (res.statusCode === 1) {
+            this.takeStatus();
             console.log(res)
             this.ok = res.data.ok.c_money_sum;
             this.pay = res.data.pay.c_money_sum;
             this.defaults = res.data.default.c_money_sum;
             this.manage = res.data.manage.c_money_sum;
+            this.today = res.data.today.c_money_sum;
+            this.month = res.data.month.c_money_sum;
+            this.total = res.data.total.c_money_sum;
 
-//            console.log(res)
 
           } else {
             console.log('请求失败')
+          }
+        })
+      },
+      takeStatus(){
+        withdrawalStatus({data:{}},(res)=>{
+          if(res.statusCode===1){
+            this.cantake=true;
+            console.log('可以提现')
+          }else{
+            this.text=res.data;
+            console.log('无法提现')
           }
         })
       }
@@ -230,6 +261,11 @@
     /*position: fixed;*/
     width: 100%;
 
+  }
+  .tips {
+    font-size: .12rem;
+    text-align: left;
+    padding: .1rem;
   }
 
 </style>

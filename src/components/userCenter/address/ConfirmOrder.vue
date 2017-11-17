@@ -184,6 +184,7 @@
         credit1:'',//用户所剩余的 优惠券总额。
         deductcredit :'',//本次可（需）使用的优惠券额度。
         deductcreditmoney :'',//使用对应额度，可以减少的订单金额。
+        comedis:false
       }
     },
     methods: {
@@ -232,8 +233,10 @@
         })
       },
       addtype(){
-        this.ADDTYPE(0)
-        this.$router.push({name:'manageAddress'});
+        if(this.comedis==false){
+          this.ADDTYPE(0)
+          this.$router.push({name:'manageAddress'});
+        }
       },
       goBack() {
         this.$router.push('home');
@@ -314,8 +317,11 @@
         }
       },
       goProducts(v) {
-        let goodsId = v.goodsid;
-        this.$router.push({name: 'details', query: {goodsId: goodsId}})
+        let _this=this;
+        if(_this.comedis===false){
+          let goodsId = v.goodsid;
+          this.$router.push({name: 'details', query: {goodsId: goodsId}})
+        }
       },
       switchuse(){
         if(this.ifuse){
@@ -402,11 +408,21 @@
         if(from.query.n){
           this.defaultAddress=''
         }
+        console.log(from)
+        console.log('hsalkjdhsalkdhjlskahd')
+        if(from.name==='apply'){
+          this.comedis==true
+          console.log('haskjdhadlkjhasl')
+        }
       },
     },
     activated(){
+      let _this=this;
       this.init();
-
+      if(_this.$route.query.comedis==1){
+        _this.comedis=true
+        console.log('哈哈哈')
+      }
     },
 
   }

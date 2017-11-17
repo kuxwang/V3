@@ -40,7 +40,7 @@
   import vSearch from '../components/mode/search';
   import vColrow from '../components/common/columnRow';
   import vColcol from '../components/common/columnCol';
-  import defalutAvatar from '../assets/images/defaultAvatar.png'
+  import defalutAvatar from '../assets/images/defaultlogo.png'
   import {fn} from '../config/myUtils';
   import { Advs, memberInfo,Attributes,Share,Adv } from '../api/api';
   import {mapMutations, mapGetters, mapState} from 'vuex'
@@ -175,7 +175,6 @@
           }
         })
       },
-      
     },
     mounted () {
       this.getSilder();

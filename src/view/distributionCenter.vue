@@ -19,7 +19,7 @@
           <div class="user__qcode">
             <img :src="img1"/>
           </div>
-        <router-link class="user__update" :to="{name:'disapply'}"  tag="a">
+        <router-link class="user__update" :to="{name:'disapply'}"  tag="a" v-if="goods">
           升级店铺
         </router-link>
 
@@ -58,11 +58,11 @@
         </div>
         <div class="info">
           <div class="info__item1">
-            <div>100</div>
+            <div>{{teamsStatistics.all}}</div>
             总人数
           </div>
           <div class="info__item2">
-            <div>100</div>
+            <div>{{teamsStatistics.month}}</div>
             本月人数
           </div>
         </div>
@@ -76,10 +76,10 @@
         <div class="money">
           <div class="info__item3">
             今日收益（元）
-            <div>100</div>
+            <div>{{recordStatistics_get.today}}</div>
           </div>
-          <p>本月收益<span>88.88</span>元</p>
-          <p>累计收益<span>88.88</span>元</p>
+          <p>本月收益<span>{{recordStatistics_get.month}}</span>元</p>
+          <p>累计收益<span>{{recordStatistics_get.total}}</span>元</p>
         </div>
       </section>
     </div>
@@ -99,12 +99,13 @@
 </template>
 
 <script>
-  import {recordStatistics_get, teamsStatistics, orderStatistics, memberInfo, } from '../api/api'
+  import {recordStatistics_get, teamsStatistics, orderStatistics, memberInfo,BuyLevel,Qrimg } from '../api/api'
   import {_webapp} from '../config/hook.js';
   import {mapMutations, mapGetters, mapState} from 'vuex'
   import {MessageBox} from 'mint-ui';
   import vTabbar from '../components/mode/Tabbar.vue'
-  import defaultAvatar from '../assets/images/defaultAvatar.png'
+//  import defaultAvatar from '../assets/images/userinfo-02.png'
+  import defaultAvatar from '../assets/images/defaultlogo.png'
 
   export default {
     data(){
@@ -124,20 +125,15 @@
           credit2: '',
         },
         recordStatistics_get: {
-          cg_money_sum: '0',//销售总额
-          c_money_sum: '0', //佣金总额
-          o_status_3: '0', //已收货
-          pay: '0', //已提现
-          check: '0', //可提现
-          invalid: '0', //被驳回的业绩
-          apply: '0', //申请中
-          o_status_0: '0', //待打款
-          ok: '0'
+          total:'',
+          month:'',
+          today:'',
         },
         teamsStatistics: {
           all: '0',  //总人数
           purchased: '0',  //已购买人数
-          no_purchased: '0'  //未购买人数
+          no_purchased: '0',  //未购买人数
+          month: '0',  //未购买人数
         },
         orderStatistics: {
           total: '0',//全部
@@ -149,18 +145,23 @@
         disindex: 3,
         defaultAvatar: '',
         issale:true,
+        goods:false,
+        qrimg:'',
         webDebug : _webapp.debug
       }
     },
     methods: {
       init(){
-        let _this=this;
-        memberInfo({data : {}}, function (res) {
-          _webapp.log('memberInfo res');
-          _webapp.log(res);
+        this.getMember();
 
+      },
+      getMember(){
+        let _this=this
+        memberInfo({data : {}}, function (res) {
           if (res.statusCode == 1) {
-//            console.log(res)
+            console.log('会员数据')
+            console.log(res.data)
+//            console.log(res.data.level)
             _this.memberInfo.nickname = res.data.nickname
             _this.memberInfo.id = res.data.id
             _this.memberInfo.level = res.data.level
@@ -168,52 +169,85 @@
             _this.memberInfo.avatar = res.data.avatar ||defaultAvatar
             _this.memberInfo.from = res.data.parent_name || '麦麦国际'
             _this.memberInfo.level = res.data.agentleveldetail.levelname
-//            _this.setImgUrl(_this.memberInfo.avatar)
 
+            _this.getBuyLevel();
+            _this.getTeam();
+            _this.getOrder();
+            _this.getRecode();
+            _this.getQrimg();
           } else {
             console.log('会员接口数据异常')
+            _this.$router.push({name:'disapply'})
           }
         })
+      },
+      getTeam(){
+        let _this=this
         teamsStatistics({data : {}}, function (res) {
           if (res.statusCode == 1) {
             _this.teamsStatistics.all = res.data.all || 0;
             _this.teamsStatistics.purchased = res.data.purchased || 0;
             _this.teamsStatistics.no_purchased = res.data.no_purchased || 0;
+            _this.teamsStatistics.month = res.data.monthCount || 0;
           } else {
-            console.log('佣金统计接口数据异常')
+            console.log('团队接口数据异常')
           }
         });
-        teamsStatistics({data : {}}, function (res) {
-          if (res.statusCode == 1) {
-            _this.teamsStatistics.all = res.data.all || 0;
-            _this.teamsStatistics.purchased = res.data.purchased || 0;
-            _this.teamsStatistics.no_purchased = res.data.no_purchased || 0;
-          } else {
-            console.log('佣金统计接口数据异常')
-          }
-        });
+      },
+      getOrder(){
+        let _this=this;
         orderStatistics({data : {}}, function (res) {
-          if (res.statusCode == 1 && res.data == true) {
+          if (res.statusCode == 1 ) {
             _this.orderStatistics.total = res.data.total.order_count || 0
             _this.orderStatistics.lock = res.data.lock.order_count || 0
             _this.orderStatistics.refund = res.data.refund.order_count || 0
             _this.orderStatistics.ok = res.data.ok.order_count || 0
-//          _this.$refs.loadmore.onTopLoaded();
           } else {
             console.log('获取团队数量统计接口数据异常')
           }
         })
       },
-      partnertab(idx){
-        this.tabselect(idx)
-        this.$router.push({name: `partner`})
-      },
-      ordertab(idx){
-        this.tabselect(idx)
-        this.$router.push({name: `extension`})
+      getBuyLevel(){
+        let _this=this;
+        let params={
+          data:{}
+        }
+        BuyLevel(params,(res)=>{
+          if(res.statusCode === 1){
+            _this.goods = true
+          }
+        })
       },
       clickDetailed(){
         this.$router.push({name:'detailed'});
+      },
+      getRecode(){
+        let _this=this;
+        let params = {
+          data: {}
+        }
+        recordStatistics_get(params, (res) => {
+          if (res.statusCode === 1) {
+      /*      console.log('金额')
+            console.log(res.data)*/
+          _this.recordStatistics_get.total=res.data.total.c_money_sum
+          _this.recordStatistics_get.today=res.data.today.c_money_sum
+          _this.recordStatistics_get.month=res.data.month.c_money_sum
+          } else {
+            console.log('请求失败')
+          }
+        })
+      },
+      getQrimg(){
+        let _this = this;
+        Qrimg({data :{}}, res => {
+          if (res.statusCode == 1) {
+            _this.qrimg = res.data
+            console.log(res.data)
+          }else {
+            console.log(res.data)
+          }
+        })
       }
     },
     components: {
@@ -232,13 +266,18 @@
   @import '../assets/css/fonts/iconfont.css';
 
   .page {
-    .page-view(1);
+    .page-view(1)
   }
   .container {
-    /*margin-top: .64rem;*/
     font-size: .14rem;
-    /*height: 100%;*/
-    .scroll-view(100%);
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: .45rem;
+    padding-bottom: 1rem;
+    height: 100%;
     .user {
       /*height: 1.2rem;*/
       color: #fff;
@@ -247,11 +286,13 @@
       background-color: @style2;
       display: flex;
       /*padding: .26rem .2rem;*/
+      position: relative;
       padding: .5rem .2rem;
       justify-content: flex-start;
       .user__logo {
         width: .68rem;
         height: .68rem;
+        background-color: #fff;
         border-radius: 50%;
         img {
           .imgfull(50%)

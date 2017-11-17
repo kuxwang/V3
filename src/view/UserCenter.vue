@@ -145,7 +145,8 @@
   import {mapMutations, mapGetters, mapState} from 'vuex'
   import {_webapp} from '../config/hook.js';
   import {MessageBox, Toast} from 'mint-ui';
-  import defaultAvatar from '../assets/images/defaultAvatar.png'
+//  import defaultAvatar from '../assets/images/defaultAvatar.png'
+  import defaultAvatar from '../assets/images/defaultlogo.png'
   export default {
     data() {
       return {

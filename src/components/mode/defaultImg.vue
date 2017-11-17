@@ -20,7 +20,6 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-/*@import "../../../assets/less/common.less";*/
 @import '../../assets/css/reset/common.less';
 
 .nogoods {
@@ -43,6 +42,9 @@ export default {
         display: block;
         width: 100%;
       }
+    }
+    img {
+      width: 100%;
     }
     .nogoods-mid {
       margin-top: 0.2rem;

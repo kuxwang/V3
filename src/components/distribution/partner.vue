@@ -158,6 +158,7 @@
       <!--<span class="iconfont">&#xe612;</span>-->
       <!--未找到伙伴<br>-->
       <!--</div>-->
+      <!--<default-img :defData="defMsg" v-show="!defShow"></default-img>-->
       <router-view></router-view>
     </div>
   </div>
@@ -179,193 +180,7 @@
   import loadingList from "../common/loadinglist.vue";
   import defaultImg from "../mode/defaultImg";
 //  import myDefImg from "../../assets/images/wdhb.png";
-  import myDefImg from "../../assets/images/nopartner.png";
-
-  /*export default {
-    data() {
-      return {
-        selected: 1,
-        find: "",
-        popupVisible: false,
-        personlist: [],
-        defMsg: {
-          img: myDefImg,
-          title1: "尚无我的伙伴",
-          title2: ""
-        },
-        defShow: true,
-        psize: 10,
-        page: 1,
-        bottomStatus: "",
-        allLoaded: true,
-        isTrue: false,
-        type: "",
-        level: "",
-        partnerNum: "",
-        isHide: 0
-      };
-    },
-    components: {
-      loadingList,
-      defaultImg
-    },
-    methods: {
-      init() {
-        //初始化
-        let _this = this;
-        _this.type = _this.$route.query.type;
-        _this.level = _this.$route.query.level;
-        _this.isHide = Number(_this.$route.query.isHide);
-        _this.getPartnerNum(_this.type);
-        _this.switchPartner(_this.level);
-      },
-      switchPartner(level) {
-        console.log('切换')
-        //切换
-        let _this = this;
-        _this.psize = 10;
-        _this.page = 1;
-        _this.bottomStatus = "";
-        _this.level = level;
-        _this.allLoaded = true;
-        _this. defShow=true;
-        _this.isTrue = false;
-        _this.selected = level;
-        _this.personlist = [];
-        _this.find = ""; //每次切换清空搜索框
-        let params = {
-          data: {
-            type: _this.type,
-            page: _this.page,
-            psize: _this.psize,
-            level: _this.level
-          }
-        };
-        console.log(params);
-        teamsLevelLists(params, res => {
-          if (res.statusCode === 1) {
-            // console.log(res.data.lists)
-            _this.personlist = res.data;
-              // 当orderlist length<_this.psize 表示可以上拉，否则禁止
-            _this.personlist.length < _this.psize
-              ? (_this.allLoaded = true)
-              : (_this.allLoaded = false);
-
-            // 当orderlist length<=0时 显示默认图
-            _this.defShow = _this.personlist.length <= 0 ? false : true;
-          } else {
-            _this.defShow = false;
-            console.log("partner teamsLists:" + res.data);
-          }
-        });
-      },
-      getPartnerNum(type) {
-        //获取每个梯队人数
-        let params = {
-          data: {
-            type
-          }
-        };
-        teamsLevelCounts(params, res => {
-          let _this = this;
-          if (res.statusCode === 1) {
-            console.log(res);
-            console.log(res.data);
-            _this.partnerNum = res.data;
-          } else {
-            console.log("partnerlevel teamsLevelCounts" + res.data);
-          }
-        });
-      },
-      handleBottomChange(status) {
-        this.bottomStatus = status;
-      },
-      loadBottom() {
-        //上拉加载
-        let _this = this;
-        let params = {
-          data: {
-            page: ++_this.page,
-            type: _this.$route.query.type,
-            psize: _this.psize,
-            level: _this.level
-          }
-        };
-        console.log(params.data);
-        teamsLists(params, res => {
-          if (res.statusCode === 1) {
-            _this.personlist = _this.personlist.concat(res.data);
-          }
-          this.$refs.loadmore.onBottomLoaded();
-          if (res.data.lists.length < _this.psize) {
-            Toast({
-              message: "亲，已经到底了哦~",
-              position: "middle",
-              duration: 1500
-            });
-            _this.allLoaded = true;
-            return false;
-          }
-        });
-      },
-      searchPartner() {
-        //搜索
-        let _this = this;
-        let partnerData = {};
-        if (_this.find.length == 11) {
-          let reg = /^1[3|4|5|7|8][0-9]{9}$/;
-          if (reg.test(_this.find)) {
-            partnerData = {
-              mobile: _this.find
-            };
-          } else {
-            Toast({
-              message: "手机号格式不正确",
-              position: "top",
-              duration: 1500
-            });
-            return false;
-          }
-        } else if (Number(_this.find)) {
-          partnerData = {
-            id: _this.find
-          };
-        } else {
-          Toast({
-            message: "请属于正确的会员ID或会员手机号。",
-            position: "top",
-            duration: 1500
-          });
-          return false;
-        }
-        let params = {
-          data: partnerData
-        };
-        teams(params, res => {
-          console.log(res.data);
-          if (res.statusCode === 1) {
-            _this.personlist = [];
-            _this.personlist.push(res.data);
-            console.log(_this.personlist);
-          } else {
-            Toast({
-              message: res.data,
-              position: "top",
-              duration: 1500
-            });
-          }
-        });
-      },
-      goPartnerInfo(v) {
-        let _this = this;
-        _this.$router.push({ name: "partnerInfo", query: { openid: v.openid } });
-      }
-    },
-    mounted() {
-      let _this = this;
-      _this.init();
-    }
-  };*/
+  import myDefImg from "../../assets/images/defaultlogo.png";
 
   export default{
     data () {
@@ -386,6 +201,11 @@
         personnumall: 0,
         personp: 0,
         personnp: 0,
+        defMsg: {
+          img: myDefImg,
+          title1: "meiyo",
+          title2: ""
+        },
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -412,7 +232,8 @@
 
     },
     components: {
-      loadingList
+      loadingList,
+      defaultImg
     },
     methods: {
       open(){
