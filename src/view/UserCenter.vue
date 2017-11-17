@@ -127,6 +127,9 @@
             <!--</router-link>-->
           </ul>
           <button class="outLogin" @click="outLogin">退出登录</button>
+          <div class="edition">
+            {{version}}
+          </div>
         </section>
       </mt-loadmore>
       <!--<router-view></router-view>-->
@@ -141,7 +144,7 @@
   import vTabbar from '../components/mode/Tabbar.vue'
   import {memberInfo, LOGINOUT,Adv,Share} from '../api/api'
   import {mapMutations, mapGetters, mapState} from 'vuex'
-  import {_webapp} from '../config/hook.js';
+  import {_webapp,_env} from '../config/hook.js';
   import {MessageBox, Toast} from 'mint-ui';
 //  import defaultAvatar from '../assets/images/defaultAvatar.png'
   import defaultAvatar from '../assets/images/defaultlogo.png'
@@ -165,7 +168,7 @@
         },
         defaultAvatar: '',
         adv: '',
-        version:''
+        version:'v.1.0.1117'
       }
     },
     components: {
@@ -268,16 +271,13 @@
         memberInfo(params,(res)=>{
           if(res.statusCode===1){
             if(_this.version!==res.data){
-             /* MessageBox({
-                title: '提示',
-                message: '发现最新版本，是否更新',
-                showCancelButton: true
-              }).then(() => {
-
-              })*/
               MessageBox({title: '发现最新版本', message: '是否更新', showCancelButton: true,confirmButtonText:'去登陆'}).then(action => {
                 if (action === 'confirm') {//表示点击了确定
+                  if(_env.ios){
 
+                  }else if(_env.android){
+
+                  }
                 } else if (action === 'cancel') {//表示点击了取消
 
                 }
@@ -791,4 +791,11 @@
     color: #fff;
     font-size: 0.16rem;
   }
+
+  .edition{
+    color:#B0B0B0;
+    font-size: 0.12rem;
+    margin-top: 0.2rem;
+  }
+
 </style>

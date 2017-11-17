@@ -66,7 +66,7 @@
         hastime:false,
         adv:'',
         islogin:false,
-        shareurl:'',
+        sharedata:'',
       }
     },
     methods: {
@@ -94,7 +94,7 @@
                 console.log(res.data)
                 _this.avatar = res.data.parent_avatar ||defalutAvatar
                 _this.islogin = true;
-                _this.shareurl = res.data.share.appdownurl;
+                _this.sharedata = res.data.share;
               }else{
 //                console.log(用户接口请求错误)
               }
@@ -173,15 +173,18 @@
       share(){
         let _this=this;
         if(_this.islogin===true){
-          let url=_this.shareurl;
-          Share(url,(res) => {
+          let params=_this.sharedata;
+          console.log(_this.sharedata)
+          Share(params,(res) => {
             console.log(1)
           })
         }else{
           MessageBox({title: '很抱歉，您还未登陆', message: '是否去登陆', showCancelButton: true,confirmButtonText:'去登陆'}).then(action => {
             if (action === 'confirm') {//表示点击了确定
               _webapp.nativeLogin();
+              console.log('去登陆')
             } else if (action === 'cancel') {//表示点击了取消
+              console.log('不去登陆')
             }
           })
         }
