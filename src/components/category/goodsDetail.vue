@@ -41,7 +41,7 @@
             <span class="total" v-show="!noselected">×{{num}}</span>
           </div>
 
-          <div class="params">
+          <div class="params" v-if="goodsparams.length">
             <div class="info">商品信息</div>
             <div v-for="v in goodsparams" class="params-list">
               <div class="title">【{{v.title}}】</div>
@@ -49,7 +49,7 @@
             </div>
           </div>
 
-          <div class="adv">
+          <div class="adv" v-if="adv">
             <!--<div class="adv__title">
               <div class="border"></div>
               <h2>品牌承诺</h2>

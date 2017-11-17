@@ -77,37 +77,16 @@ export const _env = (function () {
 
 export const _webapp = {
 
-  debug : true
-  ,
+  debug : true,
 
   apiToken: {},
 
   sessionKey: {},
 
-  log: function (logData) {
-
-    if(_webapp.debug === true){
-      if (!_env.wshoto) {
-        console.log(logData);
-        return ;
-      }
-
-      let str = '';
-      switch (typeof logData) {
-        case 'object' :
-          str = JSON.stringify(logData);
-          break;
-        default :
-          str = logData;
-          break;
-      }
-
-      let $message = $('.messageApp');
-      let html = '<li style=" width: 100%; padding: 0; margin: 0px; border-bottom: 1px solid #efefef;">' + str + '</li>';
-      $message.append(html);
-    }
-
-    return true;
+  getQueryString : function (name) {
+    let reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    let r = window.location.search.substr(1).match(reg);
+    if(r!=null)return  unescape(r[2]); return null;
   },
 
   clearLog: function () {
@@ -167,7 +146,7 @@ export const _webapp = {
   },
 
   getSignData: function (obj, auth_key) {
-    _webapp.log('getSign Data running:');
+    //_webapp.log('getSign Data running:');
     // _webapp.log(obj);
 
     if (typeof obj !== 'object') {
