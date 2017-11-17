@@ -25,7 +25,8 @@ import {
   GET_DEFAULTADDRESSISNULL,
   ISSCROLL,
   ADDTYPE,
-  HASLOGO
+  HASLOGO,
+  UPDATA
 }
   from
     './mutation-types.js'
@@ -124,6 +125,10 @@ export default {
   },
   [HASLOGO](state, data) {
     state.haslogo=data;
+    // console.log(data)
+  },
+  [UPDATA](state, data) {
+    state.updata=data;
     // console.log(data)
   },
 }

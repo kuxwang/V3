@@ -10,7 +10,7 @@
         <span class="iconfont">&#xe651;</span>
         全球优质供应商直供
       </div>
-      <div class="share"  @click="share">
+      <div class="share"  @click="share()">
         <span class="iconfont">&#xe71d;</span>
       </div>
     </div>
@@ -44,6 +44,9 @@
   import {fn} from '../config/myUtils';
   import { Advs, memberInfo,Attributes,Share,Adv,iGetSessionKey } from '../api/api';
   import {mapMutations, mapGetters, mapState} from 'vuex'
+  import {MessageBox} from 'mint-ui';
+  import {_webapp} from './../config/hook.js'
+
 
   export default{
     data () {
@@ -61,7 +64,9 @@
         hashot:false,
         hasnew:false,
         hastime:false,
-        adv:''
+        adv:'',
+        islogin:false,
+        shareurl:'',
       }
     },
     methods: {
@@ -88,6 +93,8 @@
                 console.log('首页用户信息')
                 console.log(res.data)
                 _this.avatar = res.data.parent_avatar ||defalutAvatar
+                _this.islogin = true;
+                _this.shareurl = res.data.share.appdownurl;
               }else{
 //                console.log(用户接口请求错误)
               }
@@ -164,12 +171,20 @@
         this.$router.push('search')
       },
       share(){
-        let url=''
-        console.log(12)
-        Share(url,(res) => {
-          console.log(1)
-
-        })
+        let _this=this;
+        if(_this.islogin===true){
+          let url=_this.shareurl;
+          Share(url,(res) => {
+            console.log(1)
+          })
+        }else{
+          MessageBox({title: '很抱歉，您还未登陆', message: '是否去登陆', showCancelButton: true,confirmButtonText:'去登陆'}).then(action => {
+            if (action === 'confirm') {//表示点击了确定
+              _webapp.nativeLogin();
+            } else if (action === 'cancel') {//表示点击了取消
+            }
+          })
+        }
       },
       getAdv(){
         let params = {
@@ -180,9 +195,6 @@
         Adv(params, (res) => {
           if (res.statusCode === 1) {
             this.adv = res.data.thumb;
-//            console.log(this.slider)
-            console.log('广告数据')
-            console.log(res.data)
           }
         })
       },

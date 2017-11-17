@@ -125,8 +125,6 @@
             <!--<div class="title-list">我的足迹</div>-->
             <!--<i class="iconfont right">&#xe649;</i>-->
             <!--</router-link>-->
-
-
           </ul>
           <button class="outLogin" @click="outLogin">退出登录</button>
         </section>
@@ -167,6 +165,7 @@
         },
         defaultAvatar: '',
         adv: '',
+        version:''
       }
     },
     components: {
@@ -259,13 +258,46 @@
         console.log(12)
         Share(url,(res) => {
           console.log(1)
+        })
+      },
+      versionupdate(){
+        let _this=this;
+        let params={
+          data:{}
+        }
+        memberInfo(params,(res)=>{
+          if(res.statusCode===1){
+            if(_this.version!==res.data){
+             /* MessageBox({
+                title: '提示',
+                message: '发现最新版本，是否更新',
+                showCancelButton: true
+              }).then(() => {
 
+              })*/
+              MessageBox({title: '发现最新版本', message: '是否更新', showCancelButton: true,confirmButtonText:'去登陆'}).then(action => {
+                if (action === 'confirm') {//表示点击了确定
+
+                } else if (action === 'cancel') {//表示点击了取消
+
+                }
+              })
+
+
+
+
+
+
+
+            }
+          }
         })
       },
       ...mapMutations({
         tabselect: 'TABSELECT',
         setImgUrl: 'IMGURL',
-        addrtype: 'ADDTYPE'
+        addrtype: 'ADDTYPE',
+        updata: 'UPDATA'
       })
     },
     filter: {

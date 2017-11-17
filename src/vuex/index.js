@@ -41,6 +41,7 @@ const state = {
   oldarea:'',
   addtype:'',
   haslogo:true, //首页logo
+  updata:false
 }
 
 export default new Vuex.Store({
