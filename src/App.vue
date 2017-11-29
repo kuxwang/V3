@@ -33,6 +33,8 @@
     position: relative;
     background-color: #fff !important;
     overflow: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 
   }
 

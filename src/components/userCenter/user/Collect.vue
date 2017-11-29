@@ -480,7 +480,7 @@
 
   .nogoods .nogoods-mid {
     margin-top: 0.2rem;
-    font-size: 0.14em;
+    font-size: 0.14rem;
     color: #666;
   }
 

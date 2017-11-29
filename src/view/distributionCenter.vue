@@ -10,6 +10,7 @@
 
             <div class="user__info__id"><span>等级：</span>{{memberInfo.level}}</div>
             <div class="user__info__id"><span>ID：</span>{{memberInfo.id}}</div>
+            <div class="user__info__id"><span>推荐人：</span>{{memberInfo.from}}</div>
           </div>
           <div class="user__qcode">
             <img :src="qrimg"/>
@@ -70,8 +71,9 @@
         </div>
         <div class="money">
           <div class="info__item3">
-            <span class="today">今日收益（元）</span>
-            <div>{{recordStatistics_get.today}}</div>
+            <!--<span id="today" class="today">今日收益（元）</span>-->
+            <div class="today">今日收益（元）</div>
+            <div class="num">{{recordStatistics_get.today||0}}</div>
           </div>
           <p>本月收益<span>{{recordStatistics_get.month}}</span>元</p>
           <p>累计收益<span>{{recordStatistics_get.total}}</span>元</p>
@@ -304,7 +306,8 @@
         margin-left: .1rem;
         span {
           display: inline-block;
-          width: .36rem;
+          /*width: .36rem;*/
+          width: .4rem;
         }
         .user__info__id {
           font-size: .12rem;
@@ -424,15 +427,15 @@
         text-align: left;
         font-size: .12em;
         color: #007aff;
-        div {
+        div.num {
           /*font-size: .22rem;*/
           font-size: .31rem;
           text-transform: uppercase;
           color: #333;
           margin-top: .08rem;
         }
-        span.today {
-          font-size: .12em !important;
+        .today {
+          font-size: .12rem !important;
         }
       }
       p {
@@ -477,6 +480,11 @@
       margin: 0 auto;
     }
 
+  }
+  #today {
+    font-size: .12rem;
+    display: block;
+    height: .16rem;
   }
 
 </style>

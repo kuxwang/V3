@@ -139,7 +139,7 @@
              }
              img {
               width: 3.4rem;
-              height: 3rem;
+              /*height: 3rem;*/
               border-radius: .1rem;
              }
              .goodstitle {

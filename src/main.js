@@ -11,7 +11,7 @@ import MintUI from 'mint-ui'
 import {MessageBox} from 'mint-ui'
 import VueLazyload from 'vue-lazyload'
 
-// import Vconsole from 'vconsole'
+import Vconsole from 'vconsole'
 
 import {iGetSessionKey, iGetApiToken,} from './api/api.js'
 import {_webapp} from './config/hook.js'
@@ -26,7 +26,7 @@ Vue.use(Vuex)
 Vue.use(MintUI)
 Vue.config.productionTip = false
 
-// var vsconsole = new Vconsole();
+var vsconsole = new Vconsole();
 
 
 
