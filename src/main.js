@@ -11,9 +11,9 @@ import MintUI from 'mint-ui'
 import {MessageBox} from 'mint-ui'
 import VueLazyload from 'vue-lazyload'
 
-import Vconsole from 'vconsole'
+// import Vconsole from 'vconsole'
 
-import {iGetSessionKey, iGetApiToken} from './api/api.js'
+import {iGetSessionKey, iGetApiToken,} from './api/api.js'
 import {_webapp} from './config/hook.js'
 
 
@@ -26,65 +26,43 @@ Vue.use(Vuex)
 Vue.use(MintUI)
 Vue.config.productionTip = false
 
-// let vsconsole = new Vconsole();
+// var vsconsole = new Vconsole();
 
 
-// MessageBox({
-//   title: '友情提示',
-//   message: '获取用户信息失败，可能是登陆超时或在其他设备中登陆，点击确认将为您跳转至登陆页面。',
-//   showCancelButton: false,
-//   closeOnClickModal : false
-// }).then(action => {
-//   _webapp.nativeLogin();
-// });
+
 
 iGetApiToken(function(apiToken){
   console.log('apiToken', apiToken);
   if(apiToken) {
-    let islogin = _webapp.getQueryString('islogin');
-    console.log(islogin);
-
-    if(islogin){
-      iGetSessionKey(function(sessionKey){
-        // console.log(sessionKey);
-        // console.log('sessionKey', sessionKey);
-
-        if(sessionKey === false){
-          MessageBox({
-            title: '友情提示',
-            message: '获取用户信息失败，可能是登陆超时或在其他设备中登陆，点击确认将为您跳转至登陆页面。',
-            showCancelButton: false,
-            closeOnClickModal : false
-          }).then(action => {
-            _webapp.nativeLogin();
-          });
+    if(_webapp.debug==false){
+      _webapp.checkLogin(function (res) {
+        console.log(res.statusCode)
+        if(res.statusCode ==1){
+          _webapp.getSessionKey(function () {
+            new Vue({
+              router,
+              store,
+              render: h => h(App)
+            }).$mount('#app');
+          })
         }else{
-          // console.log('run sessionKey');
-
+          console.log(-1)
           new Vue({
             router,
             store,
             render: h => h(App)
           }).$mount('#app');
         }
-      });
-    }else{
+      })
+
+    }else {
       new Vue({
         router,
         store,
         render: h => h(App)
-      }).$mount('#app')
+      }).$mount('#app');
     }
 
-  }else{
-    MessageBox({
-      title: '友情提示',
-      message: '很抱歉，系统可能出现了点问题，请您关闭APP（需后台任务清除）后重新尝试。',
-      showCancelButton: false,
-      closeOnClickModal : false
-    }).then(action => {
-      _webapp.nativeLogin();
-    });
   }
 });
 

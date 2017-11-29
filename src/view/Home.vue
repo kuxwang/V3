@@ -204,11 +204,16 @@
     },
     mounted () {
       this.getSilder();
-      this.getUserInfo();
+//      this.getUserInfo();
       this.getNew();
       this.getHot();
       this.getTime();
       this.getAdv();
+      _webapp.checkLogin(function (res) {
+        if(res.statusCode==1){
+          this.getUserInfo();
+        }
+      })
     },
     components: {
       vTabbar,

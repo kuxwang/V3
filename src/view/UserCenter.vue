@@ -227,17 +227,17 @@
         });
       },
       outLogin() {
-        MessageBox({title: '确认退出当前账号?', message: '点击确认退出', showCancelButton: true}).then(action => {
-          if (action == 'confirm') {//表示点击了确定
-            // _webapp.logOut((res)=>{})
-            console.log('试试')
-            LOGINOUT(function (res) {
-              console.log('推出成功')
-            })
-          } else if (action === 'cancel') {//表示点击了取消
-
+        MessageBox({
+          title: "确认退出当前账号?",
+          message: "点击确认退出",
+          showCancelButton: true
+        }).then(action => {
+          if (action == "confirm") {
+            _webapp.nativeLogin();
+          } else if (action === "cancel") {
+            //表示点击了取消
           }
-        })
+        });
       },
       handleTopChange(status) {
         this.topStatus = status;
@@ -317,16 +317,17 @@
 
   }
 </script>
-<style scoped>
+<style lang="less" scoped>
   @import '../assets/css/fonts/iconfont.css';
   @import '../assets/css/reset/reset.css';
+  @import '../assets/css/reset/common.less';
 
   * {
     font-size: .16rem;
   }
 
   .mint-header {
-    height: .45rem !;
+    height: .45rem;
     background: #000 !important;
     color: #fff !important;
   }
@@ -335,15 +336,8 @@
     font-size: .18rem !important;
   }
 
-  .main, .main1 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #ececec;
-    /*overflow: auto;*/
-    overflow: hidden;
+  .main {
+    .page-view(1);
   }
 
   .option {
@@ -663,14 +657,14 @@
   }
 
   .container {
-    /*position: absolute;*/
     top: 0;
     width: 100%;
+    overflow: hidden;
     overflow-y: scroll;
-    /*-webkit-overflow-scrolling: touch;*/
+    -webkit-overflow-scrolling: touch;
     height: 100%;
     /*overflow-y: scroll;*/
-    padding:0 0 .6rem 0
+    padding:0 0 .6rem 0;
   }
 
   .nametype {

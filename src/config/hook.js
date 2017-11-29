@@ -96,14 +96,6 @@ export const _webapp = {
 
   checkApiToken: function () {
 
-    //_webapp.log(_webapp.apiToken);
-    //_webapp.log('typeof _webapp.apiToken');
-    // _webapp.log(typeof _webapp.apiToken === 'object');
-    // _webapp.log('typeof _webapp.apiToken.data');
-    // _webapp.log(typeof _webapp.apiToken.data === 'object');
-    // _webapp.log('_webapp.apiToken.statusCode == 1');
-    // _webapp.log(_webapp.apiToken.statusCode / 1 === 1);
-
     if(_webapp.debug === true){
       _webapp.getApiTokenSync();
     }
@@ -368,7 +360,8 @@ export const _webapp = {
    */
   getSessionKeySync: function () {
     if(_webapp.debug === true){
-      _webapp.sessionKey = {data : {"sessionkey":"5e394281dfac81c1e7dddcaf4d35d1f6", "timestamp":1500997527}, statusCode : '1'};
+      _webapp.sessionKey = {data : {"sessionkey":"c8ae6f8c04bfc9d71ef5280b8de361b4", "timestamp":1500997527}, statusCode : '1'};
+      // _webapp.sessionKey = {};
     }
 
     // _webapp.log('_webapp getSessionKeySync running');
@@ -437,6 +430,9 @@ export const _webapp = {
           // responseCallback('getSessionKey responseCallback.');
           response = eval('(' + response + ')');
           _webapp.sessionKey = response;
+          console.log(_webapp.sessionKey)
+          console.log('getSession方法回调')
+          console.log('response'+response)
           // _webapp.log('_webapp registerHandler back, getSessionKey :');
           // _webapp.log(_webapp.sessionKey);
           return _webapp.callback(response, callback);
@@ -572,7 +568,72 @@ export const _webapp = {
     }
   },
 
+  checkLogin: function (callback) {
 
+    // _webapp.log('_webapp getApiToken running');
+    let handler = 'checkLogin';
+
+    if (_env.ios) {
+      _webapp.setupWebViewJavascriptBridge(function (bridge) {
+        bridge.callHandler(handler, function (response) {
+          // _webapp.log('_webapp callHandler back, response :');
+          // _webapp.log(response);
+          // _webapp.apiToken = response;
+          // _webapp.log('_webapp callHandler back, apiToken :');
+          // _webapp.log(_webapp.apiToken);
+          // return _webapp.callback(response, callback);
+        });
+
+        bridge.registerHandler(handler, function (response, responseCallback) {
+          // _webapp.log('_webapp registerHandler back, response :');
+          // _webapp.log(response);
+          // responseCallback('getApiToken responseCallback.');
+          // _webapp.apiToken = response;
+
+          // _webapp.log('_webapp registerHandler back, getSessionKey :');
+          // _webapp.log(_webapp.apiToken);
+          return _webapp.callback(response, callback);
+        });
+      });
+    }
+
+    if (_env.android) {
+      _webapp.connectWebViewJavascriptBridge(function (bridge) {
+        if (_webapp.init === false) {
+          //初始化
+          _webapp.init = true;
+          bridge.init(function (message, responseCallback) {
+            let data = {
+              'Javascript Responds': 'apiToken init!'
+            };
+            responseCallback(data);
+          });
+        }
+
+        bridge.callHandler(handler, function (response) {
+          // response = eval('(' + response + ')');
+          // _webapp.log('_webapp callHandler back, response :');
+          // _webapp.log(response);
+          // _webapp.apiToken = response;
+          // _webapp.log('_webapp callHandler back, apiToken :');
+          // _webapp.log(_webapp.apiToken);
+          // return _webapp.callback(response, callback);
+        });
+
+        bridge.registerHandler(handler, function (response, responseCallback) {
+          // _webapp.log('_webapp registerHandler back, response :');
+          // _webapp.log(response);
+          // responseCallback('getApiToken responseCallback.');
+          response = eval('(' + response + ')');
+          // _webapp.apiToken = response;
+          // _webapp.log('_webapp registerHandler back, apiToken :');
+          // _webapp.log(_webapp.apiToken);
+          return _webapp.callback(response, callback);
+        });
+      });
+    }
+
+  },
   shellQrcode: function (url) {
     let handler = 'shellQrcode';
 

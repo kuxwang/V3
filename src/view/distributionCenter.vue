@@ -67,7 +67,7 @@
           </div>
         </div>
       </section>
-      <section>
+      <section class="bolck">
         <div class="title">
           <div class="icon"></div>
           <div class="text">收益</div>
@@ -75,7 +75,7 @@
         </div>
         <div class="money">
           <div class="info__item3">
-            今日收益（元）
+            <span class="today">今日收益（元）</span>
             <div>{{recordStatistics_get.today}}</div>
           </div>
           <p>本月收益<span>{{recordStatistics_get.month}}</span>元</p>
@@ -369,8 +369,8 @@
   }
   section {
     padding: 0 .1rem;
-    border-bottom: 1px solid @border;
-    border-top: 1px solid @border;
+    //border-bottom: 1px solid @border;
+    //border-top: 1px solid @border;
     margin-bottom: .1rem;
     .title {
       width: 100%;
@@ -437,6 +437,9 @@
           color: #333;
           margin-top: .08rem;
         }
+        span {
+          font-size: .12em;
+        }
       }
       p {
         line-height: .48rem;
@@ -450,11 +453,6 @@
         }
       }
     }
-
-
-
-
-
   }
   .tip {
     width: 100%;
@@ -485,6 +483,9 @@
       margin: 0 auto;
     }
 
+  }
+  .today {
+    font-size: .12rem;
   }
 
 

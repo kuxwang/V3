@@ -176,7 +176,7 @@ export let iGetSessionKey = function(callback){
 /**
  *  获取sessionkey
  */
-let isgetsessionKey = (r) => {
+export let isgetsessionKey = (r) => {
   if (_webapp.checkSessionKey()) {
     return {
       'sessionkey': _webapp.sessionKey.data.sessionkey
@@ -211,7 +211,11 @@ let setParams = (params, callback) => {
 
   let apiToken = _webapp.getApiTokenSync();
   let sessionKey = _webapp.getSessionKeySync();
-  param['sessionkey'] = sessionKey.data.sessionkey;
+  if(sessionKey.data){
+    param['sessionkey'] = sessionKey.data.sessionkey;
+  }else {
+    param['sessionkey']=''
+  }
   param = _webapp.getSignData(param, apiToken.data.auth_key);
   // _webapp.log(param);
   return breviaryfoo({type: type, url: url, params: param, callback, apitoken: apiToken.data.access_token})
