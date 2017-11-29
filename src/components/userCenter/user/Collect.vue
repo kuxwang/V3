@@ -48,7 +48,7 @@
           <img :src="getdefaluteimage(v.thumb)" alt="这是一个商品"/>
           <div class="li-content">
             <p class="title lr2">{{v.title}}</p>
-            <p class="price">
+            <div class="price">
               ¥
               <span class="goods-intPrice">{{v.marketprice | calculatePrice1}}.</span>
               <span class="goods-folatPrice">{{v.marketprice | calculatePrice2}}</span>
@@ -56,7 +56,7 @@
               <span class="goods-intPrice oldprice">¥{{v.marketprice | calculatePrice1}}.{{v.marketprice | calculatePrice2}}</span>
 
             <div class="find iconfont">&#xe728;</div>
-            </p>
+            </div>
           </div>
         </router-link>
 
@@ -478,7 +478,7 @@
     width: 100%;
   }
 
-  .nogoods-mid {
+  .nogoods .nogoods-mid {
     margin-top: 0.2rem;
     font-size: 0.14em;
     color: #666;

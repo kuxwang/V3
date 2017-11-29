@@ -6,9 +6,9 @@
       </router-link>
     </mt-header>-->
     <div class="container">
-      <mt-loadmore :top-method="loadTop" @top-status-change="handleTopChange" :maxDistance="60"
+      <!--<mt-loadmore :top-method="loadTop" @top-status-change="handleTopChange" :maxDistance="60"
                    :distanceIndex="disindex"
-                   :top-distance="30" ref="loadmore">
+                   :top-distance="30" ref="loadmore">-->
         <div slot="top" class="mint-loadmore-top">
           <span class="iconfont" v-show="topStatus !== 'loading'"
                 :class="{ 'rotate': topStatus === 'drop' }">&#xe732;下拉刷新</span>
@@ -131,7 +131,7 @@
             {{version}}
           </div>
         </section>
-      </mt-loadmore>
+      <!--</mt-loadmore>-->
       <!--<router-view></router-view>-->
     </div>
     <v-tabbar></v-tabbar>

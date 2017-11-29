@@ -24,7 +24,7 @@
         <span>{{month}}元</span>
       </li>
       <li class="cell">
-        累计销售收益
+        累计收益
         <span>{{total}}元</span>
       </li>
     </ul>

@@ -1,10 +1,5 @@
 <template>
   <div class="page">
-    <!--<mt-header title="个人中心" fixed>-->
-      <!--<router-link to="/userCenter" slot="left">-->
-        <!--<mt-button icon="back"></mt-button>-->
-      <!--</router-link>-->
-    <!--</mt-header>-->
     <div v-if="issale" class="container">
       <div class="user">
           <div class="user__logo">
@@ -53,7 +48,7 @@
       <section>
         <div class="title">
           <div class="icon"></div>
-          <div class="text">直属团队</div>
+          <div class="text">团队</div>
           <div class="right" @click="share">邀请加入<span class="iconfont">&#xe61b;</span></div>
         </div>
         <div class="info">
@@ -153,7 +148,6 @@
     methods: {
       init(){
         this.getMember();
-
       },
       getMember(){
         let _this=this
@@ -161,7 +155,6 @@
           if (res.statusCode == 1) {
             console.log('会员数据')
             console.log(res.data)
-//            console.log(res.data.level)
             _this.memberInfo.nickname = res.data.nickname
             _this.memberInfo.id = res.data.id
             _this.memberInfo.level = res.data.level
@@ -169,7 +162,6 @@
             _this.memberInfo.avatar = res.data.avatar ||defaultAvatar
             _this.memberInfo.from = res.data.parent_name || '麦麦国际'
             _this.memberInfo.level = res.data.agentleveldetail.levelname
-
             _this.getBuyLevel();
             _this.getTeam();
             _this.getOrder();
@@ -274,7 +266,7 @@
   @import '../assets/css/fonts/iconfont.css';
 
   .page {
-    .page-view(1)
+    .page-view(1);
   }
   .container {
     font-size: .14rem;
@@ -367,6 +359,10 @@
       }
     }
   }
+/*  section {
+
+
+  }*/
   section {
     padding: 0 .1rem;
     //border-bottom: 1px solid @border;
@@ -397,8 +393,6 @@
         text-align: right;
       }
     }
-  }
-  section {
     .info {
       width: 100%;
       display: flex;
@@ -437,8 +431,8 @@
           color: #333;
           margin-top: .08rem;
         }
-        span {
-          font-size: .12em;
+        span.today {
+          font-size: .12em !important;
         }
       }
       p {
@@ -484,19 +478,5 @@
     }
 
   }
-  .today {
-    font-size: .12rem;
-  }
-
-
-
-
-
-
-
-
-
-
-
 
 </style>
