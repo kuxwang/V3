@@ -29,8 +29,6 @@ Vue.config.productionTip = false
 var vsconsole = new Vconsole();
 
 
-
-
 iGetApiToken(function(apiToken){
   console.log('apiToken', apiToken);
   if(apiToken) {

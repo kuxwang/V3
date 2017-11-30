@@ -12,7 +12,7 @@
             <div class="user__info__id"><span>ID：</span>{{memberInfo.id}}</div>
             <div class="user__info__id"><span>推荐人：</span>{{memberInfo.from}}</div>
           </div>
-          <div class="user__qcode">
+          <div class="user__qcode" @click="pop">
             <img :src="qrimg"/>
           </div>
         <router-link class="user__update" :to="{name:'disapply'}"  tag="a" v-if="goods">
@@ -67,7 +67,7 @@
         <div class="title">
           <div class="icon"></div>
           <div class="text">收益</div>
-          <!--<div class="right" @click="clickDetailed">每月明细<span class="iconfont">&#xe61b;</span></div>-->
+          <div class="right" @click="clickDetailed">每月明细<span class="iconfont">&#xe61b;</span></div>
         </div>
         <div class="money">
           <div class="info__item3">
@@ -88,6 +88,11 @@
         我要开店
       </router-link>
     </div>
+    <mt-popup
+      v-model="popupVisible"
+      popup-transition="popup-fade">
+      <img class="sharelogo" :src="qrimg" @click="clickhavib"/>
+    </mt-popup>
     <transition name="slide">
       <router-view></router-view>
     </transition>
@@ -96,7 +101,7 @@
 </template>
 
 <script>
-  import {recordStatistics_get, teamsStatistics, orderStatistics, memberInfo,BuyLevel,Qrimg,Share } from '../api/api'
+  import {recordStatistics_get, teamsStatistics, orderStatistics, memberInfo,BuyLevel,Qrimg,Share,QrimgSave } from '../api/api'
   import {_webapp} from '../config/hook.js';
   import {mapMutations, mapGetters, mapState} from 'vuex'
   import {MessageBox} from 'mint-ui';
@@ -138,6 +143,7 @@
           refund: '0',//已退款
           ok: '0', //已结算
         },
+        popupVisible: false,
         topStatus: '',
         disindex: 3,
         defaultAvatar: '',
@@ -251,6 +257,17 @@
 
         })
       },
+      pop(){
+        this.popupVisible=true;
+      },
+      clickhavib () {
+        let _this = this;
+        QrimgSave(_this.qrimg, (res) => {
+          if (res.statusCode == 1) {
+            console.log('ok')
+          }
+        })
+      },
     },
     components: {
       vTabbar: vTabbar
@@ -259,14 +276,12 @@
       this.init()
     }
   }
-
 </script>
 
 <style lang="less" scoped>
   @import '../assets/css/reset/reset.css';
   @import '../assets/css/reset/common.less';
   @import '../assets/css/fonts/iconfont.css';
-
   .page {
     .page-view(1);
   }
@@ -307,7 +322,8 @@
         span {
           display: inline-block;
           /*width: .36rem;*/
-          width: .4rem;
+          width: .6rem;
+          text-align: left;
         }
         .user__info__id {
           font-size: .12rem;
@@ -362,14 +378,8 @@
       }
     }
   }
-/*  section {
-
-
-  }*/
   section {
     padding: 0 .1rem;
-    //border-bottom: 1px solid @border;
-    //border-top: 1px solid @border;
     margin-bottom: .1rem;
     .title {
       width: 100%;
@@ -481,10 +491,9 @@
     }
 
   }
-  #today {
-    font-size: .12rem;
-    display: block;
-    height: .16rem;
+  .sharelogo {
+    width: 3rem;
+    height: 3.5rem;
   }
 
 </style>

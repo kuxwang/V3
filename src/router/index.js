@@ -39,6 +39,7 @@ const Orderinfo = r => require.ensure([], () => r(require('../components/distrib
 const UserInfo = r => require.ensure([], () => r(require('../components/userCenter/user/UserInfo.vue')), 'UserCenter')
 const Takemoney = r => require.ensure([], () => r(require('../components/distribution/Takemoney.vue')), 'UserCenter')
 const Moneylist = r => require.ensure([], () => r(require('../components/distribution/Moneylist.vue')), 'UserCenter')
+const Bill = r => require.ensure([], () => r(require('../components/distribution/Bill.vue')), 'UserCenter')
 
 
 /*
@@ -53,8 +54,6 @@ const Search = r => require.ensure([], () => r(require('../components/mode/searc
 // const payselect = r => require.ensure([], () => r(require('../components/common/payselect.vue')), 'goodsDetails')
 
 
-
-
 const Payselect = r => require.ensure([], () => r(require('../components/common/payselect.vue')), 'goodsDetails')
 const Outmoney = r => require.ensure([], () => r(require('../components/common/outmoney.vue')), 'goodsDetails')
 
@@ -62,7 +61,6 @@ const Outmoney = r => require.ensure([], () => r(require('../components/common/o
  * 确认订单页面
  */
 const ConfirmOrder = r => require.ensure([], () => r(require('../components/userCenter/address/ConfirmOrder.vue')), 'submitOrder')
-const DeliveryAddress = r => require.ensure([], () => r(require('../components/userCenter/address/DeliveryAddress.vue')), 'submitOrder')
 const AddAddress = r => require.ensure([], () => r(require('../components/userCenter/address/AddAddress.vue')), 'submitOrder')
 const DeliveryMode = r => require.ensure([], () => r(require('../components/userCenter/address/DeliveryMode.vue')), 'submitOrder')
 const ManageAddress = r => require.ensure([], () => r(require('../components/userCenter/address/manageAddress.vue')), 'submitOrder')
@@ -192,7 +190,14 @@ export default new Router({
         {
           path: '/detailed',
           name: 'detailed',
-          component: Detailed
+          component: Detailed,
+          children:[
+            {
+              path:'/bill',
+              name:'bill',
+              component:Bill
+            }
+          ]
         },
         {
           path: '/vipCenter/apply',
@@ -242,8 +247,6 @@ export default new Router({
             },
           ]
         },
-
-
       ]
     },
     {
@@ -334,7 +337,6 @@ export default new Router({
           name: 'service',
           component: Service,
         },
-
         {
           path: '/address',
           name: 'address',
@@ -353,20 +355,14 @@ export default new Router({
             },
           ]
         },
-
       ]
     },
-
-
 //地址
     {
       path: '/test',
       name:'test',
       component: Test
     },
-
-
-
    /* {
       path: '*',
       redirect: '/'
