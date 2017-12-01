@@ -40,6 +40,7 @@ const UserInfo = r => require.ensure([], () => r(require('../components/userCent
 const Takemoney = r => require.ensure([], () => r(require('../components/distribution/Takemoney.vue')), 'UserCenter')
 const Moneylist = r => require.ensure([], () => r(require('../components/distribution/Moneylist.vue')), 'UserCenter')
 const Bill = r => require.ensure([], () => r(require('../components/distribution/Bill.vue')), 'UserCenter')
+const Team = r => require.ensure([], () => r(require('../components/distribution/Team.vue')), 'UserCenter')
 
 
 /*
@@ -204,6 +205,11 @@ export default new Router({
           name: 'disapply',
           component: Applys
         },
+        {
+          path:'/team',
+          name:'team',
+          component:Team
+        }
       ]
     },
     //提交订单
