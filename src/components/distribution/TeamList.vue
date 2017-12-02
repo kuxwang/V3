@@ -1,7 +1,7 @@
 <!--团队列表-->
 <template>
   <ul class="list">
-    <team-cell info="i" v-for="(i,index) in list" @change="change"></team-cell>
+    <team-cell :info="i" v-for="(i,index) in list" @change="change"></team-cell>
   </ul>
 </template>
 
@@ -28,6 +28,10 @@
     },
     components:{
       TeamCell
+    },
+    mounted(){
+      console.log('ui内容')
+      console.log(this.list)
     }
   }
 </script>

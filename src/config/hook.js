@@ -360,7 +360,7 @@ export const _webapp = {
    */
   getSessionKeySync: function () {
     if(_webapp.debug === true){
-      _webapp.sessionKey = {data : {"sessionkey":"c8ae6f8c04bfc9d71ef5280b8de361b4", "timestamp":1500997527}, statusCode : '1'};
+      _webapp.sessionKey = {data : {"sessionkey":"fbaf6d3beee489ebe7f747cfef469ea3", "timestamp":1500997527}, statusCode : '1'};
       // _webapp.sessionKey = {};
     }
 

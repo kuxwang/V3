@@ -7,7 +7,7 @@
     <div class="info">
       <h5>{{info.nickname}}</h5>
       <span>{{info.id}}</span>
-      <span class="usertime" @click="jumpTo(info.id)">{{info.createtime}}查看详情</span>
+      <span class="" @click="jumpTo(info.id)">查看详情</span>
     </div>
   </li>
 </template>
@@ -37,6 +37,10 @@
     },
     components:{
 
+    },
+    mounted(){
+      console.log('li内容')
+      console.log(this.info)
     }
   }
 </script>
@@ -47,12 +51,12 @@
   @import '../../assets/css/fonts/iconfont.css';
   .cell {
     width: 100%;
-    margin-top: .09rem;
-    padding: .15rem .12rem;
+    /*margin-top: .09rem;*/
+    padding: .1rem .12rem;
     display: flex;
     .logo {
-      width: .5rem;
-      height: .5rem;
+      width: .55rem;
+      height: .55rem;
       img {
         width: 100%;
         height: 100%;
@@ -61,10 +65,10 @@
     .info {
       flex: 1;
       text-align: left;
-      margin-left: 0.2rem;
+      margin-left: 0.1rem;
       position: relative;
       h5 {
-        margin: 0.1rem 0rem 0.05rem 0rem;
+        /*margin: 0.1rem 0rem 0.05rem 0rem;*/
         color: #27272f;
         font-size: 0.14rem;
       }

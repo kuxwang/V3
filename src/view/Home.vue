@@ -204,7 +204,7 @@
     },
     mounted () {
       this.getSilder();
-//      this.getUserInfo();
+      this.getUserInfo();
       this.getNew();
       this.getHot();
       this.getTime();
