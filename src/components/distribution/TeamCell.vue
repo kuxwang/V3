@@ -1,20 +1,19 @@
 <!--团队列表-->
 <template>
-  <div class="cell">
+  <li class="cell" @click="getList(info.id)">
     <div class="logo">
       <img :src="info.avatar"/>
     </div>
     <div class="info">
       <h5>{{info.nickname}}</h5>
       <span>{{info.id}}</span>
-      <span class="usertime">{{info.createtime}}关注</span>
+      <span class="usertime" @click="jumpTo(info.id)">{{info.createtime}}查看详情</span>
     </div>
-  </div>
+  </li>
 </template>
 
 <script>
- /* import ProductItem from '../../integralMall/product/view/ProductItem.vue'
-  import ViewTitle from '../base/ViewTitle.vue'*/
+
   export default {
     data(){
       return {
@@ -26,9 +25,15 @@
         type: Object,
         required: true
       },
+
     },
     methods:{
-
+      jumpTo(v){
+        this.$router.push({name:'partner',query:{id:v}})
+      },
+      getList(i){
+        this.$emit('change',i)
+      }
     },
     components:{
 

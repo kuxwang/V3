@@ -1,37 +1,33 @@
 <!--团队列表-->
 <template>
-  <div class="page">
-      <team-header info="member"></team-header>
-    <team-list list="list" @change="getList"></team-list>
-  </div>
+  <ul class="list">
+    <team-cell info="i" v-for="(i,index) in list" @change="change"></team-cell>
+  </ul>
 </template>
 
 <script>
   /* import ProductItem from '../../integralMall/product/view/ProductItem.vue'
    import ViewTitle from '../base/ViewTitle.vue'*/
-  import TeamHeader from './TeamHeader.vue'
-  import TeamList from './TeamList.vue'
+  import TeamCell from './TeamCell.vue'
   export default {
     data(){
       return {
-        list:[],
-        member:{}
+
       }
     },
     props:{
-
+      list:{
+        list: Array,
+        required: true
+      },
     },
     methods:{
-      init(){
-
-      },
-      getList(){
-
+      change(a){
+        this.$emit('change',a)
       }
     },
     components:{
-      TeamList,
-      TeamHeader
+      TeamCell
     }
   }
 </script>
@@ -40,8 +36,7 @@
   @import '../../assets/css/reset/reset.css';
   @import '../../assets/css/reset/common.less';
   @import '../../assets/css/fonts/iconfont.css';
-  .page {
-    .page-view(10)
-  }
+
+
 </style>
 
