@@ -159,18 +159,18 @@ export default new Router({
             },
           ]
         },
-        {
-          path: '/partner',
-          name: 'partner',
-          component: Partner,
-          children: [
-            {
-              path: '/partnerInfo',
-              name: 'partnerInfo',
-              component: PartnerInfo
-            },
-          ]
-        },
+        // {
+        //   path: '/partner',
+        //   name: 'partner',
+        //   component: Partner,
+        //   children: [
+        //     {
+        //       path: '/partnerInfo',
+        //       name: 'partnerInfo',
+        //       component: PartnerInfo
+        //     },
+        //   ]
+        // },
         {
           path: '/takemoney',
           name: 'takemoney',
@@ -208,7 +208,14 @@ export default new Router({
         {
           path:'/team',
           name:'team',
-          component:Team
+          component:Team,
+          children: [
+            {
+              path: '/partnerInfo',
+              name: 'partnerInfo',
+              component: PartnerInfo
+            },
+          ]
         }
       ]
     },

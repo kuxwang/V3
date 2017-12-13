@@ -22,7 +22,7 @@
       </div>
       <ul class="nagative">
         <!--<li class="nav__item">-->
-          <router-link class="nav__item" :to="{path:'partner',query:{stab:1,type:'all',all:teamsStatistics.all,agent:teamsStatistics.purchased,fans:teamsStatistics.no_purchased}}"  tag="li">
+          <router-link class="nav__item" :to="{path:'team',query:{}}"  tag="li">
           <div class="logo">
             <img src="../assets/images/panter.png"/>
           </div>

@@ -1,6 +1,6 @@
 <!--团队列表-->
 <template>
-  <li class="cell" @click="getList(info.agentid)">
+  <li class="cell" @click="getList(info)">
     <div class="logo">
       <!--<img :src="info.avatar || defaultAvatar"/>-->
       <img :src="info.avatar"/>
@@ -8,13 +8,15 @@
     <div class="info">
       <h5>{{info.nickname}}</h5>
       <span>{{info.id}}</span>
-      <span class="message" @click="jumpTo(info.id)">详情</span>
+      <!--<span class="message" @click="jumpTo(info.id)">详情</span>-->
+      <router-link class="message" :to="{name:'partnerInfo',query:{openid:info.id}}"  tag="span">详情</router-link>
     </div>
   </li>
 </template>
 
 <script>
   import defaultAvatar from '@/assets/images/defaultlogo.png'
+
   export default {
     data(){
       return {
@@ -29,6 +31,7 @@
     },
     methods:{
       jumpTo(v){
+        console.log('哈哈哈哈')
         this.$router.push({name:'partnerInfo',query:{openid: v}})
       },
       getList(i){

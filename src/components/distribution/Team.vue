@@ -1,7 +1,7 @@
 <!--团队列表-->
 <template>
   <div class="page">
-    <mt-header title="店铺管理" fixed>
+    <mt-header title="团队管理" fixed>
       <router-link to="/vipCenter" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
@@ -10,6 +10,7 @@
       <team-header :info="member"></team-header>
       <team-list :list="list" @change="getList"></team-list>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -20,36 +21,15 @@
   import TeamHeader from './TeamHeader.vue'
   import TeamList from './TeamList.vue'
   import defaultAvatar from '@/assets/images/defaultlogo.png'
+  import {Toast, Indicator} from 'mint-ui';
   export default {
     data(){
       return {
-        list:[
-          {
-            avatar:defaultAvatar,
-            id:'11122',
-            nickname:'哈哈哈',
-          },
-          {
-            avatar:defaultAvatar,
-            id:'112122',
-            nickname:'哈哈哈',
-          },
-          {
-            avatar:defaultAvatar,
-            id:'1123123',
-            nickname:'哈哈哈',
-          },
-          {
-            avatar:defaultAvatar,
-            id:'1',
-            nickname:'哈哈哈',
-          }
-
-        ],
+        list:[],
         member:{
           avatar:defaultAvatar,
-          id:'11122',
-          nickname:'用户名',
+          id:'',
+          nickname:'',
         },
       }
     },
@@ -66,13 +46,22 @@
         TeamNext(params,(res)=>{
           if(res.statusCode===1){
             this.list=res.data.teamLists;
+            this.member=res.data.agentMember;
             console.log('接口数据')
             console.log(res)
           }
         })
       },
       getList(s){
-        this.init(s)
+        if(s.isagent===1 && s.status===1){
+          this.init(s)
+        }else {
+          Toast({
+            message: '没有下级',
+            position: 'middle',
+            duration: 1800
+          });
+        }
       }
     },
     mounted(){
