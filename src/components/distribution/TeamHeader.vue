@@ -1,7 +1,11 @@
 <!--团队列表-->
 <template>
-  <div class="cell">
-
+  <div class="user">
+    <div class="logo">
+      <img :src="info.avatar"/>
+    </div>
+    <div>{{info.nickname}}</div>
+    <div>{{info.id}}</div>
   </div>
 </template>
 
@@ -33,7 +37,20 @@
   @import '../../assets/css/reset/reset.css';
   @import '../../assets/css/reset/common.less';
   @import '../../assets/css/fonts/iconfont.css';
-
+  .user {
+    position: fixed;
+    width: 100%;
+    padding: .1rem 0;
+    /*margin-top: .45rem;*/
+    .logo {
+      display: flex;
+      justify-content: center;
+      img {
+        width: .6rem;
+        height: .6rem;
+      }
+    }
+  }
 
 </style>
 

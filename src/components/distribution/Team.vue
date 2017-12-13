@@ -1,8 +1,15 @@
 <!--团队列表-->
 <template>
   <div class="page">
-      <!--<team-header :info="member"></team-header>-->
-    <team-list :list="list" @change="getList"></team-list>
+    <mt-header title="店铺管理" fixed>
+      <router-link to="/vipCenter" slot="left">
+        <mt-button icon="back"></mt-button>
+      </router-link>
+    </mt-header>
+    <div class="container">
+      <team-header :info="member"></team-header>
+      <team-list :list="list" @change="getList"></team-list>
+    </div>
   </div>
 </template>
 
@@ -12,36 +19,37 @@
   import {teamsLists} from '../../api/api'
   import TeamHeader from './TeamHeader.vue'
   import TeamList from './TeamList.vue'
+  import defaultAvatar from '@/assets/images/defaultlogo.png'
   export default {
     data(){
       return {
-        list:[],
-        member:{
-          "id":16,
-          "uniacid":"1",
-          "uid":"0",
-          "openid":"",
-          "groupid":"1",
-          "recommendid":"7",
-          "position":"3",
-          "downline1":"0",
-          "downline2":"0",
-          "downline3":"0",
-          "commission_total":"0.00",
-          "commission_balance":"0.00",
-          "commission_received":"0.00",
-          "order_total":"0",
-          "status":"0",
-          "bind_member_groupid":"0",
-          "fields":"a:0:{}",
-          "createtime":"1511591091",
-          "updatetime":"0",
-          "extend":null,
-          "mobile":null,
-          "member":{
-            "createtime":"1970-01-01 08:00:00"
+        list:[
+          {
+            avatar:defaultAvatar,
+            id:'11122',
+            nickname:'哈哈哈',
           },
-          "order_price":0
+          {
+            avatar:defaultAvatar,
+            id:'112122',
+            nickname:'哈哈哈',
+          },
+          {
+            avatar:defaultAvatar,
+            id:'1123123',
+            nickname:'哈哈哈',
+          },
+          {
+            avatar:defaultAvatar,
+            id:'1',
+            nickname:'哈哈哈',
+          }
+
+        ],
+        member:{
+          avatar:defaultAvatar,
+          id:'11122',
+          nickname:'用户名',
         },
       }
     },
@@ -72,7 +80,7 @@
     },
     mounted(){
 //      console.log(this.list)
-      this.init()
+//      this.init()
     },
     components:{
       TeamList,
@@ -86,7 +94,12 @@
   @import '../../assets/css/reset/common.less';
   @import '../../assets/css/fonts/iconfont.css';
   .page {
-    .page-view(10)
+    .page-view(10);
+    .container {
+      width: 100%;
+      height: 100%;
+      margin-top: .45rem;
+    }
   }
 </style>
 

@@ -2,18 +2,19 @@
 <template>
   <li class="cell" @click="getList(info.id)">
     <div class="logo">
+      <!--<img :src="info.avatar || defaultAvatar"/>-->
       <img :src="info.avatar"/>
     </div>
     <div class="info">
       <h5>{{info.nickname}}</h5>
       <span>{{info.id}}</span>
-      <span class="" @click="jumpTo(info.id)">查看详情</span>
+      <span class="message" @click="jumpTo(info.id)">查看详情</span>
     </div>
   </li>
 </template>
 
 <script>
-
+  import defaultAvatar from '@/assets/images/defaultlogo.png'
   export default {
     data(){
       return {
@@ -71,10 +72,12 @@
         /*margin: 0.1rem 0rem 0.05rem 0rem;*/
         color: #27272f;
         font-size: 0.14rem;
+        margin-top: .05rem;
       }
       span {
         font-size: 0.14rem;
         color: #666;
+        display: block;
       }
       .usertime {
         width: 1.6rem;
@@ -82,6 +85,17 @@
         right: 0;
         bottom: 0.05rem;
         font-size: 0.12rem;
+      }
+      .message {
+        position: absolute;
+        right: 0;
+        top:.2rem;
+        display: block;
+        background-color: #F5751D;
+        color: #fff;
+        padding: .03rem .08rem;
+        font-size: .1rem;
+        border-radius: .05rem;
       }
     }
   }

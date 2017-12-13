@@ -88,12 +88,10 @@ export const _webapp = {
     let r = window.location.search.substr(1).match(reg);
     if(r!=null)return  unescape(r[2]); return null;
   },
-
   clearLog: function () {
     let $message = $('.message');
     $message.html('log clear :' + '<hr />');
   },
-
   checkApiToken: function () {
 
     if(_webapp.debug === true){

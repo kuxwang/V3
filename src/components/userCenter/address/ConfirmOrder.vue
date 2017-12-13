@@ -1,9 +1,12 @@
 <template>
   <div class="main">
     <mt-header fixed title="确认订单">
-      <a slot="left" @click="goBack">
+      <!--<a slot="left" @click="goBack">
         <mt-button icon="back"></mt-button>
-      </a>
+      </a>-->
+      <router-link to="/" slot="left">
+        <mt-button icon="back"></mt-button>
+      </router-link>
     </mt-header>
     <div class="order">
       <div class="order-top">
@@ -239,7 +242,7 @@
         }
       },
       goBack() {
-        this.$router.push('home');
+        this.$router.push('');
       },
       goPay() {
         let _this = this

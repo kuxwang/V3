@@ -41,6 +41,13 @@
   @import '../../assets/css/reset/common.less';
   @import '../../assets/css/fonts/iconfont.css';
 
-
+  .list {
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 100%;
+    /*margin-top: 1.1rem;*/
+    padding-top: 1.1rem;
+  }
 </style>
 

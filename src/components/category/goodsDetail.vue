@@ -208,8 +208,8 @@
         this.bottomStatus = status;
       },
       goBack() {
-        Indicator.close();
         this.$router.go(-1);
+        Indicator.close();
       },
       gototuwen () {
           document.getElementById('bottom-nav').scrollIntoView(true)
