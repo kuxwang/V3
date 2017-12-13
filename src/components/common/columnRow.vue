@@ -1,7 +1,7 @@
 <template>
   <div class="column">
     <div class="title">
-      热门商品
+      {{title}}
     </div>
     <div class="title-bg">
       HOT PRODUCT
@@ -38,7 +38,15 @@
           hot:[]
       }
     },
-    props: ['list'],
+    props: {
+      list:{
+        list: Array,
+        required: true
+      },
+      title:{
+        required: true
+      }
+    },
     methods: {
 
     },

@@ -14,18 +14,15 @@
         <span class="iconfont">&#xe71d;</span>
       </div>
     </div>
-    <!--<ul class="top-nav">-->
-      <!--<li v-for="(v , i) in navlist" :class="{'selected' : selected == i}" >{{v}}</li>-->
-    <!--</ul>-->
     <div class="scroll-view">
       <mt-swipe class="banner" :auto="4000" :show-indicators="false">
         <mt-swipe-item v-for="(i, x) in slider" :key="x">
           <img class="silder" :src="i.thumb">
         </mt-swipe-item>
       </mt-swipe>
-      <v-colrow :list="hot" v-if="hashot"></v-colrow>
-      <v-colrow :list="istime" v-if="hastime"></v-colrow>
-      <v-colcol :list="newgoods" v-if="hasnew"></v-colcol>
+      <v-colrow :list="hot" :title="shops.ishot" v-if="hashot"></v-colrow>
+      <v-colrow :list="istime" :title="shops.istime" v-if="hastime"></v-colrow>
+      <v-colcol :list="newgoods" :title="shops.isnew" v-if="hasnew"></v-colcol>
       <div class="bottom-img">
         <!--<img class="bottom-pic" :src="logo2"/>-->
         <img class="bottom-pic" :src="adv"/>
@@ -42,11 +39,10 @@
   import vColcol from '../components/common/columnCol';
   import defalutAvatar from '../assets/images/defaultlogo.png'
   import {fn} from '../config/myUtils';
-  import { Advs, memberInfo,Attributes,Share,Adv,iGetSessionKey } from '../api/api';
+  import { Advs, memberInfo,Attributes,Share,Adv,iGetSessionKey,Shops } from '../api/api';
   import {mapMutations, mapGetters, mapState} from 'vuex'
   import {MessageBox} from 'mint-ui';
   import {_webapp} from './../config/hook.js'
-
 
   export default{
     data () {
@@ -67,6 +63,7 @@
         adv:'',
         islogin:false,
         sharedata:'',
+        shops:{}
       }
     },
     methods: {
@@ -150,7 +147,7 @@
       getTime(){
         let parmas = {
           data: {
-            attributes: "ishot:1",
+            attributes: "istime:1",
             page: 1,
             psize: 10,
           }
@@ -201,6 +198,23 @@
           }
         })
       },
+      getShops(){
+        let params={
+          data:{}
+        }
+        Shops(params,res=>{
+          if(res.statusCode===1){
+            console.log('shops数据')
+            console.log(res.data)
+            this.shops=res.data.alias;
+//            this.shops.map(v,i,a)
+            console.log(Object.keys(this.shops))
+            for(let i in this.shops){
+              console.log(i)
+            }
+          }
+        })
+      }
     },
     mounted () {
       this.getSilder();
@@ -209,6 +223,7 @@
       this.getHot();
       this.getTime();
       this.getAdv();
+      this.getShops()
       _webapp.checkLogin(function (res) {
         if(res.statusCode==1){
           this.getUserInfo();

@@ -8,12 +8,10 @@
     <div class="info">
       <h5>{{info.nickname}}</h5>
       <span>{{info.id}}</span>
-      <!--<span class="message" @click="jumpTo(info.id)">详情</span>-->
-      <router-link class="message" :to="{name:'partnerInfo',query:{openid:info.id}}"  tag="span">详情</router-link>
+      <span class="message" @click.stop="jumpTo(info.openid)">详情</span>
     </div>
   </li>
 </template>
-
 <script>
   import defaultAvatar from '@/assets/images/defaultlogo.png'
 
@@ -42,8 +40,7 @@
 
     },
     mounted(){
-      console.log('li内容')
-      console.log(this.info)
+
     }
   }
 </script>

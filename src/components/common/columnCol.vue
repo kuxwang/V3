@@ -61,7 +61,15 @@
           newgoods:[]
       }
     },
-    props: ['list'],
+    props: {
+      list:{
+        list: Array,
+        required: true
+      },
+      title:{
+        required: true
+      }
+    },
     methods: {
 
     },

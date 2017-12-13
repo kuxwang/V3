@@ -1,18 +1,19 @@
 <!--团队列表-->
 <template>
-  <ul class="list">
-    <team-cell :info="i" v-for="(i,index) in list" @change="change"></team-cell>
+  <ul class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+    <team-cell :info="i" v-for="(i,index) in list" @change="change" :key="index"></team-cell>
   </ul>
 </template>
 
 <script>
   /* import ProductItem from '../../integralMall/product/view/ProductItem.vue'
    import ViewTitle from '../base/ViewTitle.vue'*/
+  import {Toast, Indicator} from 'mint-ui';
   import TeamCell from './TeamCell.vue'
   export default {
     data(){
       return {
-
+        loading:true
       }
     },
     props:{
@@ -24,6 +25,9 @@
     methods:{
       change(a){
         this.$emit('change',a)
+      },
+      loadMore(){
+        this.$emit('loadMore')
       }
     },
     components:{

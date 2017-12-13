@@ -204,7 +204,7 @@
             _this.memberInfo.credit2 = res.data.credit2
             _this.memberInfo.credit1 = res.data.credit1
             _this.setImgUrl(_this.memberInfo.avatar)
-            _this.$refs.loadmore.onTopLoaded();
+//            _this.$refs.loadmore.onTopLoaded();
             let params = {
               data: {
                 'identification': 'userCenter'
@@ -222,7 +222,7 @@
 
           } else {
             console.log('会员接口数据异常')
-            _this.$refs.loadmore.onTopLoaded();
+//            _this.$refs.loadmore.onTopLoaded();
           }
         });
       },

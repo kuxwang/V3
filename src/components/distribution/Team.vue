@@ -8,9 +8,14 @@
     </mt-header>
     <div class="container">
       <team-header :info="member"></team-header>
-      <team-list :list="list" @change="getList"></team-list>
+      <!--<mt-loadmore :bottom-method="loadBottom" @bottom-status-change="handleBottomChange" :autoFill="isTrue" :bottom-all-loaded="allLoaded"-->
+                   <!--ref="loadmore">-->
+      <team-list :list="list" @change="getList" @loadMore="loadMore" ref="loadmore"></team-list>
+      <!--</mt-loadmore>-->
     </div>
-    <router-view></router-view>
+    <transition name="slide">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -31,22 +36,32 @@
           id:'',
           nickname:'',
         },
+        allLoaded:true,
+        page:1
       }
     },
     props:{
 
     },
     methods:{
-      init(s=''){
+      init(id='',page=1,s=10){
         let params={
           data:{
-            agentid:s
+            agentid:id,
+            page:page,
+            psize:s
           }
         }
         TeamNext(params,(res)=>{
           if(res.statusCode===1){
-            this.list=res.data.teamLists;
+            if(res.data.teamLists.length>=s){
+              this.$refs.loadmore.loading=false
+            }
+            console.log(this.$refs.loadmore.loading)
+            this.list=[...this.list,...res.data.teamLists];
             this.member=res.data.agentMember;
+            this.id=id;
+            this.page=this.page+1
             console.log('接口数据')
             console.log(res)
           }
@@ -54,7 +69,9 @@
       },
       getList(s){
         if(s.isagent===1 && s.status===1){
-          this.init(s)
+          this.page=1;
+          this.$refs.loadmore.loading=true;
+          this.init(s.agentid,this.page)
         }else {
           Toast({
             message: '没有下级',
@@ -62,6 +79,13 @@
             duration: 1800
           });
         }
+      },
+      loadBottom(){
+
+      },
+      loadMore(){
+        console.log(7899869866)
+        this.init(this.id,this.page)
       }
     },
     mounted(){
