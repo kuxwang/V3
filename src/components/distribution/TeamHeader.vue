@@ -4,8 +4,8 @@
     <div class="logo">
       <img :src="info.avatar"/>
     </div>
-    <div>{{info.nickname}}</div>
-    <div>{{info.id}}</div>
+    <div class="name">{{info.nickname}}</div>
+    <div class="id">{{info.id}}</div>
   </div>
 </template>
 
@@ -41,7 +41,9 @@
     position: fixed;
     width: 100%;
     padding: .1rem 0;
+    background-color: #fff;
     /*margin-top: .45rem;*/
+    margin-bottom: .1rem;
     .logo {
       display: flex;
       justify-content: center;
@@ -49,6 +51,12 @@
         width: .6rem;
         height: .6rem;
       }
+    }
+    .name {
+
+    }
+    .id {
+      font-size: .13rem;
     }
   }
 

@@ -47,7 +47,7 @@
     overflow-y: scroll;
     height: 100%;
     /*margin-top: 1.1rem;*/
-    padding-top: 1.1rem;
+    padding-top: 1.3rem;
   }
 </style>
 

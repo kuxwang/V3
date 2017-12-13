@@ -16,7 +16,7 @@
 <script>
   /* import ProductItem from '../../integralMall/product/view/ProductItem.vue'
    import ViewTitle from '../base/ViewTitle.vue'*/
-  import {teamsLists} from '../../api/api'
+  import {teamsLists,TeamNext} from '../../api/api'
   import TeamHeader from './TeamHeader.vue'
   import TeamList from './TeamList.vue'
   import defaultAvatar from '@/assets/images/defaultlogo.png'
@@ -57,30 +57,27 @@
 
     },
     methods:{
-      init(){
+      init(s=''){
         let params={
           data:{
-            type: 'all',
-            page: 1,
-            psize: 10
+            agentid:s
           }
         }
-        teamsLists(params,(res)=>{
+        TeamNext(params,(res)=>{
           if(res.statusCode===1){
-            console.log('团队列表')
-            console.log(res.data)
-            this.list=res.data.lists;
-            console.log(this.list)
+            this.list=res.data.teamLists;
+            console.log('接口数据')
+            console.log(res)
           }
         })
       },
-      getList(){
-
+      getList(s){
+        this.init(s)
       }
     },
     mounted(){
 //      console.log(this.list)
-//      this.init()
+      this.init()
     },
     components:{
       TeamList,
@@ -95,6 +92,7 @@
   @import '../../assets/css/fonts/iconfont.css';
   .page {
     .page-view(10);
+    background-color: #efeff4;
     .container {
       width: 100%;
       height: 100%;
