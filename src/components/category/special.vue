@@ -1,0 +1,59 @@
+<template>
+  <div class="page">
+    <mt-header title="专题" fixed>
+      <router-link to="/" slot="left">
+        <mt-button icon="back"></mt-button>
+      </router-link>
+    </mt-header>
+    <div class="container">
+
+    </div>
+  </div>
+</template>
+
+<script>
+  import { Topics,Adv } from '@/api/api';
+  export default {
+    data(){
+      return {
+
+      }
+    },
+    methods:{
+      init(){
+        let params={
+          data:{
+            identification:'contact'
+          }
+        }
+        Adv(params,(res)=>{
+          console.log(res);
+        })
+      }
+    },
+    created(){
+      this.init()
+    }
+
+  }
+</script>
+
+<style lang="less" scoped>
+  @import '../../assets/css/reset/reset.css';
+  @import '../../assets/css/reset/common.less';
+  @import '../../assets/css/fonts/iconfont.css';
+
+  .page {
+    .page-view(1);
+  }
+  .container {
+    width: 100%;
+    height: 100%;
+    margin-top: .45rem;
+  }
+
+</style>
+
+
+
+

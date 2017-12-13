@@ -17,7 +17,7 @@
     <div class="scroll-view">
       <mt-swipe class="banner" :auto="4000" :show-indicators="false">
         <mt-swipe-item v-for="(i, x) in slider" :key="x">
-          <img class="silder" :src="i.thumb">
+          <img class="silder" :src="i.thumb" @click="specil">
         </mt-swipe-item>
       </mt-swipe>
       <v-colrow :list="hot" :title="shops.ishot" v-if="hashot"></v-colrow>
@@ -214,6 +214,9 @@
             }
           }
         })
+      },
+      specil(){
+        this.$router.push('special')
       }
     },
     mounted () {
