@@ -23,6 +23,18 @@
           <span class="type" >{{i.statusstr}}</span>
         </div>
       </li>
+      <li class="moneycell" v-for="(i ,index) in moneylist" :class="{'colorbor': comparefun(moneylist,index),'nomargin': index==0}">
+        <div class="left">
+          <div class="time">{{i.applytime.substr(0,10)}}</div>
+        </div>
+        <div class="mid">
+          <!--<span class="ordersn">订单号：1212312313</span>-->
+          <div class="money">{{i.commission}}元</div>
+        </div>
+        <div class="right">
+          <span class="type" >{{i.statusstr}}</span>
+        </div>
+      </li>
     </ul>
       <!--<div slot="bottom" class="mint-loadmore-bottom" style="text-align:center" v-show="allLoaded == false" v-if="">
         <span v-show="bottomStatus !== 'loading'" :class="{ 'is-rotate': bottomStatus === 'drop' }">继续滚动，可加载更多</span>

@@ -252,7 +252,7 @@ const commissions = {
   /**p
    * 获取团队数量统计
    */
-  teamsStatistics: {url: `${base}/commissions/teamsStatistics`, method: 'GET', header, dataType},
+  teamsStatistics: {url: `${base}/commissions/TeamsNewStatistics`, method: 'GET', header, dataType},
   /**
    *
    */

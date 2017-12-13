@@ -51,6 +51,7 @@ const Team = r => require.ensure([], () => r(require('../components/distribution
 const List = r => require.ensure([], () => r(require('../components/category/List.vue')), 'Category')
 const Details = r => require.ensure([], () => r(require('../components/category/goodsDetail.vue')), 'Category')
 const Search = r => require.ensure([], () => r(require('../components/mode/search.vue')), 'Category')
+const Special = r => require.ensure([], () => r(require('../components/category/special.vue')), 'Category')
 // const Details = r => require.ensure([], () => r(require('../components/category/productDetail.vue')), 'Category')
 // const payselect = r => require.ensure([], () => r(require('../components/common/payselect.vue')), 'goodsDetails')
 
@@ -111,6 +112,11 @@ export default new Router({
           path: '/search',
           name: 'search',
           component: Search
+        },
+        {
+          path: '/special',
+          name: 'special',
+          component: Special
         }
       ]
     },
@@ -159,18 +165,6 @@ export default new Router({
             },
           ]
         },
-        // {
-        //   path: '/partner',
-        //   name: 'partner',
-        //   component: Partner,
-        //   children: [
-        //     {
-        //       path: '/partnerInfo',
-        //       name: 'partnerInfo',
-        //       component: PartnerInfo
-        //     },
-        //   ]
-        // },
         {
           path: '/takemoney',
           name: 'takemoney',

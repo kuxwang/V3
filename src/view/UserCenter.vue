@@ -1,10 +1,5 @@
 <template>
   <div class="main">
-    <!--<mt-header title="个人中心">
-      <router-link to="/userCenter" slot="left">
-        <mt-button icon="back"></mt-button>
-      </router-link>
-    </mt-header>-->
     <div class="container">
       <!--<mt-loadmore :top-method="loadTop" @top-status-change="handleTopChange" :maxDistance="60"
                    :distanceIndex="disindex"
@@ -14,10 +9,11 @@
                 :class="{ 'rotate': topStatus === 'drop' }">&#xe732;下拉刷新</span>
           <span class="loading" v-show="topStatus === 'loading'">加载中</span>
         </div>
-        <router-link class="iconfont option" :to="{name:'userInfo'}">
-          &#xe63b;
-        </router-link>
+
         <section class="avatar">
+          <router-link class="iconfont option" :to="{name:'userInfo'}">
+            &#xe63b;
+          </router-link>
           <router-link class="icon" :to="{name:'userInfo'}">
             <img :src="memberInfo.avatar" alt="">
           </router-link>
@@ -282,13 +278,6 @@
 
                 }
               })
-
-
-
-
-
-
-
             }
           }
         })
@@ -343,12 +332,11 @@
   .option {
     position: absolute;
     right: .16rem;
-    top: .6rem;
+    top: .2rem;
     font-size: .2rem;
     font-weight: bold;
     color: #fff;
     z-index: 10
-
   }
 
   .avatar {

@@ -55,11 +55,15 @@
         <div class="info">
           <div class="info__item1">
             <div>{{teamsStatistics.all}}</div>
-            总人数
+            直营店
           </div>
           <div class="info__item2">
             <div>{{teamsStatistics.month}}</div>
-            本月人数
+            团队店主
+          </div>
+          <div class="info__item2">
+            <div>{{teamsStatistics.purchased}}</div>
+            团队粉丝
           </div>
         </div>
       </section>
@@ -184,10 +188,10 @@
         let _this=this
         teamsStatistics({data : {}}, function (res) {
           if (res.statusCode == 1) {
-            _this.teamsStatistics.all = res.data.all || 0;
-            _this.teamsStatistics.purchased = res.data.purchased || 0;
+            _this.teamsStatistics.all = res.data.nextAgents || 0;
+            _this.teamsStatistics.purchased = res.data.nextFans || 0;
             _this.teamsStatistics.no_purchased = res.data.no_purchased || 0;
-            _this.teamsStatistics.month = res.data.monthCount || 0;
+            _this.teamsStatistics.month = res.data.allNextAgents || 0;
           } else {
             console.log('团队接口数据异常')
           }
@@ -426,6 +430,7 @@
             font-size: .215rem;
             text-transform: uppercase;
             color: #333;
+            line-height: .35rem;
           }
         }
       }
