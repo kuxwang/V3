@@ -26,7 +26,7 @@
             identification:'contact'
           }
         }
-        Adv(params,(res)=>{
+        Topics(params,(res)=>{
           console.log(res);
         })
       }

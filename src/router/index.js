@@ -39,7 +39,8 @@ const Orderinfo = r => require.ensure([], () => r(require('../components/distrib
 const UserInfo = r => require.ensure([], () => r(require('../components/userCenter/user/UserInfo.vue')), 'UserCenter')
 const Takemoney = r => require.ensure([], () => r(require('../components/distribution/Takemoney.vue')), 'UserCenter')
 const Moneylist = r => require.ensure([], () => r(require('../components/distribution/Moneylist.vue')), 'UserCenter')
-const Bill = r => require.ensure([], () => r(require('../components/distribution/Bill.vue')), 'UserCenter')
+// const Bill = r => require.ensure([], () => r(require('../components/distribution/Bill.vue')), 'UserCenter')
+const Bill = r => require.ensure([], () => r(require('../components/distribution/BillList.vue')), 'UserCenter')
 const Team = r => require.ensure([], () => r(require('../components/distribution/Team.vue')), 'UserCenter')
 
 

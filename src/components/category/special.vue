@@ -5,29 +5,33 @@
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
-    <div class="container">
-
+    <div class="container" >
+      {{content}}
+      <div v-html="content"></div>
     </div>
   </div>
 </template>
 
 <script>
-  import { Topics,Adv } from '@/api/api';
+  import { Topics } from '@/api/api';
   export default {
     data(){
       return {
-
+        content:''
       }
     },
     methods:{
       init(){
         let params={
           data:{
-            identification:'contact'
+            identification:this.$route.query.key
           }
         }
-        Adv(params,(res)=>{
+        Topics(params,(res)=>{
           console.log(res);
+          this.content=res.data.content
+          console.log('广告')
+          console.log(res.data)
         })
       }
     },

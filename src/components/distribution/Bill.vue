@@ -25,6 +25,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </section>
   </div>
@@ -36,37 +37,33 @@
   import { memberInfo, PUT_USERINFO, PUT_USERAVATARS, USERPHOTO } from '../../api/api';
   import { _webapp } from '../../config/webapp.js';
   //  import {_webapp} from '../../config/webapp.js';
-  import { orderStatistics, orderLists, orders } from "../../api/api";
+  import { GetRecordBillDetail } from "../../api/api";
   export default {
     data() {
       return {
-        msg: {
-          '2017年': [
-            { title: ' 9月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-            { title: ' 8月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-            { title: ' 7月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-            { title: ' 6月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-            { title: ' 5月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-          ],
-          '2016年': [
-            { title: ' 9月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-            { title: ' 8月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-            { title: ' 7月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-            { title: ' 6月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-            { title: ' 5月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-            { title: ' 4月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-          ],
-
+        msg: []
         }
-      }
     },
     methods: {
       goBack() {
         this.$router.go(-1);
       },
       init(){
-
+        let params= {
+          data:{
+            year:this.$route.query.y,
+            month:this.$route.query.m,
+            page:1
+          }
+        }
+        GetRecordBillDetail(params,res=>{
+          console.log('月份详情')
+          console.log(res)
+        })
       }
+    },
+    mounted(){
+      this.init()
     }
   }
 </script>

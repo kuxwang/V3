@@ -2,16 +2,17 @@
 <template>
   <div class="user">
     <div class="logo">
-      <img :src="info.avatar"/>
+      <img :src="info.avatar| dGoods"/>
     </div>
     <div class="name">{{info.nickname}}</div>
-    <div class="id">{{info.id}}</div>
+    <div class="id">ID：{{info.id}}</div>
   </div>
 </template>
 
 <script>
   /* import ProductItem from '../../integralMall/product/view/ProductItem.vue'
    import ViewTitle from '../base/ViewTitle.vue'*/
+  import defaultAvatar from '@/assets/images/userinfo-02.png'
   export default {
     data(){
       return {
@@ -29,7 +30,12 @@
     },
     components:{
 
-    }
+    },
+    filters: {
+      dGoods (value) {
+        return value ? value : defaultAvatar
+      }
+    },
   }
 </script>
 
@@ -46,6 +52,7 @@
     margin-bottom: .1rem;
     .logo {
       display: flex;
+      margin-bottom: .1rem;
       justify-content: center;
       img {
         width: .6rem;
@@ -53,7 +60,7 @@
       }
     }
     .name {
-
+      color: #000;
     }
     .id {
       font-size: .13rem;

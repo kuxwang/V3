@@ -110,7 +110,8 @@
   import {mapMutations, mapGetters, mapState} from 'vuex'
   import {MessageBox} from 'mint-ui';
   import vTabbar from '../components/mode/Tabbar.vue'
-  import defaultAvatar from '../assets/images/defaultlogo.png'
+//  import defaultAvatar from '../assets/images/defaultlogo.png'
+  import defaultAvatar from '../assets/images/userinfo-02.png'
 
   export default {
     data(){

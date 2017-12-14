@@ -11,7 +11,7 @@
           <div class="detailed-year">
             {{i}}
           </div>
-          <div class="detailed-item" v-for="(v2,i2) in v" :key="i2">
+          <div class="detailed-item" v-for="(v2,i2) in v" :key="i2" @click="info(i,v2.title)">
             <div class="detailed-info">
               <div class="detailed-title">
                 {{v2.title}}
@@ -21,12 +21,15 @@
               </div>
             </div>
             <div class="detailed-number">
-              ￥{{v2.price}}
+              ￥{{v2.sum_c_money}}
             </div>
           </div>
         </div>
       </div>
     </section>
+    <transition name="slide">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 <script>
@@ -36,28 +39,11 @@ import { mapMutations } from 'Vuex';
 import { memberInfo, PUT_USERINFO, PUT_USERAVATARS, USERPHOTO } from '../../api/api';
 import { _webapp } from '../../config/webapp.js';
 //  import {_webapp} from '../../config/webapp.js';
-import { orderStatistics, orderLists, orders } from "../../api/api";
+import { RecordBill } from "../../api/api";
 export default {
   data() {
     return {
-      msg: {
-        '2017年': [
-          { title: ' 9月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-          { title: ' 8月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-          { title: ' 7月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-          { title: ' 6月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-          { title: ' 5月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-        ],
-        '2016年': [
-          { title: ' 9月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-          { title: ' 8月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-          { title: ' 7月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-          { title: ' 6月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-          { title: ' 5月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-          { title: ' 4月账单', time: '2017/08/17-2017/09/15', price: '1036.00' },
-        ],
-
-      }
+      msg: []
     }
   },
   methods: {
@@ -65,8 +51,22 @@ export default {
       this.$router.go(-1);
     },
     init(){
+      let params={
+        data:{}
 
+      }
+      RecordBill(params,res=>{
+        console.log(res.data)
+        this.msg=res.data
+      })
+    },
+    info(a,b){
+      let month=b.substring(0,b.length-4);
+      this.$router.push({name:'bill',query:{y:a,m:month}})
     }
+  },
+  mounted(){
+    this.init()
   }
 }
 </script>

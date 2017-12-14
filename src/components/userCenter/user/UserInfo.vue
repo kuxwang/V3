@@ -14,7 +14,7 @@
 	            头像
 	          </span>
         <span class="fr">
-	            <img id="img_upload" :src="myImg" />
+	            <img id="img_upload" :src="myImg | dGoods" />
 	          </span>
         <!-- <input id="file_head" type="file" @change="getMyImg($event)"/> -->
         <input id="file_head" type="button" @click="getMyImg()"/>
@@ -252,7 +252,7 @@
           console.log(res.data)
           if (res.statusCode === 1) {
             _this.initAddress();
-            _this.delImg = res.data.avatar || myDefImg;
+            _this.delImg = res.data.avatar;
             _this.myPhone = res.data.mobile;
             _this.myNc = res.data.nickname;
             _this.myName=res.data.realname;
@@ -374,6 +374,11 @@
     activated(){
       this.getUserInfo();
       console.log('Userinfo')
+    },
+    filters: {
+      dGoods (value) {
+        return value ? value : myDefImg
+      }
     },
 
     created () {
