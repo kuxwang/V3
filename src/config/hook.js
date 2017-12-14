@@ -77,7 +77,7 @@ export const _env = (function () {
 
 export const _webapp = {
 
-  debug : true,
+  debug : false,
 
   apiToken: {},
 
@@ -523,10 +523,11 @@ export const _webapp = {
     }
   },
 
-
   share: function (data, callback) {
     var handler = 'share';
     if (_env.ios) {
+      console.log('IOS')
+      console.log(data)
       _webapp.setupWebViewJavascriptBridge(function (bridge) {
         bridge.callHandler(handler, data, function (response) {
           //return _webapp.callback(response, callback);
@@ -540,6 +541,8 @@ export const _webapp = {
     }
 
     if (_env.android) {
+      console.log('android')
+      console.log(data)
       _webapp.connectWebViewJavascriptBridge(function (bridge) {
         if (_webapp.init === false) {
           //初始化

@@ -164,7 +164,7 @@
         },
         defaultAvatar: '',
         adv: '',
-        version:'v.1.0.1117'
+        version:'v.1.0.1214'
       }
     },
     components: {
@@ -483,7 +483,7 @@
     margin-bottom: .25rem;
     position: inherit !important;
     /*height: 5r em;*/
-    height: 100%;
+    /*height: 100%;*/
   }
 
   .content .mfriend {

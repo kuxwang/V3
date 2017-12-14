@@ -759,6 +759,8 @@ export const Deletehistory = function (params, callback) {
 
 
 export const Share = function (params, callback) {
+  console.log('api share')
+  console.log(params)
   _webapp.share(params, function (res) {
     callback(res)
   })

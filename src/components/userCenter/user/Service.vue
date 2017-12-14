@@ -16,7 +16,7 @@
   export default {
     data(){
       return {
-
+        content:''
       }
     },
     methods:{
@@ -28,6 +28,11 @@
         }
         Topics(params,(res)=>{
           console.log(res);
+          if(res.statusCode===1){
+            this.content=res.data.content
+          }else {
+
+          }
         })
       }
     },

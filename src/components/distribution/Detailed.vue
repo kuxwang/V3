@@ -25,6 +25,10 @@
             </div>
           </div>
         </div>
+        <div class="tips" v-if="msg.length==0">
+          <span class="iconfont">&#xe66f;</span>
+          最近没有收益<br>
+        </div>
       </div>
     </section>
     <transition name="slide">
@@ -53,7 +57,6 @@ export default {
     init(){
       let params={
         data:{}
-
       }
       RecordBill(params,res=>{
         console.log(res.data)
@@ -120,6 +123,16 @@ export default {
           font-size: 0.15rem;
           color: #333;
         }
+      }
+    }
+    .tips {
+      text-align: center;
+      font-size: .14rem;
+      color: #666;
+      margin-top: 2rem;
+      .iconfont {
+        display: block;
+        font-size: .8rem;
       }
     }
   }

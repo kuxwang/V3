@@ -238,16 +238,6 @@
       },
       toast: function () {
         let _this = this;
-     /*   console.log('长度')
-        console.log(_this.spec)
-        console.log(_this.specs_arr)*/
-//        if (!_this.spec || _this.spec.length == _this.specs_arr.length) {
-//        if (!_this.spec.length || _this.selectoption == '已选：') {
-
-       /* if(){
-
-        }*/
-
         if (!_this.spec.length || _this.optionId) {
           if (this.myStata === 1) {//加入购物车
             _this.popupVisible = false;
@@ -357,7 +347,7 @@
             that.isShow = true;
             that.goodsparams = res.data.params;
             that.opitions=res.data.options;
-            console.log(that.opitions)
+//            console.log(that.opitions)
             that.spec=res.data.specs
             that.content=goods.content
 //            Indicator.close();
@@ -384,8 +374,8 @@
             }
             Adv(adv,(res)=>{
               if(res.statusCode==1){
-                console.log('广告数据')
-                console.log(res.data)
+//                console.log('广告数据')
+//                console.log(res.data)
                 that.goodsadv=res.data.thumb;
               }
             })

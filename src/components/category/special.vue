@@ -5,9 +5,9 @@
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
-    <div class="container" >
-      {{content}}
-      <div v-html="content"></div>
+    <div class="container" v-html="content">
+      <!--{{content}}
+      <div ></div>-->
     </div>
   </div>
 </template>
@@ -22,18 +22,23 @@
     },
     methods:{
       init(){
-        let params={
-          data:{
-            identification:this.$route.query.key
-          }
-        }
-        Topics(params,(res)=>{
-          console.log(res);
-          this.content=res.data.content
-          console.log('广告')
-          console.log(res.data)
-        })
+        let res = this.$route.meta.post
+        this.content=res.content
       }
+    },
+    beforeRouteEnter (to, from, next) {
+      let _this=this;
+      let params={
+        data:{
+          identification:to.query.key
+        }
+      }
+      Topics(params,(res)=>{
+        if(res.statusCode===1){
+          to.meta.post = res.data
+          next()
+        }
+      })
     },
     created(){
       this.init()
