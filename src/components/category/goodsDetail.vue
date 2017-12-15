@@ -720,7 +720,7 @@
     margin: 0;
     /*width: 35%;*/
     flex: 1;
-    height: 48px;
+    height: .48rem;
     outline: none;
     color: #fff;
     font-size: .15rem;
