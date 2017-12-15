@@ -45,6 +45,7 @@
     },
     methods:{
       init(id='',page=1,s=10){
+        let _this=this
         let params={
           data:{
             agentid:id,
@@ -59,7 +60,11 @@
             }
             console.log(this.$refs.loadmore.loading)
             this.list=[...this.list,...res.data.teamLists];
-            this.member=res.data.agentMember;
+
+            _this.member=res.data.agentMember;
+            console.log('新的用户')
+            console.log(this.member)
+            console.log(res.data.agentMember)
             this.id=id;
             this.page=this.page+1
             console.log('接口数据')
@@ -68,10 +73,10 @@
         })
       },
       getList(s){
-        if(s.isagent===1 && s.status===1){
+        if(s.isagent==1 && s.status==1){
           this.page=1;
           this.$refs.loadmore.loading=true;
-          this.init(s.agentid,this.page)
+          this.init(s.id,this.page)
         }else {
           Toast({
             message: '没有下级',

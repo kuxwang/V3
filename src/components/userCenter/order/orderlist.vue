@@ -299,9 +299,8 @@
       voidList
     },
     mounted(){
-//      this.init(this.statusType)
-    },
 
+    },
     created(){
     }
   }
