@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <mt-header title="专题" fixed>
+    <mt-header :title="title" fixed>
       <router-link to="/" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
@@ -17,13 +17,16 @@
   export default {
     data(){
       return {
-        content:''
+        content:'',
+        title:''
       }
     },
     methods:{
       init(){
         let res = this.$route.meta.post
-        this.content=res.content
+        this.content=res.content;
+        this.title=res.title;
+
       }
     },
     beforeRouteEnter (to, from, next) {

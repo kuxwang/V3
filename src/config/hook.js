@@ -358,7 +358,7 @@ export const _webapp = {
    */
   getSessionKeySync: function () {
     if(_webapp.debug === true){
-      _webapp.sessionKey = {data : {"sessionkey":"c2e15b1c0d6a51deabf3223ddff02f33", "timestamp":1500997527}, statusCode : '1'};
+      _webapp.sessionKey = {data : {"sessionkey":"6a5aeb3d0fb3fb3be320ac2276598be1", "timestamp":1500997527}, statusCode : '1'};
       // _webapp.sessionKey = {};
     }
 

@@ -33,34 +33,34 @@
         </section>
 
         <section class="content">
-          <router-link class="mfriend" :to="{path:'order',query:{stab:0}}" tag="div">
+          <router-link class="mfriend" :to="{path:'order',query:{stab:1}}" tag="div">
             <span class="iconfont order-icon">&#xe62e;</span>
             <span class="mint-cell-text">我的订单</span>
             <i class="iconfont right">&#xe649;</i>
           </router-link>
           <ul class="order-list">
             <!--<li class="li1" @click="ordertab(1)">-->
-            <router-link class="li1" :to="{path:'order',query:{stab:0}}" tag="li">
+            <router-link class="li1" :to="{path:'order',query:{stab:1}}" tag="li">
               <div class="iconfont listicon">&#xe658;</div>
               <div class="title">全部</div>
             </router-link>
             <!--</li>-->
-            <router-link class="li1" :to="{path:'order',query:{stab:1}}" tag="li">
+            <router-link class="li1" :to="{path:'order',query:{stab:2}}" tag="li">
               <div class="iconfont listicon">&#xe642;</div>
               <div class="title">待付款</div>
 
             </router-link>
             <!--</li>-->
-            <router-link class="li1" :to="{path:'order',query:{stab:2}}" tag="li">
+            <router-link class="li1" :to="{path:'order',query:{stab:3}}" tag="li">
               <div class="iconfont listicon">&#xe635;</div>
               <div class="title">待发货</div>
             </router-link>
-            <router-link class="li1" :to="{path:'order',query:{stab:3}}" tag="li">
+            <router-link class="li1" :to="{path:'order',query:{stab:4}}" tag="li">
               <!--<li class="li3" @click="ordertab(4)">-->
               <div class="iconfont listicon">&#xe63a;</div>
               <div class="title">待收货</div>
             </router-link>
-            <router-link class="li1" :to="{path:'order',query:{stab:4}}" tag="li">
+            <router-link class="li1" :to="{path:'order',query:{stab:5}}" tag="li">
               <div class="iconfont listicon">&#xe62f;</div>
               <div class="title">已完成</div>
             </router-link>
