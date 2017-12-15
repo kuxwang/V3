@@ -44,16 +44,15 @@
 
   /*公共头部*/
   .mint-header {
-    /*background: #fff !important;*/
-    background: #000 !important;
-    /*color: #252525 !important;*/
-    color: #ffffff !important;
+    background: #fff !important;
+    /*background: #000 !important;*/
+    color: #252525 !important;
+    /*color: #ffffff !important;*/
     /*border-bottom: 1px solid #e3e3e3;*/
     font-size: 0.16rem !important;
     height: .45rem !important;
     /*height: .64rem !important;*/
   }
-
   .mintui {
     font-size: .20rem !important;
   }

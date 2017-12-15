@@ -1,7 +1,7 @@
 <template>
   <div class="column">
     <div class="title">
-      最新商品
+      {{title}}
     </div>
     <div class="title-bg">
       NEW PRODUCT

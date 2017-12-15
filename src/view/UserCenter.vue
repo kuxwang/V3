@@ -161,6 +161,7 @@
         },
         defaultAvatar: '',
         adv: '',
+        sharedata:'',
         version:'v.1.0.1214'
       }
     },
@@ -196,6 +197,7 @@
             _this.memberInfo.mobile = res.data.mobile
             _this.memberInfo.credit2 = res.data.credit2
             _this.memberInfo.credit1 = res.data.credit1
+            _this.sharedata = res.data.share;
             _this.setImgUrl(_this.memberInfo.avatar)
 //            _this.$refs.loadmore.onTopLoaded();
             let params = {
@@ -250,9 +252,9 @@
         this.$router.push({name: 'address'});
       },
       share(){
-        let url=''
-        console.log(12)
-        Share(url,(res) => {
+        let _this=this;
+        let params=_this.sharedata;
+        Share( params,(res) => {
           console.log(1)
         })
       },

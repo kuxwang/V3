@@ -7,50 +7,51 @@
         </router-link>
       </mt-header>
     </section>
-    <div class="containers">
-      <div class="list-header c-1">
-        <transition name="slide">
-          <router-view></router-view>
-        </transition>
-        <ul class="nav-tab">
-          <li :class="{tabActive: selected==1 }" @click="switchOrder('total',1)">
-            <div class="title">全部</div>
-            <div class="iconfont listicon">&#xe624;</div>
-            <div>
-              <span class="num">{{ordertotal}}</span>
-              <span class="yuan"> 单</span>
-            </div>
-          </li>
-          <li :class="{tabActive: selected==2 }" @click="switchOrder('lock',2)">
-            <div class="title">未结算</div>
-            <div class="iconfont listicon">&#xe624;</div>
-            <div>
-              <span class="num">{{orderlock}}</span>
-              <span class="yuan"> 单</span>
-            </div>
-          </li>
-          <li :class="{tabActive: selected==3 }" @click="switchOrder('refund',3)">
-            <div class="title">已退款</div>
-            <div class="iconfont listicon">&#xe8b5;</div>
-            <div>
-              <span class="num">{{orderrefund}}</span>
-              <span class="yuan"> 单</span>
-            </div>
-          </li>
-          <li :class="{tabActive: selected==4 }" @click="switchOrder('ok',4)">
-            <div class="title">已结算</div>
-            <div class="iconfont listicon">&#xe619;</div>
-            <div>
-              <span class="num">{{orderok}}</span>
-              <span class="yuan"> 单</span>
-            </div>
-          </li>
-        </ul>
-        <div class="search">
-          <input type="text" results="1" v-model="find" placeholder="输入订单号、粉丝ID" />
-          <div @click="searchOrder">搜索</div>
-        </div>
+    <div class="list-header c-1">
+      <transition name="slide">
+        <router-view></router-view>
+      </transition>
+      <ul class="nav-tab">
+        <li :class="{tabActive: selected==1 }" @click="switchOrder('total',1)">
+          <div class="title">全部</div>
+          <div class="iconfont listicon">&#xe624;</div>
+          <div>
+            <span class="num">{{ordertotal}}</span>
+            <span class="yuan"> 单</span>
+          </div>
+        </li>
+        <li :class="{tabActive: selected==2 }" @click="switchOrder('lock',2)">
+          <div class="title">未结算</div>
+          <div class="iconfont listicon">&#xe624;</div>
+          <div>
+            <span class="num">{{orderlock}}</span>
+            <span class="yuan"> 单</span>
+          </div>
+        </li>
+        <li :class="{tabActive: selected==3 }" @click="switchOrder('refund',3)">
+          <div class="title">已退款</div>
+          <div class="iconfont listicon">&#xe8b5;</div>
+          <div>
+            <span class="num">{{orderrefund}}</span>
+            <span class="yuan"> 单</span>
+          </div>
+        </li>
+        <li :class="{tabActive: selected==4 }" @click="switchOrder('ok',4)">
+          <div class="title">已结算</div>
+          <div class="iconfont listicon">&#xe619;</div>
+          <div>
+            <span class="num">{{orderok}}</span>
+            <span class="yuan"> 单</span>
+          </div>
+        </li>
+      </ul>
+      <div class="search">
+        <input type="text" results="1" v-model="find" placeholder="输入订单号、粉丝ID" />
+        <div @click="searchOrder">搜索</div>
       </div>
+    </div>
+    <div class="containers">
+
       <mt-loadmore :bottom-method="loadBottom" @bottom-status-change="handleBottomChange" :autoFill="isTrue" :bottom-all-loaded="allLoaded"
         ref="loadmore">
         <ul class="p-list" v-show="defShow">
@@ -276,10 +277,12 @@ export default {
   width: 100%;
   height: 100%;
   background: @background;
-  overflow: auto;
+  overflow: hidden;
   z-index: 20;
 }
-
+.containers {
+  .scroll-view(100%)
+}
 .avatar {
   position: relative;
   top: 0;

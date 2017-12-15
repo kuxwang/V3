@@ -55,15 +55,15 @@
         <div class="info">
           <div class="info__item1">
             <div>{{teamsStatistics.all}}</div>
-            直营店
+            <span>直营店</span>
           </div>
           <div class="info__item2">
             <div>{{teamsStatistics.month}}</div>
-            团队店主
+         <span>团队店主</span>
           </div>
           <div class="info__item2">
             <div>{{teamsStatistics.purchased}}</div>
-            团队粉丝
+            <span>店铺粉丝</span>
           </div>
         </div>
       </section>
@@ -154,6 +154,7 @@
         issale:true,
         goods:false,
         qrimg:'',
+        sharedata:'',
         webDebug : _webapp.debug
       }
     },
@@ -174,6 +175,7 @@
             _this.memberInfo.avatar = res.data.avatar ||defaultAvatar
             _this.memberInfo.from = res.data.parent_name || '麦麦国际'
             _this.memberInfo.level = res.data.agentleveldetail.levelname
+            _this.sharedata= res.data.share
             _this.getBuyLevel();
             _this.getTeam();
             _this.getOrder();
@@ -254,11 +256,10 @@
         })
       },
       share(){
-        let url=''
-        console.log(12)
-        Share(url,(res) => {
+        let _this=this;
+        let params=_this.sharedata;
+        Share( params,(res) => {
           console.log(1)
-
         })
       },
       pop(){
@@ -421,6 +422,10 @@
           font-size: .26rem;
           text-transform: uppercase;
           color: #007aff;
+          line-height: .35rem;
+        }
+        span {
+          font-size: .11rem;
         }
       }
       .info__item2 {
@@ -433,6 +438,9 @@
             color: #333;
             line-height: .35rem;
           }
+        span {
+          font-size: .11rem;
+        }
         }
       }
     .money {
