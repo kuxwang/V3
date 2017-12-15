@@ -276,7 +276,7 @@
     components: {
       vTabbar: vTabbar
     },
-    created(){
+    activated(){
       this.init()
     }
   }

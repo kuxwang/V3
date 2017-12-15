@@ -15,36 +15,34 @@
     <h5>收入</h5>
     <ul class="view">
        <li class="cell">
-         今日收益
-         <span>{{today}}元</span>
+         <span>今日收益</span>
+         <span class="right">{{today}}元</span>
        </li>
       <li class="cell">
-        本月收益
+        <span>本月收益</span>
         <!--<span class="iconfont">&#xe61b;</span>-->
-        <span>{{month}}元</span>
+        <span class="right">{{month}}元</span>
       </li>
       <li class="cell">
-        累计收益
-        <span>{{total}}元</span>
+        <span>累计收益</span>
+        <span class="right">{{total}}元</span>
       </li>
     </ul>
     <h5>支出</h5>
     <ul class="view">
       <!--<li class="cell">-->
       <router-link class="cell" :to="{name: 'moneylist'}" tag="li">
-        已提现金额
-        <span class="iconfont">&#xe61b;</span>
-        <span>{{pay}}元</span>
+        <span>
+          已提现金额
+
+        </span>
+
+        <span class="right">{{pay}}元<span class="iconfont">&#xe61b;</span></span>
       </router-link>
       <!--</li>-->
     </ul>
 
       <p class="tips">{{text}}</p>
-
-    <!--  <router-link to="./outmoney" tag="div" class="btn" >
-        提现
-      </router-link>-->
-
     </div>
     <div class="btn" @click="go1">提现</div>
 
@@ -217,12 +215,14 @@
     line-height: 2.5;
     padding: 0 0.1rem;
     font-size: .14rem;
+    display: flex;
+    justify-content: space-between;
 
   }
 
   .cell span {
-    float: right;
-    height: .36rem;
+    /*float: right;
+    height: .36rem;*/
   }
 
   .btn {

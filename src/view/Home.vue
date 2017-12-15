@@ -1,8 +1,8 @@
 <template>
   <div class="content">
     <div class="top-logo">
-      <!--<img src= "" alt= "">-->
-      麦麦国际
+      <img :src="headerlogo" alt= "">
+      <!--麦麦国际-->
     </div>
     <div class="top-bar">
       <div class="logo"><img :src="avatar"/></div>
@@ -63,7 +63,8 @@
         adv:'',
         islogin:false,
         sharedata:'',
-        shops:{}
+        shops:{},
+        headerlogo:''
       }
     },
     methods: {
@@ -220,6 +221,7 @@
             console.log('shops数据')
             console.log(res.data)
             this.shops=res.data.alias;
+            this.headerlogo=res.data.logo;
 //            this.shops.map(v,i,a)
             console.log(Object.keys(this.shops))
             for(let i in this.shops){
@@ -239,7 +241,6 @@
       this.getTime();
       this.getAdv();
       this.getShops()
-//      this.getUserInfo();
       _webapp.checkLogin(function (res) {
         if(res.statusCode==1){
           this.getUserInfo();
@@ -274,6 +275,10 @@
       font-size: .20rem;
       font-weight: bold;
       line-height: .45rem;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
     font-family: PingFang !important;
   }

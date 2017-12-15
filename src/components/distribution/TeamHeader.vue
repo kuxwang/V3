@@ -50,6 +50,7 @@
     background-color: #fff;
     /*margin-top: .45rem;*/
     margin-bottom: .1rem;
+    z-index: 1;
     .logo {
       display: flex;
       margin-bottom: .1rem;

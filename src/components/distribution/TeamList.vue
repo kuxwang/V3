@@ -47,11 +47,13 @@
 
   .list {
     width: 100%;
-    overflow: hidden;
-    overflow-y: scroll;
-    height: 100%;
+    /*overflow: hidden;
+    overflow-y: scroll;*/
+    /*height: 100%;*/
     /*margin-top: 1.1rem;*/
-    padding-top: 1.3rem;
+    padding-bottom: .6rem;
+
+
   }
 </style>
 

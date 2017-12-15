@@ -8,9 +8,9 @@
     </mt-header>
     <div class="container">
       <team-header :info="member"></team-header>
-      <!--<mt-loadmore :bottom-method="loadBottom" @bottom-status-change="handleBottomChange" :autoFill="isTrue" :bottom-all-loaded="allLoaded"-->
-                   <!--ref="loadmore">-->
+      <div class="lists">
       <team-list :list="list" @change="getList" @loadMore="loadMore" ref="loadmore"></team-list>
+      </div>
       <!--</mt-loadmore>-->
     </div>
     <transition name="slide">
@@ -110,6 +110,10 @@
       width: 100%;
       height: 100%;
       margin-top: .45rem;
+      .lists {
+        .scroll-view(100%);
+        padding-top: 1.3rem;
+      }
     }
   }
 </style>
