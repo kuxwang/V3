@@ -356,9 +356,8 @@
             that.maxprice = goods.maxprice;
             that.bandimg = res.data.pics;
             that.total = goods.total;
-            console.log('that.total')
-            console.log(that.total)
             that.isShow = true;
+            that.isfavorite = res.data.isfavorite;
             that.goodsparams = res.data.params;
             that.opitions=res.data.options;
 //            console.log(that.opitions)

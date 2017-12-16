@@ -161,13 +161,11 @@
         Favorite_remove(params, res => {
           if (res.statusCode == 1) {
             this.page=1;
-
             let params = {
               data: {
                 page: this.page,
                 psize: this.psizes,
                 fields: 'id,thumb,title,productprice,marketprice'
-
               }
             }
             Favorites(params, res => {
@@ -234,36 +232,45 @@
             this.loading = true;
             console.log('请求失败`${res.statusCode} , ${res.data}` ')
           }
-
-
         });
-      }
-    },
-    mounted() {
-    },
-    created() {
-      let params = {
-        data: {
-          page: this.page,
-          psize: this.psizes,
-          fields: 'id,thumb,title,productprice,marketprice'
+      },
+      init(){
+        let params = {
+          data: {
+            page: this.page,
+            psize: this.psizes,
+            fields: 'id,thumb,title,productprice,marketprice'
+          }
         }
-      }
-      Favorites(params, res => {
-        if (res.statusCode == 1) {
-          this.loading = false
-          if (res.data.length > 0) {
-            this.resultArr = this.resultArr.concat(res.data);
-            if (res.data.length < this.psizes) {
+        Favorites(params, res => {
+          if (res.statusCode == 1) {
+            this.loading = false
+            if (res.data.length > 0) {
+              this.resultArr = this.resultArr.concat(res.data);
+              if (res.data.length < this.psizes) {
+                this.loading = true;
+              }
+            } else {
               this.loading = true;
             }
           } else {
             this.loading = true;
           }
-        } else {
-          this.loading = true;
-        }
-      })
+        })
+      }
+    },
+    mounted() {
+    },
+    beforeRouteUpdate(to, from, next){
+      if(from.name=='cdetails'){
+        console.log('来自')
+        console.log(from)
+        this.init()
+      }
+      next()
+    },
+    created() {
+
     },
     filters: {
       calculatePrice1(value) {

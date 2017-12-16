@@ -103,10 +103,10 @@
 
 
 
-          <router-link class="charge-order ocolor" :to="{path:'drawback',query:{money:v.price,orderid:v.id}}"
+          <!--<router-link class="charge-order ocolor" :to="{path:'drawback',query:{money:v.price,orderid:v.id}}"
                        tag="button" v-if="v.canrefund&&v.refundid==0">
             申请退款
-          </router-link>
+          </router-link>-->
           <button class="charge-order1" v-if="v.status==2 && v.refundid==0" @click="fn1(v.id)">
             确认收货
           </button>
@@ -115,10 +115,10 @@
                        v-if="v.status==2">
             查看物流
           </router-link>
-          <button class="charge-order ocolor" v-if="v.canrefund && v.refundid!=0 && v.status!=0"
+          <!--<button class="charge-order ocolor" v-if="v.canrefund && v.refundid!=0 && v.status!=0"
                   @click="refund(v.refundid)">
             退款申请中
-          </button>
+          </button>-->
           <router-link class="look-logi ocolor"
                        :to="{path:'logistics',query:{exp:v.express,expsn:v.expresssn,id:v.id}}" tag="button"
                        v-if="v.status==3">

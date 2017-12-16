@@ -31,7 +31,7 @@
 
     <ul class="goodsList">
       <li>
-        <div class="goodsList-tp">
+        <div class="goodsList-tp" v-if="comedis == 0">
           <i class="iconfont">&#xe6a8;</i>
           {{shopSet.name}}
         </div>
@@ -42,7 +42,7 @@
             </div>
             <div class="goods-introduce fl lr3">
               <p>{{v.title}}</p>
-              <div class="goods-option">
+              <div class="goods-option" v-if="comedis == 0">
                规格： {{v.optiontitle}}
               </div>
             </div>
@@ -56,7 +56,7 @@
             </div>
           </div>
         </div>
-        <router-link class="deliveryMode bt deflist" tag="div" :to="{name:'deliverymode'}">
+        <router-link class="deliveryMode bt deflist" tag="div" :to="{name:'deliverymode'}" v-if="comedis == 0">
           <div class="deliveryMode-lf fl">
             配送方式
           </div>
@@ -74,7 +74,7 @@
           </div>
         </div>
 
-        <div class="deliveryMode deflist clearfix">
+        <div class="deliveryMode deflist clearfix" v-if="comedis == 0">
           <div class="deliveryMode-lf fl">
             给卖家留言:
           </div>
@@ -82,7 +82,7 @@
             <input type="text" name="" v-model="remark" placeholder="选填:对本次交易的说明)">
           </div>
         </div>
-        <div class="goods-total clearfix">
+        <div class="goods-total clearfix" v-if="comedis == 0">
       				<span class="goods-total-lf">
       					共 {{memberDiscount.total}} 件, 合计：
       				</span>
@@ -94,7 +94,7 @@
         </div>
       </li>
     </ul>
-    <ul class="exhibition">
+    <ul class="exhibition" v-if="comedis == 0">
       <li class="clearfix">
         <div class="exhibition-lf fl">
           商品金额
@@ -157,7 +157,6 @@
       </button>
     </div>
     <!--<transition enter-active-class="fadeInRight" leave-active-class="fadeOutRight">-->
-
   </div>
     <transition name="slide">
       <router-view></router-view>
@@ -187,7 +186,7 @@
         credit1:'',//用户所剩余的 优惠券总额。
         deductcredit :'',//本次可（需）使用的优惠券额度。
         deductcreditmoney :'',//使用对应额度，可以减少的订单金额。
-        comedis:false
+        comedis: 0
       }
     },
     methods: {
@@ -202,8 +201,6 @@
             goodsid: Number(this.myOrders.goodsid) || ''
           }
         };
-        /*console.log('参数')
-        console.log(params.data)*/
 
         // 首次进入，初始化展示内容。
         GET_ORDER1(params, res => {
@@ -218,25 +215,14 @@
             _this.dispatchesprice = res.data.dispatches[0].price
             _this.shopSet = res.data.shopSet.style;
             _this.ADDRESS(res.data.addressLists)
-            /*let backmoney;
-            if(_this.memberDiscount.credit1>=_this.memberDiscount.deductprice){   //总数大于等于优惠
-              backmoney=_this.memberDiscount.deductprice
-            }else if(_this.memberDiscount.credit1<_this.memberDiscount.deductprice) {  //总数小于优惠
-              backmoney=_this.memberDiscount.credit1
-            }
-            _this.usenum=backmoney;    //实际使用了多少积分*/
-
-
-
-
-
           }else {
-            alert(res.data)
           }
         })
       },
       addtype(){
-        if(this.comedis==false){
+        console.log('this.comedis')
+        console.log(this.comedis)
+        if(this.comedis== 0){
           this.ADDTYPE(0)
           this.$router.push({name:'manageAddress'});
         }
@@ -426,8 +412,9 @@
       let _this=this;
       this.init();
       if(_this.$route.query.comedis==1){
-        _this.comedis=true
-        console.log('哈哈哈')
+        _this.comedis=1
+      }else {
+        _this.comedis=0
       }
     },
 
@@ -577,6 +564,7 @@
   .goods-img img {
     display: block;
     width: 100%;
+    height: 100%;
   }
 
   .goods-unitPrice {
