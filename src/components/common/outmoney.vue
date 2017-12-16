@@ -62,13 +62,13 @@
     <button class="commit ocolor" @click="pay">
       确认提现
     </button>
-    <div class="p-list">
-      <h6>温馨提示：</h6>
+    <div class="p-list" v-html="content">
+      <!--<h6>温馨提示：</h6>
       <p>&nbsp;&nbsp;亲爱的会员：</p>
       <p>1：客户确认收货后，过7天无理由退换货期后，即可提现。</p>
       <p>2：平台暂时只能提现到个人支付宝账户，后期可提现到个人微信钱包。</p>
       <p>3：提现金额为10元起提现，请在每周三9:00-17:00提现，平台会进行审核发放！感谢您的支持！</p>
-      <p>4：提现当日，每人发放不得超过2次，否则发放不了。</p>
+      <p>4：提现当日，每人发放不得超过2次，否则发放不了。</p>-->
     </div>
   </div>
 </template>
@@ -133,7 +133,7 @@
       takeStatus(){
         withdrawalStatus({data:{}},(res)=>{
           if(res.statusCode===1){
-            this.content=res.data;
+            this.content=res.data.warningMsg;
             console.log('可以提现')
           }else{
             this.text=res.data;
@@ -156,6 +156,7 @@
         if (res.statusCode == 1) {
           /* this.moneylist=res.data
            console.log(this.moneylist)*/
+          this.takeStatus()
           console.log(res)
           _this.moneytotal = res.data.ok.c_money_sum
         } else {
@@ -333,11 +334,15 @@
     text-align: left;
   }
 
-  .p-list > h6 {
+  .p-list > p {
     font-weight: bold;
   }
+  .p-list ol {
+    margin: 0;
+    padding-left: 0;
+  }
 
-  .p-list > p {
+  .p-list  li {
     font-size: .11rem;
     line-height: .18rem;
   }

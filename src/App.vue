@@ -169,6 +169,18 @@
     border-color: #F5751D;
     background-color: #F5751D;
   }
+  .p-list > p {
+    font-weight: bold;
+  }
+  .p-list ol {
+    margin: 0;
+    padding-left: 0;
+  }
+
+  .p-list  li>p {
+    font-size: .11rem;
+    line-height: .18rem;
+  }
 
 
 </style>

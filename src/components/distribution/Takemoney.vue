@@ -122,6 +122,8 @@
       takeStatus(){
         withdrawalStatus({data:{}},(res)=>{
           if(res.statusCode===1){
+            console.log('是否可以提现数据')
+            console.log(res.data)
             this.cantake=true;
             console.log('可以提现')
           }else{

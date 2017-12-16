@@ -262,40 +262,7 @@ export default new Router({
       name: 'userCenter',
       component: UserCenter,
       children: [
-        {
-          path: '/order',
-          name: 'order',
-          component: MyOrder,
-          children: [
-            {
-              path: '/orderd',
-              // name: 'orderd',
-              component: Orderd,
-            },
-            {
-              path: '/logistics',
-              name: 'logistics',
-              component: Logistics,
-            },
-            {
-              path: '/drawback',
-              name: 'drawback',
-              component: Drawback,
-            },
-            {
-              path: '/drawbackInfo',
-              name: 'drawbackInfo',
-              component: DrawbackInfo,
-            },
-            {
-              path: '/order/pay',
-              name: 'orderpay',
-              component: Payselect,
-            },
 
-
-          ]
-        },
         {
           path: '/userCenter/userInfo',
           name: 'userInfo',
@@ -363,6 +330,42 @@ export default new Router({
             },
           ]
         },
+      ]
+    },
+
+
+    {
+      path: '/order',
+      name: 'order',
+      component: MyOrder,
+      children: [
+        {
+          path: '/orderd',
+          // name: 'orderd',
+          component: Orderd,
+        },
+        {
+          path: '/logistics',
+          name: 'logistics',
+          component: Logistics,
+        },
+        {
+          path: '/drawback',
+          name: 'drawback',
+          component: Drawback,
+        },
+        {
+          path: '/drawbackInfo',
+          name: 'drawbackInfo',
+          component: DrawbackInfo,
+        },
+        {
+          path: '/order/pay',
+          name: 'orderpay',
+          component: Payselect,
+        },
+
+
       ]
     },
 //地址

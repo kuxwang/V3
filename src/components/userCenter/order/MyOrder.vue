@@ -84,8 +84,10 @@
       $route (to, from) {
         console.log(from.name)
         if(to.query.flush ==1){
-          this.$refs.mylist.statusType = '';
-          this.$refs.mylist.init('')
+          /*this.$refs.mylist.statusType = '';
+          this.$refs.mylist.init('')*/
+//          this.isselect=1
+
           console.log('flush')
         }
         if (from.name === 'orderd' && this.isConfirm === 2) {
@@ -112,7 +114,7 @@
       }
     },
     created(){
-      this.isselect =this.$route.query.stab
+//      this.isselect =this.$route.query.stab
      /* let a=this.$route.query.stab
       this.$refs.mylist.statusType = a;
       this.$refs.mylist.init(a)*/
@@ -123,7 +125,12 @@
     },
     activated(){
 //      this.isselect = this.$route.query.stab
-
+      if(this.$route.query.flush ==1){
+        this.isselect=this.$route.query.flush
+        console.log('从支付回来哈哈哈')
+      }else {
+        this.isselect =this.$route.query.stab
+      }
     },
     computed: {
       ...mapGetters([
