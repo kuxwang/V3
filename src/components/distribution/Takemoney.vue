@@ -34,7 +34,6 @@
       <router-link class="cell" :to="{name: 'moneylist'}" tag="li">
         <span>
           已提现金额
-
         </span>
 
         <span class="right">{{pay}}元<span class="iconfont">&#xe61b;</span></span>

@@ -152,7 +152,7 @@
         disindex: 3,
         defaultAvatar: '',
         issale:true,
-        goods:false,
+        goods:false,   //是否可以升级
         qrimg:'',
         sharedata:'',
         webDebug : _webapp.debug
@@ -220,7 +220,11 @@
         }
         BuyLevel(params,(res)=>{
           if(res.statusCode === 1){
-            _this.goods = true
+            _this.goods = true;
+            console.log('购买等级')
+            console.log(res.data)
+          }else if(res.statusCode == -1){
+
           }
         })
       },

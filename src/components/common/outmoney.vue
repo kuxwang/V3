@@ -76,7 +76,7 @@
 <script>
   import {Checklist, Toast} from 'mint-ui';
   import {mapState} from 'Vuex';
-  import {withdrawals_post, recordStatistics_get} from '../../api/api';
+  import {withdrawals_post, recordStatistics_get,withdrawalStatus} from '../../api/api';
   export default {
     data () {
       return {
@@ -90,7 +90,8 @@
         payStstus: 0,
         value: 0,
         type: 0,
-        moneytotal: ''
+        moneytotal: '',
+        content:''
       }
     },
     methods: {
@@ -128,6 +129,17 @@
           });
         }
 
+      },
+      takeStatus(){
+        withdrawalStatus({data:{}},(res)=>{
+          if(res.statusCode===1){
+            this.content=res.data;
+            console.log('可以提现')
+          }else{
+            this.text=res.data;
+            console.log('无法提现')
+          }
+        })
       }
     },
     watch: {

@@ -1,14 +1,14 @@
 <template>
   <div class="content">
     <div class="top-logo">
-      <img :src="headerlogo" alt= "">
+      <img :src="shops.logo" alt= "">
       <!--麦麦国际-->
     </div>
     <div class="top-bar">
       <div class="logo"><img :src="avatar"/></div>
       <div class="input" @click="goSearch()">
         <span class="iconfont">&#xe651;</span>
-        全球优质供应商直供
+        {{shops.other.searchtext}}
       </div>
       <div class="share"  @click="share()">
         <span class="iconfont">&#xe71d;</span>
@@ -20,9 +20,9 @@
           <img class="silder" :src="i.thumb" @click="specil(i.app_link)">
         </mt-swipe-item>
       </mt-swipe>
-      <v-colrow :list="hot" :title="shops.ishot" v-if="hashot"></v-colrow>
-      <v-colrow :list="istime" :title="shops.istime" v-if="hastime"></v-colrow>
-      <v-colcol :list="newgoods" :title="shops.isnew" v-if="hasnew"></v-colcol>
+      <v-colrow :list="hot" :title="shops.alias.ishot" v-if="hashot"></v-colrow>
+      <v-colrow :list="istime" :title="shops.alias.istime" v-if="hastime"></v-colrow>
+      <v-colcol :list="newgoods" :title="shops.other.allproduct" v-if="hasnew"></v-colcol>
       <div class="bottom-img">
         <!--<img class="bottom-pic" :src="logo2"/>-->
         <img class="bottom-pic" :src="adv"/>
@@ -104,7 +104,7 @@
             attributes: "isnew:1",
             page: 1,
             psize: 10,
-            fields:'description,title,id,productprice,marketprice,thumb'
+            fields:'description,title,id,productprice,marketprice,thumb,app_thumb_url'
           }
         }
         Attributes(parmas, (res) => {
@@ -126,6 +126,7 @@
             attributes: "ishot:1",
             page: 1,
             psize: 10,
+            fields:'description,title,id,productprice,marketprice,thumb,app_thumb_url'
           }
         }
         Attributes(parmas, (res) => {
@@ -146,6 +147,7 @@
             attributes: "istime:1",
             page: 1,
             psize: 10,
+            fields:'description,title,id,productprice,marketprice,thumb,app_thumb_url'
           }
         }
         Attributes(parmas, (res) => {
@@ -220,8 +222,8 @@
           if(res.statusCode===1){
             console.log('shops数据')
             console.log(res.data)
-            this.shops=res.data.alias;
-            this.headerlogo=res.data.logo;
+            this.shops=res.data;
+//            this.headerlogo=res.data.logo;
 //            this.shops.map(v,i,a)
             console.log(Object.keys(this.shops))
             for(let i in this.shops){

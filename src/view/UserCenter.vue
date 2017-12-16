@@ -65,16 +65,16 @@
               <div class="title">已完成</div>
             </router-link>
           </ul>
-          <!--<section class="adv">-->
-          <router-link class="advs" v-if="adv"  tag="div" :to="{name:'applys'}">
-            <img class="adv" :src="adv" alt="广告图">
-          </router-link>
-          <!--</section>-->
+          <!--<router-link class="advs" v-if="adv"  tag="div" :to="{name:'applys'}">-->
+            <div class="advs" v-if="adv" @click="goapply">
+              <img class="adv" :src="adv" alt="广告图">
+            </div>
+          <!--</router-link>-->
           <ul class="center-list">
-            <router-link class="center-cell" :to="{name:'applys'}" tag="li" style="margin-bottom: .1rem;">
+            <router-link class="center-cell" v-if="goods == true" :to="{name:'applys'}" tag="li" style="margin-bottom: .1rem;">
               <div class="iconfont icon-grey">&#xe62d;</div>
-              <div class="title-list">我要开店</div>
-              <!--<div class="title-list">店铺管理</div>-->
+              <div class="title-list"  v-if="member.isagent==0 || member.status==0">我要开店</div>
+              <div class="title-list" v-if="member.isagent==1 && member.status==1">店铺管理</div>
               <i class="iconfont right">&#xe649;</i>
             </router-link>
 
@@ -136,7 +136,7 @@
 </template>
 <script>
   import vTabbar from '../components/mode/Tabbar.vue'
-  import {memberInfo, LOGINOUT,Adv,Share} from '../api/api'
+  import {memberInfo, LOGINOUT,Adv,Share,BuyLevel} from '../api/api'
   import {mapMutations, mapGetters, mapState} from 'vuex'
   import {_webapp,_env} from '../config/hook.js';
   import {MessageBox, Toast} from 'mint-ui';
@@ -160,9 +160,11 @@
           credit1: '',
           credit2: '',
         },
+        member:{},
         defaultAvatar: '',
         adv: '',
         sharedata:'',
+        goods:false, // 显示用户是否可以升级店铺
         version:'v.1.0.1214'
       }
     },
@@ -188,7 +190,9 @@
         memberInfo({data: {}}, function (res) {
           if (res.statusCode == 1) {
             console.log(res.data)
-//            console.log('用户信息')
+            console.log('用户信息')
+            _this.getBuyLevel()
+            _this.member=res.data
             _this.memberInfo.nickname = res.data.nickname
             _this.memberInfo.id = res.data.id
             _this.memberInfo.level = res.data.level
@@ -209,8 +213,8 @@
             Adv(params,(res)=>{
               if(res.statusCode==1){
                 _this.adv= res.data.thumb
-                console.log('广告数据')
-                console.log(res.data)
+               /* console.log('广告数据')
+                console.log(res.data)*/
               }else {
                 console.log(res)
               }
@@ -281,6 +285,31 @@
             }
           }
         })
+      },
+      getBuyLevel(){
+        let _this=this;
+        let params={
+          data:{}
+        }
+        BuyLevel(params,(res)=>{
+          if(res.statusCode === 1){
+            _this.goods = true;
+            console.log('购买等级')
+            console.log(res.data)
+          }else if(res.statusCode == -1){
+
+          }
+        })
+      },
+      goapply(){
+        if(this.goods==true){
+          console.log('this.goods')
+          console.log(this.goods)
+          this.$router.push({name:'applys'})
+        }else {
+          console.log('this.goods')
+          console.log(this.goods)
+        }
       },
       ...mapMutations({
         tabselect: 'TABSELECT',
