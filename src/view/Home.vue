@@ -8,7 +8,7 @@
       <div class="logo"><img :src="avatar"/></div>
       <div class="input" @click="goSearch()">
         <span class="iconfont">&#xe651;</span>
-        {{shops.other.searchtext}}
+        {{searchtext}}
       </div>
       <div class="share"  @click="share()">
         <span class="iconfont">&#xe71d;</span>
@@ -22,7 +22,7 @@
       </mt-swipe>
       <v-colrow :list="hot" :title="shops.alias.ishot" v-if="hashot"></v-colrow>
       <v-colrow :list="istime" :title="shops.alias.istime" v-if="hastime"></v-colrow>
-      <v-colcol :list="newgoods" :title="shops.other.allproduct" v-if="hasnew"></v-colcol>
+      <v-colcol :list="newgoods" :title="allproduct" v-if="hasnew"></v-colcol>
       <div class="bottom-img">
         <!--<img class="bottom-pic" :src="logo2"/>-->
         <img class="bottom-pic" :src="adv"/>
@@ -64,7 +64,9 @@
         islogin:false,
         sharedata:'',
         shops:{},
-        headerlogo:''
+        headerlogo:'',
+        searchtext:'',
+        allproduct:''
       }
     },
     methods: {
@@ -223,12 +225,14 @@
             console.log('shops数据')
             console.log(res.data)
             this.shops=res.data;
+            this.searchtext=res.data.other.searchtext;
+            this.allproduct=res.data.other.allproduct;
 //            this.headerlogo=res.data.logo;
 //            this.shops.map(v,i,a)
-            console.log(Object.keys(this.shops))
+            /*console.log(Object.keys(this.shops))
             for(let i in this.shops){
               console.log(i)
-            }
+            }*/
           }
         })
       },
@@ -248,6 +252,7 @@
           this.getUserInfo();
         }
       })
+//      this.getUserInfo();
     },
     components: {
       vTabbar,

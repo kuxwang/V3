@@ -95,7 +95,7 @@
       padding-right:.15rem;
       position:fixed;
       font-size:.16rem;
-      color:#fff;
+      /*color:#fff;*/
       top:.11rem;
       right:0;
       z-index: 111;
