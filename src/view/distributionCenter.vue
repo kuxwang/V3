@@ -123,7 +123,7 @@
           level: '',//会员等级
           avatar: '',
           leveldetail: {
-            levelname: '默认等级',
+            levelname: '',
           },
           mobile: '',
           from: '',  //推荐人

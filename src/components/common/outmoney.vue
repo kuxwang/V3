@@ -25,7 +25,8 @@
           <label for="one">微信</label>
         </div>
         <div>
-          <label class="mint-checklist-label fl" @click="isChecked=1">
+          <!--<label class="mint-checklist-label fl" @click="isChecked=1">-->
+          <label class="mint-checklist-label fl">
             <span class="mint-checkbox" v-if="wechat_app.switch">
               <input type="checkbox" :checked="true" class="mint-checkbox-input">
               <span class="mint-checkbox-core"></span>
@@ -102,15 +103,22 @@
           }
           withdrawals_post(params, (res) => {
             console.log(res);
-            Toast({
-              message: '提现成功',
-              position: 'middle',
-              duration: 2000
-            });
-            setTimeout(() => {
-              this.$router.push({name: 'takemoney'})
-            }, 2000)
-
+            if(res.statusCode==1){
+              Toast({
+                message: '提现成功',
+                position: 'middle',
+                duration: 2000
+              });
+              setTimeout(() => {
+                this.$router.push({name: 'takemoney'})
+              }, 2000)
+            }else {
+              Toast({
+                message: `${res.data}`,
+                position: 'middle',
+                duration: 2000
+              });
+            }
           })
         } else {
           Toast({

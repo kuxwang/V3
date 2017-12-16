@@ -74,6 +74,7 @@
             <router-link class="center-cell" :to="{name:'applys'}" tag="li" style="margin-bottom: .1rem;">
               <div class="iconfont icon-grey">&#xe62d;</div>
               <div class="title-list">我要开店</div>
+              <!--<div class="title-list">店铺管理</div>-->
               <i class="iconfont right">&#xe649;</i>
             </router-link>
 
