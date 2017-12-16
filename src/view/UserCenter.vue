@@ -165,7 +165,7 @@
         adv: '',
         sharedata:'',
         goods:false, // 显示用户是否可以升级店铺
-        version:'v.1.0.1214'
+        version:'v.1.0.1216'
       }
     },
     components: {
