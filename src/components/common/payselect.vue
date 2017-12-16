@@ -319,6 +319,7 @@
   .order > .pic > img {
     width: 100%;
     border-radius: 50%;
+    height: 100%;
   }
 
   .order > .details {

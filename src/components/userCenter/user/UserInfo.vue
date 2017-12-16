@@ -60,7 +60,7 @@
         <input type="search" name="" class="userinfo-list-lr fl" placeholder="请输入真实姓名" v-model="myName"
                @blur="testName(myName)" >
       </li>
-      <li @click="setCity">
+      <!--<li @click="setCity">
 	          <span class="userinfo-list-lf fl">
 	            所在城市
 	          </span>
@@ -71,7 +71,7 @@
 	            出生日期
 	          </span>
         <input type="text" name="" class="userinfo-list-lr fl" placeholder="请选择出生日期" v-model="myDate" disabled>
-      </li>
+      </li>-->
     </ul>
     <div class="postUserInfo" @click="postUserInfo">
       <button class="postUserInfo-item">
@@ -323,7 +323,7 @@
           return ;
         }
 
-        if(!params.data.province || !params.data.city || !params.data.area){
+        /*if(!params.data.province || !params.data.city || !params.data.area){
           Toast('请选择您所在的城市');
           return ;
         }
@@ -331,7 +331,7 @@
         if(!params.data.birth){
           Toast('请选择您的出生日期');
           return ;
-        }
+        }*/
 
         let _this = this;
 
@@ -351,7 +351,6 @@
               duration: 2000
             });
           }
-
         })
       }
     },

@@ -239,58 +239,70 @@
       toast: function () {
         let _this = this;
         if (!_this.spec.length || _this.optionId) {
-          if (this.myStata === 1) {//加入购物车
-            _this.popupVisible = false;
-            let params = {
-              data: {
-                goodsid: _this.$route.query.id,
-                total: _this.num,
-                optionid: _this.optionId
+          console.log('!_this.total')
+          console.log(!_this.total)
+          if(_this.total==0){
+            Toast({
+              message: '暂无库存',
+              position: 'bottom',
+              duration: 1800
+            });
+            this.popupVisible = false;
+          }else{
+            if (this.myStata === 1) {//加入购物车
+              _this.popupVisible = false;
+              let params = {
+                data: {
+                  goodsid: _this.$route.query.id,
+                  total: _this.num,
+                  optionid: _this.optionId
+                }
               }
-            }
 
-            addCart(params, function (res) {
-              console.log(_this)
-              if (res.statusCode == 1) {
-                let params = {data:{}};
-                let that = _this;
-                GET_CARTNUMS(params, function (res) {//获取购物车当前数量
-                  if (res.statusCode === 1) {
-                    that.delGoodsNum = res.data.cartcount;
-                  } else {
-                    console.log('请求失败')
-                  }
-                });
-                Toast({
-                  message: '操作成功 商品已在购物车',
-                  position: 'middle',
-                  duration: 1800
-                });
-              } else if (!_this.optionId) {
-                Toast({
-                  message: '添加失败',
-                  position: 'bottom',
-                  duration: 1800
-                });
-              } else if (!_this.total) {
-                Toast({
-                  message: '添加失败',
-                  position: 'bottom',
-                  duration: 1800
-                });
-              }
-            })
-          } else if (this.myStata === 2) {//立即购买
-            let myOrders = {
-//            goodsid:this.goodsId,
-              goodsid: this.$route.query.id,
-              optionid: this.optionId,
-              cartids: '',
-              total: this.num
+              addCart(params, function (res) {
+                console.log(_this)
+                if (res.statusCode == 1) {
+                  let params = {data:{}};
+                  let that = _this;
+                  GET_CARTNUMS(params, function (res) {//获取购物车当前数量
+                    if (res.statusCode === 1) {
+                      that.delGoodsNum = res.data.cartcount;
+                    } else {
+                      console.log('请求失败')
+                    }
+                  });
+                  Toast({
+                    message: '操作成功 商品已在购物车',
+                    position: 'middle',
+                    duration: 1800
+                  });
+                } else if (!_this.optionId) {
+                  Toast({
+                    message: '添加失败',
+                    position: 'bottom',
+                    duration: 1800
+                  });
+                } else if (!_this.total) {
+                  Toast({
+                    message: '添加失败',
+                    position: 'bottom',
+                    duration: 1800
+                  });
+                }
+              })
             }
-            console.log(myOrders)
-            this.getMyorders(myOrders);
-            this.$router.push({name: 'confirmorder'})
+            else if (this.myStata === 2) {//立即购买
+              let myOrders = {
+//            goodsid:this.goodsId,
+                goodsid: this.$route.query.id,
+                optionid: this.optionId,
+                cartids: '',
+                total: this.num
+              }
+              console.log(myOrders)
+              this.getMyorders(myOrders);
+              this.$router.push({name: 'confirmorder'})
+            }
           }
 //        } else if (_this.spec.length > _this.specs_arr.length || _this.specs_arr.some((item)=>{item == ""})) {
         }
@@ -344,6 +356,8 @@
             that.maxprice = goods.maxprice;
             that.bandimg = res.data.pics;
             that.total = goods.total;
+            console.log('that.total')
+            console.log(that.total)
             that.isShow = true;
             that.goodsparams = res.data.params;
             that.opitions=res.data.options;

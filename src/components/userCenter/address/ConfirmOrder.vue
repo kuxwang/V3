@@ -294,6 +294,8 @@
             return;
           }else {
             confirm_post(params, res => {
+              console.log('提交订单款亏')
+              console.log(res.data)
               if (res.statusCode == 1) {
                 let ordersn = res.data.ordersn
                 _this.ORDERINFO(ordersn);
@@ -306,6 +308,7 @@
                   position: 'middle',
                   duration: 2000
                 });
+
                 this.payed = false;
               }else {
                 Toast({
