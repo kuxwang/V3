@@ -77,7 +77,7 @@ export const _env = (function () {
 
 export const _webapp = {
 
-  debug : false,
+  debug : true,
 
   apiToken: {},
 
@@ -358,7 +358,7 @@ export const _webapp = {
    */
   getSessionKeySync: function () {
     if(_webapp.debug === true){
-      _webapp.sessionKey = {data : {"sessionkey":"6a5aeb3d0fb3fb3be320ac2276598be1", "timestamp":1500997527}, statusCode : '1'};
+      _webapp.sessionKey = {data : {"sessionkey":"7c8fa8b99d65ab66471af32aab126654", "timestamp":1500997527}, statusCode : '1'};
       // _webapp.sessionKey = {};
     }
 

@@ -14,7 +14,8 @@
           <mt-swipe class="banner" :auto="4000" >
             <!--<mt-swipe-item v-for="(i, k) in slider" :key="k">-->
             <mt-swipe-item>
-              <img :src="v.thumb" alt="">
+              <img v-if="v.app_thumb_url" :src="v.app_thumb_url" alt="">
+              <img v-else :src="v.thumb" alt="">
               <!--<img class="silder" :src="i.thumb">-->
             </mt-swipe-item>
           </mt-swipe>

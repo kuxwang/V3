@@ -9,8 +9,9 @@
     <div class="scroll">
       <ul class="scroll-goodslist clear">
           <router-link  v-for="(v,k) in list" :to="{name:'details',query:{id:v.id}}" tag="li" class="scroll-goodslist-li" :key="k">
-
-          <img :src="v.thumb" alt="">
+          <!--<img :src="v.thumb" alt="">-->
+            <img v-if="v.app_thumb_url" :src="v.app_thumb_url" alt="">
+            <img v-else :src="v.thumb" alt="">
             <div class="nototal iconfont" v-if="v.total==0">
               &#xe665;
             </div>
@@ -21,7 +22,6 @@
             ￥{{v.marketprice}}
             <span>￥{{v.productprice}}</span>
           </p>
-
           </router-link>
       </ul>
       <p>查看所有新品</p>

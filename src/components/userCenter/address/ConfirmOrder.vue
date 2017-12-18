@@ -115,7 +115,7 @@
 					<span class="goods-folatPrice">{{dispatchesprice | calculatePrice2}}</span>
 				</span>
       </li>
-      <li class="clearfix">
+      <!--<li class="clearfix">
         <div class="exhibition-lf fl">
           -会员折扣(8折)
         </div>
@@ -124,7 +124,7 @@
 					<span class="goods-intPrice">{{memberDiscount.discountprice | calculatePrice1}}.</span>
 					<span class="goods-folatPrice">{{memberDiscount.discountprice | calculatePrice2}}</span>
 				</span>
-      </li>
+      </li>-->
       <!--<li class="clearfix">
         <div class="exhibition-lf fl">
           优惠券

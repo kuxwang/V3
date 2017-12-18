@@ -277,7 +277,7 @@
     .page-view();
     .top-logo {
       height: .45rem;
-      background: #000000;
+      background: #fff;
       color: #fff;
       font-size: .20rem;
       font-weight: bold;
