@@ -54,10 +54,8 @@ let resulthandling = (opt) => {
       }).then(action => {
         _webapp.nativeLogin();
       });
-
       return ;
     } else if (opt.statusCode === 10010) {
-      _webapp.log('opt.statusCode 10010 running.');
       _webapp.getApiToken(() => {
         if (_webapp.checkApiToken()) {
           setParams(opt.params, opt.callback);
@@ -70,7 +68,6 @@ let resulthandling = (opt) => {
             closeOnClickModal : false
           }).then(action => {
             _webapp.nativeLogin();
-            // newData = _webapp.getApiTokenSync() || {'statusCode': -1, 'data': '获取公众号通讯令牌异常，请关闭app后重新尝试'};
           });
         }
       });

@@ -10,7 +10,7 @@
       <ul class="scroll-goodslist clear">
         <!--<li class="scroll-goodslist-li" v-for="(v,index) in newgoods">-->
         <router-link  v-for="(v,k) in list" :to="{name:'details',query:{id:v.id}}" tag="li" class="scroll-goodslist-li" :key="k">
-
+          <span class="iconfont nototal" v-if="v.total==0">&#xe998;</span>
           <!--<mt-swipe class="banner" :auto="4000" >
             &lt;!&ndash;<mt-swipe-item v-for="(i, k) in slider" :key="k">&ndash;&gt;
             <mt-swipe-item>
@@ -21,6 +21,7 @@
           </mt-swipe>-->
           <img v-if="v.app_thumb_url" :src="v.app_thumb_url" alt="">
           <img v-else :src="v.thumb" alt="">
+
           <p class="goodstitle lr2">
             {{v.title}}
           </p>
@@ -35,7 +36,6 @@
           </div>
         </router-link>
         <!--</li>-->
-
       </ul>
     </div>
   </div>
@@ -138,12 +138,21 @@
           height: 100%;
           -webkit-overflow-scrolling: touch;
           .scroll-goodslist-li {
+            position: relative;
             height: 100%;
             text-align:center;
             background: -webkit-linear-gradient(#fafafa, #ffffff);
             background: -o-linear-gradient(#fafafa, #ffffff);
             background: -moz-linear-gradient(#fafafa, #ffffff);
             background: linear-gradient(#fafafa, #ffffff);
+            .nototal {
+              font-size: .6rem;
+              position: absolute;
+              top:1.4rem;
+              left: 2.8rem;
+              display: block;
+              color: #999;
+            }
              .banner {
                height: 3rem
              }

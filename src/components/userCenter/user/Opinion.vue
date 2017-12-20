@@ -16,11 +16,10 @@
       <div class="pic-group">
         <p>请提供相关问题的截图或照片<span>{{list.length}}/4</span></p>
         <div class="pic-view">
-        <div class="img-box" v-if="list.length>0" v-for="i in list">
+        <div class="img-box" v-if="list" v-for="i in list">
           <img :src="i"/>
         </div>
-        <!--<div class="img-box add" @click="uploadImg" v-if="list.length<4">-->
-        <div class="img-box add" @click="upload" v-if="list.length<4">
+        <div class="img-box add" @click="uploadImg" v-if="list.length<4">
           <span class="iconfont">&#xe62b;</span>
           <div>相机/相册</div>
         </div>
