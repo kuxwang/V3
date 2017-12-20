@@ -11,15 +11,16 @@
         <!--<li class="scroll-goodslist-li" v-for="(v,index) in newgoods">-->
         <router-link  v-for="(v,k) in list" :to="{name:'details',query:{id:v.id}}" tag="li" class="scroll-goodslist-li" :key="k">
 
-          <mt-swipe class="banner" :auto="4000" >
-            <!--<mt-swipe-item v-for="(i, k) in slider" :key="k">-->
+          <!--<mt-swipe class="banner" :auto="4000" >
+            &lt;!&ndash;<mt-swipe-item v-for="(i, k) in slider" :key="k">&ndash;&gt;
             <mt-swipe-item>
               <img v-if="v.app_thumb_url" :src="v.app_thumb_url" alt="">
               <img v-else :src="v.thumb" alt="">
-              <!--<img class="silder" :src="i.thumb">-->
+              &lt;!&ndash;<img class="silder" :src="i.thumb">&ndash;&gt;
             </mt-swipe-item>
-          </mt-swipe>
-          <!--<img :src="v.thumb"/>-->
+          </mt-swipe>-->
+          <img v-if="v.app_thumb_url" :src="v.app_thumb_url" alt="">
+          <img v-else :src="v.thumb" alt="">
           <p class="goodstitle lr2">
             {{v.title}}
           </p>

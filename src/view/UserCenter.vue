@@ -328,7 +328,7 @@
       this.init();
     },
     beforeRouteUpdate(to, from, next) {
-      if (from.name === 'userinfo') {
+      if (from.name === 'userInfo') {
         this.init();
       }
       next()

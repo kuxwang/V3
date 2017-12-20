@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div v-if="issale" class="container">
+    <div v-if="loading" class="container" v-show="issale">
       <div class="user">
           <div class="user__logo">
             <img :src="memberInfo.avatar"/>
@@ -84,7 +84,7 @@
         </div>
       </section>
     </div>
-    <div class="tip" v-else>
+    <div class="tip" v-if="loading" v-show="!issale">
       <span class="iconfont">&#xe64d;</span>
       <div class="text">抱歉！您还没有开店</div>
       <!--<router-link  class="btn">我要开店</router-link>-->
@@ -110,7 +110,6 @@
   import {mapMutations, mapGetters, mapState} from 'vuex'
   import {MessageBox} from 'mint-ui';
   import vTabbar from '../components/mode/Tabbar.vue'
-//  import defaultAvatar from '../assets/images/defaultlogo.png'
   import defaultAvatar from '../assets/images/userinfo-02.png'
 
   export default {
@@ -155,6 +154,7 @@
         goods:false,   //是否可以升级
         qrimg:'',
         sharedata:'',
+        loading:false,
         webDebug : _webapp.debug
       }
     },
@@ -166,6 +166,10 @@
         let _this=this
         memberInfo({data : {}}, function (res) {
           if (res.statusCode == 1) {
+            _this.loading=true;
+            if(res.data.isagent === 0 || res.data.status === 0){
+              _this.issale=false
+            }
             console.log('会员数据')
             console.log(res.data)
             _this.memberInfo.nickname = res.data.nickname
@@ -238,8 +242,6 @@
         }
         recordStatistics_get(params, (res) => {
           if (res.statusCode === 1) {
-      /*      console.log('金额')
-            console.log(res.data)*/
           _this.recordStatistics_get.total=res.data.total.c_money_sum
           _this.recordStatistics_get.today=res.data.today.c_money_sum
           _this.recordStatistics_get.month=res.data.month.c_money_sum
@@ -406,6 +408,7 @@
       .text {
         flex: 1;
         font-size: .14rem;
+
       }
       .right {
         font-weight: bold;
@@ -492,9 +495,9 @@
     }
     .text {
       font-size: .16rem;
-      color: @style2;
       margin-top: .3rem;
       margin-bottom: .1rem;
+      color: #666;
     }
     .btn {
       width: 1.75rem;

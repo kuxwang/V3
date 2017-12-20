@@ -14,12 +14,13 @@
       </div>
 
       <div class="pic-group">
-        <p>请提供相关问题的截图或照片<span>{{pic.length}}/4</span></p>
+        <p>请提供相关问题的截图或照片<span>{{list.length}}/4</span></p>
         <div class="pic-view">
-        <div class="img-box" v-if="pic" v-for="i in pic">
-          <img :src="test"/>
+        <div class="img-box" v-if="list.length>0" v-for="i in list">
+          <img :src="i"/>
         </div>
-        <div class="img-box add" @click="uploadImg" v-if="pic.length<4">
+        <!--<div class="img-box add" @click="uploadImg" v-if="list.length<4">-->
+        <div class="img-box add" @click="upload" v-if="list.length<4">
           <span class="iconfont">&#xe62b;</span>
           <div>相机/相册</div>
         </div>
@@ -30,7 +31,7 @@
 </template>
 
 <script>
-  import {_webapp} from '../../../config/webapp.js';
+  import {_webapp} from '../../../config/hook.js';
   import {Feedbacks} from '../../../api/api';
   import {Toast} from 'mint-ui';
 
@@ -38,15 +39,18 @@
     data(){
       return {
         text:'',
-        pic:[],
+        list:[],
         test:'../../../assets/images/confirmorder-01.png',
       }
     },
     methods:{
       uploadImg(){
         let that = this;
-        _webapp.uploadImg((res) => {
-          that.pic=that.pic.push(res.data)
+        _webapp.uploadImg(res => {
+          let arr=that.list;
+          let src=res.data;
+          arr.push(src)
+          that.list=arr;
         })
       },
       submit(){
@@ -73,7 +77,7 @@
               }
           })
         }
-      }
+      },
     },
     created(){
 

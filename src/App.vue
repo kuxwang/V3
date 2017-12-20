@@ -184,7 +184,10 @@
   .intro > p {
     font-size: .15rem;
     text-align: left;
-    padding-left: .03rem;
+    padding-left: 0rem;
+    line-height: 0;
+  }
+  .special>p {
     line-height: 0;
   }
 
