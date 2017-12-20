@@ -599,6 +599,7 @@
     font-size: .15rem;
     text-align: left;
     padding-left: .03rem;
+    line-height: 0;
   }
 
   .intro > span {

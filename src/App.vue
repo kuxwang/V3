@@ -181,7 +181,12 @@
     font-size: .11rem;
     line-height: .18rem;
   }
-
+  .intro > p {
+    font-size: .15rem;
+    text-align: left;
+    padding-left: .03rem;
+    line-height: 0;
+  }
 
 </style>
 

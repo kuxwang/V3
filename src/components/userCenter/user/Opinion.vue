@@ -46,7 +46,7 @@
       uploadImg(){
         let that = this;
         _webapp.uploadImg((res) => {
-          that.pic=that.pic.concat(res.data)
+          that.pic=that.pic.push(res.data)
         })
       },
       submit(){

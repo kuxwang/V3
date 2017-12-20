@@ -55,8 +55,9 @@
 
               <span class="goods-intPrice oldprice">¥{{v.marketprice | calculatePrice1}}.{{v.marketprice | calculatePrice2}}</span>
 
-            <div class="find iconfont">&#xe728;</div>
+
             </div>
+            <div class="find iconfont">&#xe728;</div>
           </div>
         </router-link>
 
@@ -270,7 +271,7 @@
       next()
     },
     created() {
-
+      this.init()
     },
     filters: {
       calculatePrice1(value) {
@@ -391,6 +392,7 @@
   }
 
   .price {
+    /*position: absolute;*/
     position: absolute;
     text-align: left;
     margin-top: .05rem;

@@ -151,7 +151,6 @@
 					<span class="goods-folatPrice">{{memberDiscount.realprice | calculatePrice2}}</span>
 				</span>
       </div>
-
       <button id="commitForm" class="settlement-lr fr" @click="goPay">
         提交订单
       </button>
