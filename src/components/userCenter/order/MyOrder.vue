@@ -114,10 +114,6 @@
       }
     },
     created(){
-//      this.isselect =this.$route.query.stab
-     /* let a=this.$route.query.stab
-      this.$refs.mylist.statusType = a;
-      this.$refs.mylist.init(a)*/
 
     },
     mounted () {

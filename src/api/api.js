@@ -54,7 +54,7 @@ let resulthandling = (opt) => {
       }).then(action => {
         _webapp.nativeLogin();
       });
-      return ;
+      // return ;
     } else if (opt.statusCode === 10010) {
       _webapp.getApiToken(() => {
         if (_webapp.checkApiToken()) {

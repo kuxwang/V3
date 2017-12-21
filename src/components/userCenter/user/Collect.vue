@@ -266,6 +266,7 @@
       if(from.name=='cdetails'){
         console.log('来自')
         console.log(from)
+        this.resultArr=[]
         this.init()
       }
       next()
