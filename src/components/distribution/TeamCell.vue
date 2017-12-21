@@ -6,7 +6,7 @@
       <img :src="info.avatar"/>
     </div>
     <div class="info">
-      <h5>{{info.nickname}}</h5>
+      <h5><i class="iconfont shop" v-if="info.isagent==1 && info.status==1">&#xe610;</i>{{info.nickname}}</h5>
       <span>{{info.id}}</span>
       <span class="message" @click.stop="jumpTo(info.openid)">详情</span>
     </div>
@@ -115,6 +115,10 @@
         padding: .03rem .08rem;
         font-size: .1rem;
         border-radius: .05rem;
+      }
+      .shop {
+        color: #0076ff;
+        font-size: .16rem;
       }
     }
   }

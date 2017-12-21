@@ -39,14 +39,16 @@
           {{shopname}}
         </div>
         <!--<router-link class="good-info" v-for="(s.i) in goodlist" :to="{path:'details',query:{goodsId:goodsid}}" tag="div" >-->
-        <router-link class="good-info" v-for="(s,i) in goodlist" :to="{path:'details',query:{id: 1}}" tag="div" :key="i">
+        <!--<router-link class="good-info" v-for="(s,i) in goodlist" :to="{path:'details',query:{id: 1}}" tag="div" :key="i">-->
+          <div class="good-info">
           <img :src="s.thumb" class="order-small">
           <p>{{s.title}}</p>
           <div class="good-price">
             <p>￥{{s.marketprice}}</p>
             <p>×{{s.total}}</p>
           </div>
-        </router-link>
+          </div>
+        <!--</router-link>-->
         <ul class="pib-list">
           <li>商品金额：<p>￥{{price}}</p></li>
           <li>运费：<p>￥{{tranprice}}</p></li>

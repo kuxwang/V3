@@ -91,12 +91,15 @@
             console.log('首页用户信息')
             console.log(res.data)
             _this.avatar = res.data.parent_avatar ||defalutAvatar
+            console.log('上级头像')
+            console.log(res.data.parent_avatar)
+            console.log(_this.avatar)
             _this.islogin = true;
             _this.sharedata = res.data.share;
-            console.log('用户已经登录')
-            console.log(_this.sharedata)
+//            console.log('用户已经登录')
+//            console.log(_this.sharedata)
           }else{
-//                console.log(用户接口请求错误)
+
           }
         })
       },
@@ -241,6 +244,7 @@
       }
     },
     mounted () {
+      let _this=this;
       this.getSilder();
       this.getNew();
       this.getHot();
@@ -249,7 +253,8 @@
       this.getShops()
       _webapp.checkLogin(function (res) {
         if(res.statusCode==1){
-          this.getUserInfo();
+          console.log('JS BRIDEG')
+          _this.getUserInfo();
         }
       })
 //      this.getUserInfo();

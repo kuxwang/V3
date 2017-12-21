@@ -71,11 +71,16 @@
             </div>
           <!--</router-link>-->
           <ul class="center-list">
-            <router-link class="center-cell" v-if="goods == true" :to="{name:'applys'}" tag="li" style="margin-bottom: .1rem;">
+            <router-link class="center-cell" v-if="member.isagent==0 || member.status==0" :to="{name:'applys'}" tag="li" style="margin-bottom: .1rem;">
               <div class="iconfont icon-grey">&#xe62d;</div>
               <div class="title-list"  v-if="member.isagent==0 || member.status==0">我要开店</div>
               <!--<div class="title-list" v-if="member.isagent==1 && member.status==1">店铺管理</div>-->
               <div class="title-list" v-else >店铺管理</div>
+              <i class="iconfont right">&#xe649;</i>
+            </router-link>
+            <router-link class="center-cell" v-else :to="{name:'vipCenter'}" tag="li" style="margin-bottom: .1rem;">
+              <div class="iconfont icon-grey">&#xe62d;</div>
+              <div class="title-list" >店铺管理</div>
               <i class="iconfont right">&#xe649;</i>
             </router-link>
 
@@ -287,7 +292,7 @@
           }
         })
       },
-      getBuyLevel(){
+      /*getBuyLevel(){
         let _this=this;
         let params={
           data:{}
@@ -301,7 +306,7 @@
 
           }
         })
-      },
+      },*/
       goapply(){
         if(this.goods==true){
           console.log('this.goods')
