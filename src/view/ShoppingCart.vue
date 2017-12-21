@@ -334,7 +334,7 @@ export default {
 }
 
 .goods-list .mint-checklist-label {
-  height: 0.2rem;
+  height: .5rem;
   width: 0.3rem;
   text-align: left;
   margin-top: 0.20rem;
@@ -426,6 +426,8 @@ export default {
   width: 0.2rem;
   height: 0.2rem;
   background: #FCFCFC;
+  position: relative;
+  bottom: .03rem;
 }
 
 .mint-checkbox-core::after {
@@ -508,6 +510,8 @@ export default {
 .mint-checkbox-label {
   font-size: 0.14rem;
   color: #051b28;
+  position: relative;
+  bottom: .02rem;
 }
 
 .payment-lf {

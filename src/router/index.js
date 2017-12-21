@@ -341,7 +341,7 @@ export default new Router({
       children: [
         {
           path: '/orderd',
-          // name: 'orderd',
+          name: 'orderd',
           component: Orderd,
         },
         {

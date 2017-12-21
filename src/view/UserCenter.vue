@@ -79,6 +79,7 @@
               <i class="iconfont right">&#xe649;</i>
             </router-link>
             <router-link class="center-cell" v-else :to="{name:'vipCenter'}" tag="li" style="margin-bottom: .1rem;">
+            <!--<router-link class="center-cell" v-else :to="{name:'applys'}" tag="li" style="margin-bottom: .1rem;">-->
               <div class="iconfont icon-grey">&#xe62d;</div>
               <div class="title-list" >店铺管理</div>
               <i class="iconfont right">&#xe649;</i>
@@ -171,7 +172,7 @@
         adv: '',
         sharedata:'',
         goods:false, // 显示用户是否可以升级店铺
-        version:'v.1.0.1216'
+        version:'v.1.0.1221'
       }
     },
     components: {

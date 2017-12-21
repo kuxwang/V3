@@ -63,7 +63,7 @@ let resulthandling = (opt) => {
         } else {
           MessageBox({
             title: '友情提示',
-            message: '很抱歉，系统可能出现了点问题，请您关闭APP（需后台任务清除）后重新尝试',
+            message: '未',
             showCancelButton: false,
             closeOnClickModal : false
           }).then(action => {

@@ -183,6 +183,7 @@
                color: #808080;
              }
              .goodsprice {
+               display: none;
                height: .3rem;
                margin: .1rem .15rem;
                text-align: left;

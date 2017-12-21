@@ -19,13 +19,13 @@
       <div class="content" v-html="goods.content"></div>
 
       <div class="bottom">
-        <div class="footer">
-          已有<span>{{count}}</span>人成为优源店主
-        </div>
-        <div class="tip">
+        <!--<div class="footer">
+          已有<span>{{1000+count}}</span>人成为优源店主
+        </div>-->
+        <!--<div class="tip">
           <input id="agree" type="radio" value="1" v-model="isChecked" />
            <label for="agree">我已阅读并同意<span>优源店主服务协议</span></label>
-        </div>
+        </div>-->
         <div class="btn" @click="apply">申请￥{{goods.marketprice}}/年{{goods.title}}</div>
       </div>
     </div>
@@ -60,7 +60,8 @@
         })
       },
       apply(){
-        if(this.isChecked==1){
+//        if(this.isChecked==1){
+        if(true){
           console.log('111')
           let myOrders = {
 //            goodsid:this.goodsId,
@@ -126,7 +127,7 @@
     }
     .bottom {
       position: fixed;
-      height: 1.395rem;
+      /*height: 1.395rem;*/
       bottom: 0;
       width: 100%;
       background-color: #fff;

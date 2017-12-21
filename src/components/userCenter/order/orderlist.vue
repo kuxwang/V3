@@ -1,71 +1,71 @@
 <!--<template>-->
-  <!--<ul class="order-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="50">-->
-    <!--<void-list ref="requestStatus">-->
-      <!--<li v-for="(v,i) in statusResult">-->
-        <!--<div>订单号：{{v.ordersn}}</div>-->
-        <!--<router-link class="good-info" :to="{path:'orderd',query:{oid:v.id,sta:v.status}}"-->
-                     <!--tag="div">-->
-          <!--<img :src=v.goods[0].thumb alt="" class="order-small">-->
-          <!--<p>{{v.goods[0].title}}</p>-->
-          <!--<div class="good-price">-->
-            <!--<p>{{v.goods[0].marketprice}}</p>-->
-            <!--<p>×{{v.goods[0].total}}</p>-->
-          <!--</div>-->
-        <!--</router-link>-->
-        <!--<div class="good-pay">-->
-          <!--<span>共{{v.goods[0].total}}件商品 实付：</span> ￥{{v.price}}-->
-        <!--</div>-->
-        <!--<div class="good-btn">-->
-          <!--<button class="cancel-order" v-if="v.status==0" @click="cancel(v.id)">-->
-            <!--取消订单-->
-          <!--</button>-->
-          <!--<button class="charge-order ocolor" @click="pay(v.ordersn)" v-if="v.status==0">-->
-            <!--付款-->
-          <!--</button>-->
-          <!--<router-link class="charge-order ocolor" :to="{path:'drawback',query:{money:v.price,orderid:v.id}}"-->
-                       <!--tag="button" v-if="v.canrefund&&v.refundid==0">-->
-            <!--申请退款-->
-          <!--</router-link>-->
-          <!--<button class="charge-order1" v-if="v.status==2 && v.refundid==0" @click="fn1(v.id)">-->
-            <!--确认收货-->
-          <!--</button>-->
-          <!--<router-link class="look-logi ocolor"-->
-                       <!--:to="{path:'logistics',query:{exp:v.express,expsn:v.expresssn,id:v.id}}" tag="button"-->
-                       <!--v-if="v.status==2">-->
-            <!--查看物流-->
-          <!--</router-link>-->
-          <!--<button class="charge-order ocolor" v-if="v.canrefund && v.refundid!=0 && v.status!=0"-->
-                  <!--@click="refund(v.refundid)">-->
-            <!--退款申请中-->
-          <!--</button>-->
-          <!--<router-link class="look-logi ocolor"-->
-                       <!--:to="{path:'logistics',query:{exp:v.express,expsn:v.expresssn,id:v.id}}" tag="button"-->
-                       <!--v-if="v.status==3">-->
-            <!--查看物流-->
-          <!--</router-link>-->
-        <!--</div>-->
-      <!--</li>-->
-      <!--<p class="page-infinite-loading" v-if="loading&&isloading">-->
-        <!--<span>-->
-          <!--<div class="mint-spinner-fading-circle circle-color-112" style="width: 28px; height: 28px;">-->
-            <!--<div class="mint-spinner-fading-circle-circle is-circle2"></div>-->
-            <!--<div class="mint-spinner-fading-circle-circle is-circle3"></div>-->
-            <!--<div class="mint-spinner-fading-circle-circle is-circle4"></div>-->
-            <!--<div class="mint-spinner-fading-circle-circle is-circle5"></div>-->
-            <!--<div class="mint-spinner-fading-circle-circle is-circle6"></div>-->
-            <!--<div class="mint-spinner-fading-circle-circle is-circle7"></div>-->
-            <!--<div class="mint-spinner-fading-circle-circle is-circle8"></div>-->
-            <!--<div class="mint-spinner-fading-circle-circle is-circle9"></div>-->
-            <!--<div class="mint-spinner-fading-circle-circle is-circle10"></div>-->
-            <!--<div class="mint-spinner-fading-circle-circle is-circle11"></div>-->
-            <!--<div class="mint-spinner-fading-circle-circle is-circle12"></div>-->
-            <!--<div class="mint-spinner-fading-circle-circle is-circle13"></div>-->
-          <!--</div>-->
-        <!--</span>-->
-        <!--加载中...-->
-      <!--</p>-->
-    <!--</void-list>-->
-  <!--</ul>-->
+<!--<ul class="order-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="50">-->
+<!--<void-list ref="requestStatus">-->
+<!--<li v-for="(v,i) in statusResult">-->
+<!--<div>订单号：{{v.ordersn}}</div>-->
+<!--<router-link class="good-info" :to="{path:'orderd',query:{oid:v.id,sta:v.status}}"-->
+<!--tag="div">-->
+<!--<img :src=v.goods[0].thumb alt="" class="order-small">-->
+<!--<p>{{v.goods[0].title}}</p>-->
+<!--<div class="good-price">-->
+<!--<p>{{v.goods[0].marketprice}}</p>-->
+<!--<p>×{{v.goods[0].total}}</p>-->
+<!--</div>-->
+<!--</router-link>-->
+<!--<div class="good-pay">-->
+<!--<span>共{{v.goods[0].total}}件商品 实付：</span> ￥{{v.price}}-->
+<!--</div>-->
+<!--<div class="good-btn">-->
+<!--<button class="cancel-order" v-if="v.status==0" @click="cancel(v.id)">-->
+<!--取消订单-->
+<!--</button>-->
+<!--<button class="charge-order ocolor" @click="pay(v.ordersn)" v-if="v.status==0">-->
+<!--付款-->
+<!--</button>-->
+<!--<router-link class="charge-order ocolor" :to="{path:'drawback',query:{money:v.price,orderid:v.id}}"-->
+<!--tag="button" v-if="v.canrefund&&v.refundid==0">-->
+<!--申请退款-->
+<!--</router-link>-->
+<!--<button class="charge-order1" v-if="v.status==2 && v.refundid==0" @click="fn1(v.id)">-->
+<!--确认收货-->
+<!--</button>-->
+<!--<router-link class="look-logi ocolor"-->
+<!--:to="{path:'logistics',query:{exp:v.express,expsn:v.expresssn,id:v.id}}" tag="button"-->
+<!--v-if="v.status==2">-->
+<!--查看物流-->
+<!--</router-link>-->
+<!--<button class="charge-order ocolor" v-if="v.canrefund && v.refundid!=0 && v.status!=0"-->
+<!--@click="refund(v.refundid)">-->
+<!--退款申请中-->
+<!--</button>-->
+<!--<router-link class="look-logi ocolor"-->
+<!--:to="{path:'logistics',query:{exp:v.express,expsn:v.expresssn,id:v.id}}" tag="button"-->
+<!--v-if="v.status==3">-->
+<!--查看物流-->
+<!--</router-link>-->
+<!--</div>-->
+<!--</li>-->
+<!--<p class="page-infinite-loading" v-if="loading&&isloading">-->
+<!--<span>-->
+<!--<div class="mint-spinner-fading-circle circle-color-112" style="width: 28px; height: 28px;">-->
+<!--<div class="mint-spinner-fading-circle-circle is-circle2"></div>-->
+<!--<div class="mint-spinner-fading-circle-circle is-circle3"></div>-->
+<!--<div class="mint-spinner-fading-circle-circle is-circle4"></div>-->
+<!--<div class="mint-spinner-fading-circle-circle is-circle5"></div>-->
+<!--<div class="mint-spinner-fading-circle-circle is-circle6"></div>-->
+<!--<div class="mint-spinner-fading-circle-circle is-circle7"></div>-->
+<!--<div class="mint-spinner-fading-circle-circle is-circle8"></div>-->
+<!--<div class="mint-spinner-fading-circle-circle is-circle9"></div>-->
+<!--<div class="mint-spinner-fading-circle-circle is-circle10"></div>-->
+<!--<div class="mint-spinner-fading-circle-circle is-circle11"></div>-->
+<!--<div class="mint-spinner-fading-circle-circle is-circle12"></div>-->
+<!--<div class="mint-spinner-fading-circle-circle is-circle13"></div>-->
+<!--</div>-->
+<!--</span>-->
+<!--加载中...-->
+<!--</p>-->
+<!--</void-list>-->
+<!--</ul>-->
 <!--</template>-->
 
 
@@ -103,10 +103,10 @@
 
 
 
-          <!--<router-link class="charge-order ocolor" :to="{path:'drawback',query:{money:v.price,orderid:v.id}}"
+          <router-link class="charge-order ocolor" :to="{path:'drawback',query:{money:v.price,orderid:v.id}}"
                        tag="button" v-if="v.canrefund&&v.refundid==0">
             申请退款
-          </router-link>-->
+          </router-link>
           <button class="charge-order1" v-if="v.status==2 && v.refundid==0" @click="fn1(v.id)">
             确认收货
           </button>
@@ -115,10 +115,17 @@
                        v-if="v.status==2">
             查看物流
           </router-link>
-          <!--<button class="charge-order ocolor" v-if="v.canrefund && v.refundid!=0 && v.status!=0"
+
+          <router-link class="look-logi ocolor"
+                       :to="{path:'comment',query:{id:v.id }}" tag="button"
+                       v-if="v.status==3 && v.iscomment==0">
+            评价
+          </router-link>
+
+          <button class="charge-order ocolor" v-if="v.canrefund && v.refundid!=0 && v.status!=0"
                   @click="refund(v.refundid)">
             退款申请中
-          </button>-->
+          </button>
           <router-link class="look-logi ocolor"
                        :to="{path:'logistics',query:{exp:v.express,expsn:v.expresssn,id:v.id}}" tag="button"
                        v-if="v.status==3">
@@ -186,17 +193,17 @@
 
         orderList(params, res => {
 
-            console.log(res)
-            if (res.statusCode == 1) {
-              this.statusResult = res.data
-              this.isloading=false;
-              console.log(this.statusResult)
-            } else {
-              this.statusResult = []
+          console.log(res)
+          if (res.statusCode == 1) {
+            this.statusResult = res.data
+            this.isloading=false;
+            console.log(this.statusResult)
+          } else {
+            this.statusResult = []
 //              this.loading = true
-              this.$refs.requestStatus.loadingStatus = this.statusResult ? 1 : 0
-            }
-          });
+            this.$refs.requestStatus.loadingStatus = this.statusResult ? 1 : 0
+          }
+        });
 //        }, 5000)
 //        orderList(params, res => {
 //          console.log(res)
@@ -223,17 +230,17 @@
           }
         };
         orderList(params, res => {
-            console.log(this.loading)
+          console.log(this.loading)
           if (res.statusCode == 1) {
 //                console.
-              if(res.data != ''){
-                this.statusResult = this.statusResult.concat(res.data);
-                setTimeout(() => {
-                  this.loading = false;
-                }, 1000)
-              }else{
-                this.loading = true;
-              }
+            if(res.data != ''){
+              this.statusResult = this.statusResult.concat(res.data);
+              setTimeout(() => {
+                this.loading = false;
+              }, 1000)
+            }else{
+              this.loading = true;
+            }
 
 
           } else {
@@ -299,8 +306,10 @@
       voidList
     },
     mounted(){
+      this.init(this.statusType)
 
     },
+
     created(){
     }
   }
@@ -486,64 +495,5 @@
     animation-delay: -1s;
   }
 
-  /*.mint-spinner-fading-circle-circle.is-circle2 {*/
-  /*-webkit-transform: rotate(30deg);*/
-  /*transform: rotate(30deg);*/
-  /*}*/
 
-  /*.mint-spinner-fading-circle-circle.is-circle3 {*/
-  /*-webkit-transform: rotate(60deg);*/
-  /*transform: rotate(60deg)*/
-  /*}*/
-
-  /*.mint-spinner-fading-circle-circle.is-circle4 {*/
-  /*-webkit-transform: rotate(90deg);*/
-  /*transform: rotate(90deg);*/
-  /*}*/
-
-  /*.mint-spinner-fading-circle-circle.is-circle5 {*/
-  /*-webkit-transform: rotate(120deg);*/
-  /*transform: rotate(120deg);*/
-  /*}*/
-
-  /*.mint-spinner-fading-circle-circle.is-circle6 {*/
-  /*-webkit-transform: rotate(150deg);*/
-  /*transform: rotate(150deg);*/
-  /*}*/
-
-  /*.mint-spinner-fading-circle-circle.is-circle7 {*/
-  /*-webkit-transform: rotate(180deg);*/
-  /*transform: rotate(180deg);*/
-  /*}*/
-
-  /*.mint-spinner-fading-circle-circle.is-circle8 {*/
-  /*-webkit-transform: rotate(210deg);*/
-  /*transform: rotate(210deg);*/
-  /*}*/
-
-  /*.mint-spinner-fading-circle-circle.is-circle9 {*/
-  /*-webkit-transform: rotate(240deg);*/
-  /*transform: rotate(240deg);*/
-  /*}*/
-
-  /*.mint-spinner-fading-circle-circle.is-circle10 {*/
-  /*-webkit-transform: rotate(270deg);*/
-  /*transform: rotate(270deg);*/
-  /*}*/
-
-  /*.mint-spinner-fading-circle-circle.is-circle11 {*/
-  /*-webkit-transform: rotate(300deg);*/
-  /*transform: rotate(300deg);*/
-  /*}*/
-
-  /*.mint-spinner-fading-circle-circle.is-circle12 {*/
-  /*-webkit-transform: rotate(330deg);*/
-  /*transform: rotate(330deg);*/
-  /*}*/
-
-  /*.page-infinite-loading div {*/
-  /*display: inline-block;*/
-  /*vertical-align: middle;*/
-  /*margin-right: 5px;*/
-  /*}*/
 </style>
