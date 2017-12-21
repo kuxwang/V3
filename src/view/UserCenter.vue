@@ -197,7 +197,7 @@
           if (res.statusCode == 1) {
             console.log(res.data)
             console.log('用户信息')
-            _this.getBuyLevel()
+//            _this.getBuyLevel()
             _this.member=res.data
             _this.memberInfo.nickname = res.data.nickname
             _this.memberInfo.id = res.data.id

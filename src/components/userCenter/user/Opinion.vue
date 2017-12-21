@@ -53,15 +53,17 @@
         })
       },
       submit(){
+        let _this=this;
         if(this.text){
-          let len=this.pic.length
+          console.log(this.text)
+          let len=_this.list.length
           let params={
             data:{
-              reason:this.text,
+              reason:_this.text,
             }
           }
           for(let i=0;i<len;i++){
-            params.data[`img[${i}]`]=this.img[i]
+            params.data[`img[${i}]`]=_this.list[i]
           }
           Feedbacks(params,(res)=>{
               if(res.statusCode===1){
