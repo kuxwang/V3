@@ -164,39 +164,6 @@
               _this.payText = '支付订单';
             });
 
-//            return ;
-//            this.loadingStatus = 0
-//            Toast({
-//              message: `${typeof res.statusCode}|${res.statusCode}`,
-//              position: 'middle',
-//              duration: 2000
-//            });
-//            if (res.statusCode == 1) {
-//              _this.payStstus = 1
-//              Toast({
-//                message: '支付成功',
-//                position: 'middle',
-//                duration: 2000
-//              });
-//              setTimeout(() => {
-//                _this.$router.push({name:'order'})
-//
-//              }, 2000)
-//            } else {
-//              Toast({
-//                message: `支付异常：${res.data}`,
-//                position: 'middle',
-//                duration: 2000
-//              });
-//            }
-
-            /*if (res.statusCode == 1) {
-             paymentFun(type, res.data, data => {
-
-             })
-             } else {
-             console.log('支付失败')
-             }*/
           })
         } else {
           Toast({

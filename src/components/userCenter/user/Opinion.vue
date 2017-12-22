@@ -60,11 +60,14 @@
           let params={
             data:{
               reason:_this.text,
+              'img[0]':_this.test
             }
           }
           for(let i=0;i<len;i++){
             params.data[`img[${i}]`]=_this.list[i]
           }
+          console.log('参数')
+          console.log(params)
           Feedbacks(params,(res)=>{
               if(res.statusCode===1){
                 Toast({
