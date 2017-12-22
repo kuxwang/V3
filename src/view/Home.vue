@@ -109,7 +109,7 @@
             attributes: "isnew:1",
             page: 1,
             psize: 10,
-            fields:'description,title,id,productprice,marketprice,thumb,app_thumb_url'
+            fields:'description,title,id,productprice,marketprice,thumb,app_thumb_url,total'
           }
         }
         Attributes(parmas, (res) => {
@@ -131,7 +131,7 @@
             attributes: "ishot:1",
             page: 1,
             psize: 10,
-            fields:'description,title,id,productprice,marketprice,thumb,app_thumb_url'
+            fields:'description,title,id,productprice,marketprice,thumb,app_thumb_url,total'
           }
         }
         Attributes(parmas, (res) => {
@@ -152,7 +152,7 @@
             attributes: "istime:1",
             page: 1,
             psize: 10,
-            fields:'description,title,id,productprice,marketprice,thumb,app_thumb_url'
+            fields:'description,title,id,productprice,marketprice,thumb,app_thumb_url，total'
           }
         }
         Attributes(parmas, (res) => {

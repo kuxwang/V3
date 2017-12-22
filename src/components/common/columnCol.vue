@@ -21,7 +21,6 @@
           </mt-swipe>-->
           <img v-if="v.app_thumb_url" :src="v.app_thumb_url" alt="">
           <img v-else :src="v.thumb" alt="">
-
           <p class="goodstitle lr2">
             {{v.title}}
           </p>
@@ -77,6 +76,8 @@
     },
     computed: {},
     created(){
+      console.log('商品')
+      console.log(this.list)
     }
   }
 </script>
