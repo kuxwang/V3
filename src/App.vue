@@ -190,6 +190,9 @@
   .special>p {
     line-height: 0;
   }
+  .applyContent>p {
+    line-height: 0;
+  }
   .header-right {
     color: #000 !important;
   }

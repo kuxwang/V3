@@ -8,9 +8,9 @@
     <div class="goods-content" v-show="isShow">
       <ul class="goods-list">
         <li class="clearfix" v-for="(v,i) in getShCartData" :key="i">
-          <label class="mint-checklist-label fl">
+          <label class="mint-checklist-label fl" @click="nowChecked(v,i)">
             <div class="mint-checkbox">
-              <input type="checkbox" class="mint-checkbox-input" :checked="v.isChecked" @click="nowChecked(v,i)">
+              <input type="checkbox" class="mint-checkbox-input" :checked="v.isChecked" >
               <span class="mint-checkbox-core"></span>
             </div>
           </label>
@@ -45,9 +45,9 @@
         </li>
       </ul>
       <div class="total_area clearfix">
-        <label class="mint-checklist-label fl">
+        <label class="mint-checklist-label fl" @click="allCheckBox">
           <span class="mint-checkbox fl">
-            <input type="checkbox" class="mint-checkbox-input" value="当前值" :checked="isTrue" @click="allCheckBox">
+            <input type="checkbox" class="mint-checkbox-input" value="当前值" :checked="isTrue" >
             <span class="mint-checkbox-core"></span>
           </span>
           <span class="mint-checkbox-label">全选</span>
@@ -500,7 +500,7 @@ export default {
 .total_area .mint-checklist-label {
   padding: 0rem;
   display: block;
-  width: 1rem;
+  width: .6rem;
   height: 0.50rem;
   line-height: 0.50rem;
   text-align: left;

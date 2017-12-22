@@ -24,9 +24,9 @@
           <span class="iconfont w">&#xe605;</span>
           <label for="one">微信</label>
         </div>
-        <div>
+        <div class="right">
           <!--<label class="mint-checklist-label fl" @click="isChecked=1">-->
-          <label class="mint-checklist-label fl">
+          <label class="mint-checklist-label">
             <span class="mint-checkbox" v-if="wechat_app.switch">
               <input type="checkbox" :checked="true" class="mint-checkbox-input">
               <span class="mint-checkbox-core"></span>
@@ -43,8 +43,8 @@
           <span class="iconfont a">&#xe65b;</span>
           <label for="one">支付宝</label>
         </div>
-        <div>
-          <label class="mint-checklist-label fl" @click="isChecked=2">
+        <div class="right">
+          <label class="mint-checklist-label"  @click="changes(2)">
             <span class="mint-checkbox" v-if="alipay_app.switch">
               <input type="checkbox" :checked="isChecked==2" class="mint-checkbox-input">
               <span class="mint-checkbox-core"></span>
@@ -140,6 +140,14 @@
             console.log('无法提现')
           }
         })
+      },
+      changes(s){
+        let _this=this;
+        if(_this.isChecked==s){
+          _this.isChecked=''
+        }else {
+          _this.isChecked=s
+        }
       }
     },
     watch: {
@@ -314,10 +322,14 @@
   .commit:active {
     background-color: #999 !important
   }
+  .mint-checkbox-core {
+    /*width: 1rem;*/
+  }
 
   .mint-checkbox-input:checked + .mint-checkbox-core {
     background-color: #F5751D;
     border-color: #F5751D;
+
   }
 
   .mint-checkbox-input[disabled] + .mint-checkbox-core {
@@ -345,6 +357,20 @@
   .p-list  li {
     font-size: .11rem;
     line-height: .18rem;
+  }
+  .right {
+    flex: 1;
+    position: relative;
+  }
+  .mint-checkbox {
+      right: 0;
+    position: absolute;
+  }
+  .order-num {
+    position: absolute;
+  }
+  .mint-checklist-label {
+    height: 100%;
   }
 </style>
 

@@ -150,7 +150,7 @@
         topStatus: '',
         disindex: 3,
         defaultAvatar: '',
-        issale:true,
+        issale:false,
         goods:false,   //是否可以升级
         qrimg:'',
         sharedata:'',
@@ -167,9 +167,8 @@
         memberInfo({data : {}}, function (res) {
           if (res.statusCode == 1) {
             _this.loading=true;
-            if(res.data.isagent === 0 || res.data.status === 0){
-              _this.issale=false
-            }
+            _this.issale = res.data.isagent / 1 === 1 && res.data.status / 1 === 1;
+
             console.log('会员数据')
             console.log(res.data)
             _this.memberInfo.nickname = res.data.nickname
@@ -228,7 +227,7 @@
             console.log('购买等级')
             console.log(res.data)
           }else if(res.statusCode == -1){
-
+            _this.goods = false;
           }
         })
       },
@@ -242,9 +241,9 @@
         }
         recordStatistics_get(params, (res) => {
           if (res.statusCode === 1) {
-          _this.recordStatistics_get.total=res.data.total.c_money_sum
-          _this.recordStatistics_get.today=res.data.today.c_money_sum
-          _this.recordStatistics_get.month=res.data.month.c_money_sum
+            _this.recordStatistics_get.total = typeof res.data.total.c_money_sum !== 'undefined' ? res.data.total.c_money_sum : 0.00;
+            _this.recordStatistics_get.today = typeof res.data.today.c_money_sum !== 'undefined' ? res.data.today.c_money_sum : 0.00;
+            _this.recordStatistics_get.month = typeof res.data.month.c_money_sum !== 'undefined' ? res.data.month.c_money_sum : 0.00;
           } else {
             console.log('请求失败')
           }

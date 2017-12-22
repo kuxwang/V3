@@ -16,7 +16,7 @@
       <div class="adv">
         <img src="../../../assets/images/shop-bg.png"/>
       </div>-->
-      <div class="content" v-html="goods.content"></div>
+      <div class="content applyContent" v-html="goods.content"></div>
 
       <div class="bottom">
         <!--<div class="footer">
@@ -26,7 +26,7 @@
           <input id="agree" type="radio" value="1" v-model="isChecked" />
            <label for="agree">我已阅读并同意<span>优源店主服务协议</span></label>
         </div>-->
-        <div class="btn" @click="apply">申请￥{{goods.marketprice}}/年{{goods.title}}</div>
+        <div class="btn" @click="apply">申请￥{{goods.marketprice}}/{{goods.title}}</div>
       </div>
     </div>
 
@@ -100,6 +100,7 @@
   }
   .container {
     .scroll-view(100%);
+
     .title {
       width: 100%;
       height: 1.56rem;
@@ -164,7 +165,10 @@
     .content {
       margin-top: .45rem;
     }
+
   }
+
+
 
 </style>
 

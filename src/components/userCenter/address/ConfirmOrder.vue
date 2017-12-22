@@ -221,10 +221,8 @@
       addtype(){
         console.log('this.comedis')
         console.log(this.comedis)
-        if(this.comedis== 0){
-          this.ADDTYPE(0)
-          this.$router.push({name:'manageAddress'});
-        }
+        this.ADDTYPE(0)
+        this.$router.push({name:'manageAddress'});
       },
       goBack() {
         this.$router.push('');

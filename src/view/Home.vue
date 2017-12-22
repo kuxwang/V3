@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="scroll-view">
-      <mt-swipe class="banner" :auto="4000" :show-indicators="true">
+      <mt-swipe class="banner" :auto="2000" :show-indicators="true">
         <mt-swipe-item v-for="(i, x) in slider" :key="x">
           <img class="silder" :src="i.thumb" @click="specil(i.app_link)">
         </mt-swipe-item>
@@ -281,15 +281,16 @@
   .content {
     .page-view();
     .top-logo {
-      height: .45rem;
+      height: auto;
       background: #fff;
       color: #fff;
       font-size: .20rem;
       font-weight: bold;
-      line-height: .45rem;
+      /*line-height: auto;*/
       img {
         width: 100%;
         height: 100%;
+        display: block;
       }
     }
     font-family: PingFang !important;
@@ -455,7 +456,7 @@
   .bottom-img {
     width: 100%;
     padding: 0 .16rem;
-    height: .5781rem;
+    height: auto;
   }
   .bottom-pic {
     width: 100%;
