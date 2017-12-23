@@ -284,7 +284,7 @@ export default {
     },
     goProductDetail(v) {
       let goodsId = v.goodsid;
-      this.$router.push({ name: 'details', query: { goodsId: goodsId } })
+      this.$router.push({ name: 'details', query: { id: goodsId } })
     },
     ...mapMutations({
       getMyorders: 'GET_MYORDERS'

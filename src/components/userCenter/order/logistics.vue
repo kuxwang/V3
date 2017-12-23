@@ -22,7 +22,7 @@
         物品信息
       </div>
       <!--<router-link class="good-info" to="/details" tag="div">-->
-        <router-link class="good-info" :to="{path:'details',query:{goodsId:goodsid}}" tag="div">
+        <router-link class="good-info" :to="{path:'details',query:{id:id}}" tag="div">
           <img :src="thumb" alt="" class="order-small">
           <p>{{title}}</p>
           <div class="good-price">
@@ -60,7 +60,7 @@
         expsn:'',
         isShow:false,
         goods:'',
-        goodsid : '',
+        id : '',
         price:'',
         thumb:'',
         title:'',
@@ -124,7 +124,7 @@
       }
       orderDetail(param,function (res) {
         that.price=res.data.goods.price;
-        that.goodsid=res.data.goods.id;
+        that.id=res.data.goods.id;
         that.title=res.data.goods.title;
         that.thumb=res.data.goods.thumb
         that.total=res.data.goods.total

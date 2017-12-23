@@ -150,7 +150,7 @@ export const _webapp = {
     let keys = [];
 
     for (let objKey in obj) {
-      if (obj[objKey] !== '' && objKey !== 'access_token' && objKey !== 'sign') {
+      if (obj[objKey] !== '' && objKey !== 'access_token' && objKey !== 'sign' && objKey.indexOf('[')<0) {
         keys.push(objKey);
       }
     }

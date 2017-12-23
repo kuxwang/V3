@@ -38,7 +38,7 @@
     data(){
       return {
         text:'',
-        list:[],
+        list:['../../../assets/images/confirmorder-01.png','../../../assets/images/confirmorder-01.png'],
         test:'../../../assets/images/confirmorder-01.png',
       }
     },
@@ -60,12 +60,13 @@
           let params={
             data:{
               reason:_this.text,
-              'img[0]':_this.test
+//              img:_this.list
             }
           }
           for(let i=0;i<len;i++){
             params.data[`img[${i}]`]=_this.list[i]
           }
+//          let arr=[]
           console.log('参数')
           console.log(params)
           Feedbacks(params,(res)=>{
