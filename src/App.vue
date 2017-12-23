@@ -187,8 +187,8 @@
     padding-left: 0rem !important;
     line-height: 0;
   }
-  .special>p {
-    line-height: 0;
+  .special>p,.sever>p {
+    line-height: 0 !important;
   }
   .applyContent>p {
     line-height: 0;

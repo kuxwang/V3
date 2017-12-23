@@ -5,7 +5,7 @@
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
-    <div class="container" v-html="content">
+    <div class="container sever" v-html="content">
 
     </div>
   </div>
