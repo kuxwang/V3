@@ -22,12 +22,12 @@
         物品信息
       </div>
       <!--<router-link class="good-info" to="/details" tag="div">-->
-        <router-link class="good-info" :to="{path:'details',query:{id:id}}" tag="div">
-          <img :src="thumb" alt="" class="order-small">
-          <p>{{title}}</p>
+        <router-link class="good-info"  :to="{path:'details',query:{id:id}}" v-for="(i,index) in goods" tag="div" :key="index">
+          <img :src="i.thumb" alt="" class="order-small">
+          <p>{{i.title}}</p>
           <div class="good-price">
-            <p>￥{{price}}</p>
-            <p>×{{total}}</p>
+            <p>￥{{i.price}}</p>
+            <p>×{{i.total}}</p>
           </div>
         </router-link>
 
@@ -59,13 +59,13 @@
         exp:'',
         expsn:'',
         isShow:false,
-        goods:'',
+        goods:[],
         id : '',
         price:'',
         thumb:'',
         title:'',
         total:'',
-        arr:''
+        arr:'',
 //        marketprice:''
       }
     },
@@ -93,7 +93,7 @@
           expresssn:to.query.expsn
         }
       }
-      console.log(to.query.expsn);
+
       expressInfo(params,function (res) {
         if(res.statusCode==1){
           to.meta.post = res.data
@@ -103,10 +103,12 @@
           })
         }
         else{
-          next(vm => {
+         /* next(vm => {
             vm.isShow=true;
+            console.log('to.query.expsn');
+            console.log(to.query.expsn);
           })
-          console.log('请求失败`${res.statusCode} , ${res.data}` ')
+          console.log('请求失败`${res.statusCode} , ${res.data}` ')*/
         }
 //        if(res.data.errno){
 //          that.isShow=true;
@@ -116,6 +118,8 @@
     created:function () {
       let res = this.$route.meta.post;
       this.arr=res;
+      console.log('expressInfo数据')
+      console.log(this.arr)
       let that=this;
       let param={
         data:{
@@ -123,11 +127,11 @@
         }
       }
       orderDetail(param,function (res) {
-        that.price=res.data.goods.price;
-        that.id=res.data.goods.id;
-        that.title=res.data.goods.title;
-        that.thumb=res.data.goods.thumb
-        that.total=res.data.goods.total
+        console.log('orderDetail的请求数据')
+        console.log(res)
+        that.goods=res.data.goods;
+        that.expsn=res.data.ordersn;
+
       })
     }
   }

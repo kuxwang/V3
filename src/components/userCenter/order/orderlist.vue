@@ -197,6 +197,7 @@
           if (res.statusCode == 1) {
             this.statusResult = res.data
             this.isloading=false;
+            console.log('this.statusResult')
             console.log(this.statusResult)
           } else {
             this.statusResult = []

@@ -16,8 +16,9 @@
       <div class="pic-group">
         <p>请提供相关问题的截图或照片<span>{{list.length}}/4</span></p>
         <div class="pic-view">
-        <div class="img-box" v-if="list" v-for="i in list">
+        <div class="img-box" v-if="list" v-for="(i,index) in list">
           <img :src="i"/>
+          <img class="del" :src="del" @click="delimg(index)"/>
         </div>
         <div class="img-box add" @click="uploadImg" v-if="list.length<4">
           <span class="iconfont">&#xe62b;</span>
@@ -33,13 +34,15 @@
   import {_webapp} from '../../../config/hook.js';
   import {Feedbacks} from '../../../api/api';
   import {Toast} from 'mint-ui';
+  import delpic from '../../../assets/images/del.png'
 
   export default {
     data(){
       return {
         text:'',
-        list:['../../../assets/images/confirmorder-01.png','../../../assets/images/confirmorder-01.png'],
+        list:[],
         test:'../../../assets/images/confirmorder-01.png',
+        del:require('../../../assets/images/del.png')
       }
     },
     methods:{
@@ -83,6 +86,18 @@
           })
         }
       },
+      delimg(i){
+//        let arr=this.list.splice(i,1)
+        if(this.list.length==1){
+          this.list=[]
+        }else {
+          let arr=this.list.splice(i,1)
+          this.list=arr
+        }
+
+//        console.log(arr)
+        console.log(this.list)
+      }
     },
     created(){
 
@@ -166,10 +181,17 @@
           border: 1px solid #ccc;
           border-radius:.05rem;
           margin-right: 0.14rem;
-
+          position: relative;
           img {
             width: 100%;
             height: 100%;
+          }
+          .del {
+            position: absolute;
+            right: -0.05rem;
+            top:-.05rem;
+            width: .2rem;
+            height: .2rem;
           }
         }
         .add {

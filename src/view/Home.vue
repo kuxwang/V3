@@ -298,21 +298,16 @@
 
   .top-bar {
     display: flex;
-    height: .45rem;
+    /*height: .45rem;*/
+    height: .35rem;
     background-color: #fff;
     font-family: PingFang !important;
 
     .logo {
-      /*width: .65rem;
-      font-size: .21rem;
-      color: #000000;
-      !*padding: .05rem;*!
-      padding: .1rem*/;
-
       width: .4rem;
       font-size: .21rem;
       color: #000000;
-      padding: .1rem 0.05rem .1rem .1rem;
+      padding: .02rem 0.05rem .05rem .1rem;
 
       img {
         /*width: 100%;*/
@@ -327,9 +322,7 @@
       /*width: .51rem;*/
       width: .45rem;
       left: -0.15rem;
-      top: .04rem;
-
-
+      top: -.05rem;
       .iconfont {
         position: absolute;
         z-index: 1;
@@ -356,7 +349,7 @@
       color: #333;
       /*margin: .08rem 0;*/
       border-radius: .1rem .1rem .1rem .1rem;
-      margin: .1rem .1rem;
+      margin: 0rem .1rem .05rem .1rem;
       line-height: .29rem;
     }
 
@@ -462,10 +455,7 @@
     width: 100%;
     height: 100%;
     position: relative;
-    top: -0.5rem;
+    top: -0.6rem;
   }
-
-
-
 
 </style>

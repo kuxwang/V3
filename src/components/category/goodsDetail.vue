@@ -520,11 +520,15 @@
       }
     },
     mounted () {
-      this.getInfo();
+
     },
     created() {
 
+    },
+    activated(){
+      this.getInfo();
     }
+
   }
 </script>
 
