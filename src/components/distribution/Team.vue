@@ -75,6 +75,7 @@
       getList(s){
         if(s.isagent==1 && s.status==1){
           this.page=1;
+          this.list=[];
           this.$refs.loadmore.loading=true;
           this.init(s.id,this.page)
         }else {
