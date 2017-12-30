@@ -283,11 +283,19 @@
                 let ordersn = res.data.ordersn
                 _this.ORDERINFO(ordersn);
                 _this.integral=0;
-                _this.ifuse=false
-                _this.$router.replace({name: 'payselect', query: {orderid: ordersn}})
+                _this.ifuse=false;
+                if(res.data.price<=0){
+                  _this.$router.replace({name: 'order', query: {flush: 1}});
+                }else {
+                  _this.$router.replace({name: 'payselect', query: {orderid: ordersn}});
+                }
+
               } else if (res.statusCode == -1) {
+
+                let megText = typeof res.data === 'string' && res.data !== '' ? res.data : '很抱歉，订单提交异常，请重新尝试。';
+
                 Toast({
-                  message: `操作频繁请稍候`,
+                  message: megText,
                   position: 'middle',
                   duration: 2000
                 });

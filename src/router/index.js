@@ -363,9 +363,7 @@ export default new Router({
           path: '/order/pay',
           name: 'orderpay',
           component: Payselect,
-        },
-
-
+        }
       ]
     },
 //地址
@@ -374,9 +372,5 @@ export default new Router({
       name:'test',
       component: Test
     },
-   /* {
-      path: '*',
-      redirect: '/'
-    }*/
   ]
 })

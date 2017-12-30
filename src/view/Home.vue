@@ -240,6 +240,7 @@
         })
       },
       specil(v){
+        console.log(v);
         this.$router.push({name:'special',query:{key:v}})
       }
     },

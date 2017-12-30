@@ -64,7 +64,7 @@
     },
     props: {
       list:{
-        list: Array,
+        type: Array,
         required: true
       },
       title:{

@@ -26,8 +26,10 @@
             <div class="goodsTitle">
               <p>{{name}}</p>
               <span class="price">￥{{marketPrice}}</span>
-              <span class="marketPrice">库存&nbsp;{{total}}</span>
-              <span class="marketPrice">销量&nbsp;{{goods.sales}}</span>
+              <!--<span class="marketPrice">库存&nbsp;{{total}}</span>
+              <span class="marketPrice">销量&nbsp;{{goods.sales}}</span>-->
+              <span class="marketPrice">库存：现货</span>
+              <span class="marketPrice">邮费：会员包邮</span>
               <div class="memberprice">
                 ￥{{marketPrice-deduct}}
                 <span class="tip">会员券后价</span>
@@ -520,13 +522,13 @@
       }
     },
     mounted () {
-
+      this.getInfo();
     },
     created() {
 
     },
     activated(){
-      this.getInfo();
+//      this.getInfo();
     }
 
   }

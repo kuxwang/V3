@@ -62,7 +62,7 @@
   .column {
     position: relative;
     width:100%;
-    height:3.55rem;
+    height:3rem;
     background: -webkit-linear-gradient(#fafafa, #ffffff);
     background: -o-linear-gradient(#fafafa, #ffffff);
     background: -moz-linear-gradient(#fafafa, #ffffff);
@@ -112,7 +112,7 @@
       }
       .scroll {
         width:100%;
-        height:2.1rem;
+        height:1.88rem;
         overflow: hidden;
         .scroll-goodslist {
           padding: 0 0 0 .25rem;
@@ -124,13 +124,13 @@
             position: relative;
             display: inline-block;
             margin-right: .1rem;
-            width: 1.4rem;
+            width: 65%;
             height: 100%;
             /*float: left;*/
             text-align:center;
              img {
-              width: 1.4rem;
-              height: 1.4rem;
+              width: 100%;
+              height: auto;
               border-radius: .1rem;
              }
              .goodstitle {
@@ -154,11 +154,11 @@
                }
               }
             .nototal{
-              width: 1.4rem;
-              height: 1.4rem;
+              width: 100%;
+              height: auto;
               z-index: 1;
               position: absolute;
-              top:0;
+              top: -0.1rem;
               font-size: 1rem;
               line-height: 1.4rem;
             }
