@@ -18,10 +18,10 @@
           <p class="goodstitle lr1">
             {{v.title}}
           </p>
-          <p class="price">
+          <!--<p class="price">
             ￥{{v.marketprice}}
             <span>￥{{v.productprice}}</span>
-          </p>
+          </p>-->
           </router-link>
       </ul>
       <p>查看所有新品</p>
@@ -62,7 +62,7 @@
   .column {
     position: relative;
     width:100%;
-    height:3rem;
+    /*height:3rem;*/
     background: -webkit-linear-gradient(#fafafa, #ffffff);
     background: -o-linear-gradient(#fafafa, #ffffff);
     background: -moz-linear-gradient(#fafafa, #ffffff);

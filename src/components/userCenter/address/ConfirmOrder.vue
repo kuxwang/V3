@@ -315,9 +315,11 @@
       },
       goProducts(v) {
         let _this=this;
+        console.log(1)
+        console.log(_this.comedis===false)
         if(_this.comedis===false){
           let goodsId = v.goodsid;
-          this.$router.push({name: 'details', query: {goodsId: goodsId}})
+          this.$router.push({name: 'confirmorderdetails', query: {id: goodsId}})
         }
       },
       switchuse(){

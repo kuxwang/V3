@@ -145,7 +145,14 @@ export default new Router({
     {
       path: '/shoppingCart',
       name: 'shoppingCart',
-      component: ShoppingCart
+      component: ShoppingCart,
+      children:[
+        {
+          path: '/shoppingCart/details',
+          name: 'cartdetails',
+          component: Details,
+        }
+      ]
     },
     //分销
     {
@@ -255,6 +262,11 @@ export default new Router({
             },
           ]
         },
+        {
+          path: '/confirmorder/details',
+          name: 'confirmorderdetails',
+          component: Details,
+        }
       ]
     },
     {
@@ -343,6 +355,11 @@ export default new Router({
           path: '/orderd',
           name: 'orderd',
           component: Orderd,
+          children: [{
+            path: '/orderd/details',
+            name: 'orderddetails',
+            component: Details,
+          }]
         },
         {
           path: '/logistics',

@@ -83,6 +83,7 @@
         <h4>再忙，也要记得买点什么犒劳自己~</h4>
       </div>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 <script>
@@ -284,7 +285,7 @@ export default {
     },
     goProductDetail(v) {
       let goodsId = v.goodsid;
-      this.$router.push({ name: 'details', query: { id: goodsId } })
+      this.$router.push({ name: 'cartdetails', query: { id: goodsId } })
     },
     ...mapMutations({
       getMyorders: 'GET_MYORDERS'
