@@ -12,7 +12,8 @@
         </div>
         <ul class="order-state">
           <!--<li>物流单位</li>-->
-          <li>运单编号：{{expsn}}</li>
+          <li>{{exp.title}}：{{exp.expsn}}</li>
+          <li>发货时间：{{exp.sendtime}}</li>
         </ul>
       </div>
     </div>
@@ -130,7 +131,12 @@
         console.log('orderDetail的请求数据')
         console.log(res)
         that.goods=res.data.goods;
-        that.expsn=res.data.ordersn;
+        that.exp = {
+          'title' : res.data.expresscom,
+          'expsn' : res.data.expresssn,
+          'sendtime' : res.data.sendtime
+        };
+        that.expsn=res.data.expresssn;
 
       })
     }
@@ -173,7 +179,7 @@
   .order-state{
     position:absolute;
     left:.5rem;
-    top:.2rem;
+    top:.1rem;
   }
   .order-state li{
     text-align: left;

@@ -52,7 +52,8 @@ iGetApiToken(function(apiToken){
           }).$mount('#app');
         }
       })
-    }else {
+    }
+    else {
       new Vue({
         router,
         store,

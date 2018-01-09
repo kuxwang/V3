@@ -1,11 +1,16 @@
 <!--团队列表-->
 <template>
   <div class="page">
-    <mt-header title="团队管理" fixed>
-      <router-link to="/vipCenter" slot="left">
+    <mt-header fixed title="团队管理">
+      <a slot="left" @click="goBack">
         <mt-button icon="back"></mt-button>
-      </router-link>
+      </a>
     </mt-header>
+    <!--<mt-header title="团队管理" fixed>-->
+      <!--<router-link to="/vipCenter" slot="left">-->
+        <!--<mt-button icon="back"></mt-button>-->
+      <!--</router-link>-->
+    <!--</mt-header>-->
     <div class="container">
       <team-header :info="member"></team-header>
       <div class="lists">
@@ -37,7 +42,10 @@
           nickname:'',
         },
         allLoaded:true,
-        page:1
+        page:1,
+        superId : 0,
+        preId : 0,
+        nexId : 0
       }
     },
     props:{
@@ -53,6 +61,7 @@
             psize:s
           }
         }
+
         TeamNext(params,(res)=>{
           if(res.statusCode===1){
             if(res.data.teamLists.length>=s){
@@ -65,6 +74,18 @@
             console.log('新的用户')
             console.log(this.member)
             console.log(res.data.agentMember)
+
+            if(_this.superId == 0){
+              _this.superId = _this.member.id;
+              _this.preId = _this.member.id;
+            }else{
+              _this.preId = _this.member.agentid;
+              _this.nexId = _this.member.id;
+            }
+
+            console.log('teamNext id:');
+            console.log(this.preId, this.nexId, this.superId);
+
             this.id=id;
             this.page=this.page+1
             console.log('接口数据')
@@ -73,6 +94,8 @@
         })
       },
       getList(s){
+        console.log('s:');
+        console.log(s);
         if(s.isagent==1 && s.status==1){
           this.page=1;
           this.list=[];
@@ -92,10 +115,26 @@
       loadMore(){
         console.log(7899869866)
         this.init(this.id,this.page)
+      },
+      goBack(){
+
+        console.log('teamNext id:');
+        console.log(this.preId, this.nexId, this.superId);
+
+        if(this.nexId == this.superId || this.nexId == 0){
+          // /vipCenter
+          this.$router.push({path:'vipCenter'})
+        }else{
+          this.page=1;
+          this.list=[];
+          this.$refs.loadmore.loading=true;
+          this.init(this.preId, this.page);
+        }
       }
     },
     mounted(){
 //      console.log(this.list)
+
       this.init()
     },
     components:{

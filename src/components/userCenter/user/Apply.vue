@@ -16,7 +16,7 @@
       <div class="adv">
         <img src="../../../assets/images/shop-bg.png"/>
       </div>-->
-      <div class="content applyContent" v-html="goods.content"></div>
+      <div class="content special" v-html="goods.content"></div>
 
       <div class="bottom">
         <!--<div class="footer">

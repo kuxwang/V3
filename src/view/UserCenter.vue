@@ -172,7 +172,7 @@
         adv: '',
         sharedata:'',
         goods:false, // 显示用户是否可以升级店铺
-        version:'v.1.0.1225'
+        version:'v.3.1.8.1230'
       }
     },
     components: {

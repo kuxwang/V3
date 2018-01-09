@@ -20,10 +20,10 @@
         <input v-model="tel" maxlength="11" placeholder="请输入收货人联系电话" onkeyup="this.value=this.value.replace(/\D/g,'')"
                onafterpaste="this.value=this.value.replace(/\D/g,'')">
       </li>
-      <li>
-        <input v-model="zipCode" maxlength="6" placeholder="请输入邮编" onkeyup="this.value=this.value.replace(/\D/g,'')"
-               onafterpaste="this.value=this.value.replace(/\D/g,'')">
-      </li>
+      <!--<li>-->
+        <!--<input v-model="zipCode" maxlength="6" placeholder="请输入邮编" onkeyup="this.value=this.value.replace(/\D/g,'')"-->
+               <!--onafterpaste="this.value=this.value.replace(/\D/g,'')">-->
+      <!--</li>-->
     </ul>
     <div class="newlyAdded" @click="save">
       保存地址
@@ -135,20 +135,20 @@
         } else if (!this.tel) {
           Toast('请填写收货人手机号')
           return
-        } else if (!this.zipCode) {
+        } /*else if (!this.zipCode) {
           Toast('请填写邮编')
           return
-        }
+        }*/
         let telreg = /^0?(13[0-9]|15[012356789]|18[0236789]|14[57])[0-9]{8}$/; //验证手机号
         let zipCodereg = /^\d{6}$/; //验证邮政编码
         if (!telreg.test(this.tel)) {
           Toast('手机格式错误')
           return
         }
-        if (!zipCodereg.test(this.zipCode)) {
+        /*if (!zipCodereg.test(this.zipCode)) {
           Toast('邮编格式错误')
           return
-        }
+        }*/
         let _this = this
         let params = {
           data: {

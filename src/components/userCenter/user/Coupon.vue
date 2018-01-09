@@ -131,15 +131,23 @@
   .page {
     .page-view(10);
   }
+  .mint-header.is-fixed {
+    z-index: 2;
+  }
   .container {
+    overflow: hidden;
     display: flex;
     flex-direction: column;
+    background-color: #fff;
     .coupon__num{
       margin-top: .45rem;
       width: 100%;
       text-align: center;
       height: 1.7rem;
       background-color: #27241f;
+      position: relative;
+      z-index: 2;
+
       span {
         display: block;
         color: #fff;
@@ -164,13 +172,23 @@
       font-size: .16rem;
       line-height: .36rem;
       border-bottom: 1px solid #e7e7e7;
+      position: relative;
+      z-index: 2;
+      background-color: #fff;
+
+
     }
     .coupon__list {
       flex: 1;
       overflow: hidden;
       overflow-y: scroll;
       -webkit-overflow-scrolling: touch;
-      height: 5rem;
+      /*height: 5rem;*/
+      height: 100%;
+      position: absolute;
+      /*margin-top: 2.5rem;*/
+      padding-top: 2.5rem;
+      z-index: 1;
       /*padding-bottom: .5rem;*/
       margin-bottom: .5rem;
       .coupon__cell {

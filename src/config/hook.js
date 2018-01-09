@@ -83,6 +83,8 @@ export const _webapp = {
 
   sessionKey: {},
 
+  openid:{},
+
   getQueryString : function (name) {
     let reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
     let r = window.location.search.substr(1).match(reg);
@@ -99,8 +101,6 @@ export const _webapp = {
     }
 
     if (typeof _webapp.apiToken === 'object' && typeof _webapp.apiToken.data === 'object' && _webapp.apiToken.statusCode / 1 === 1) {
-      //_webapp.log("typeof _webapp.apiToken.data.access_token !== 'undefined' ");
-      //_webapp.log(typeof _webapp.apiToken.data.access_token !== 'undefined');
       if (typeof _webapp.apiToken.data.access_token !== 'undefined') {
         return true;
       }
@@ -114,14 +114,6 @@ export const _webapp = {
     if(_webapp.debug === true){
       _webapp.getSessionKeySync();
     }
-    // _webapp.log('_webapp.sessionKey');
-    // _webapp.log(_webapp.sessionKey);
-    // _webapp.log('typeof _webapp.sessionKey');
-    // _webapp.log(typeof _webapp.sessionKey === 'object');
-    // _webapp.log('typeof _webapp.sessionKey.data');
-    // _webapp.log(typeof _webapp.sessionKey.data === 'object');
-    // _webapp.log('_webapp.sessionKey.statusCode == 1');
-    // _webapp.log(_webapp.sessionKey.statusCode / 1 === 1);
 
     if (typeof _webapp.sessionKey === 'object' && typeof _webapp.sessionKey.data === 'object' && _webapp.sessionKey.statusCode / 1 === 1) {
       // _webapp.log('typeof _webapp.sessionKey.data.sessionkey');
@@ -358,7 +350,7 @@ export const _webapp = {
    */
   getSessionKeySync: function () {
     if(_webapp.debug === true){
-      _webapp.sessionKey = {data : {"sessionkey":"3798114542f37e6964e58a961ab25b5e", "timestamp":1500997527}, statusCode : '1'};
+      _webapp.sessionKey = {data : {"sessionkey":"436ef3fbb810ebc6c49ea4b9c648c7f0", "timestamp":1500997527}, statusCode : '1'};
       // _webapp.sessionKey = {};
     }
 
@@ -366,6 +358,10 @@ export const _webapp = {
     // _webapp.log(_webapp.sessionKey);
     return _webapp.sessionKey;
   },
+
+
+
+
 
   /**
    * 异步回调获取getSessionKey

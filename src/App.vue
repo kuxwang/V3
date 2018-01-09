@@ -54,7 +54,7 @@
     /*height: .64rem !important;*/
   }
   .mintui {
-    font-size: .20rem !important;
+    font-size: .14rem !important;
   }
 
   .ocolor {
@@ -156,7 +156,7 @@
   }
 
   .mint-header-title {
-    font-size: .18rem !important;
+    font-size: .14rem !important;
   }
   .mint-msgbox-confirm {
    color: #F5751D;
@@ -191,6 +191,7 @@
     display: block;
 
   }
+
   .applyContent>p {
     line-height: 0;
   }
