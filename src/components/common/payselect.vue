@@ -57,8 +57,6 @@
         </div>
       </li>
     </ul>
-    <!--<div>1234567</div>-->
-    <!--{{data}}-->
     <button class="commit ocolor" @click="pay">
       {{payText}}
     </button>
@@ -83,9 +81,6 @@
         alipay_app: [],
         payStstus: 0,
         payText : '支付订单'
-//        loadingStatus: 0,
-//        post: {},
-//        data:[]
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -103,13 +98,7 @@
       })
     },
     watch: {
-//      '$route' (from, to) {
-////        console.log('1111111')
-//
-//      },
-//      isChecked (newValue) {
-//        console.log(newValue)
-//      }
+
     },
     methods: {
       checkStatus (idx, isTrue) {
