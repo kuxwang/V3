@@ -17,43 +17,85 @@
         <span class="span2">{{shopSet.name}}-{{order.ordersn}}</span>
       </div>
     </ul>
+    <!--<ul class="pay">-->
+      <!--<li class="num" @click="checkStatus(1,wechat_app.switch)">-->
+        <!--<div class="order-num">-->
+          <!--<span class="iconfont w">&#xe605;</span>-->
+          <!--<label for="one">微信</label>-->
+        <!--</div>-->
+        <!--<div>-->
+          <!--<label class="mint-checklist-label fl">-->
+            <!--<span class="mint-checkbox" v-if="wechat_app.switch">-->
+              <!--&lt;!&ndash;<input type="checkbox" :checked="isChecked==1" class="mint-checkbox-input" @click="isChecked=1">&ndash;&gt;-->
+              <!--<input type="checkbox" :checked="isChecked==1" class="mint-checkbox-input">-->
+              <!--<span class="mint-checkbox-core"></span>-->
+            <!--</span>-->
+            <!--<span class="mint-checkbox" v-if="!wechat_app.switch">-->
+              <!--<input type="checkbox" disabled="disabled" class="mint-checkbox-input" value="值A">-->
+              <!--<span class="mint-checkbox-core"></span>-->
+            <!--</span>-->
+          <!--</label>-->
+        <!--</div>-->
+      <!--</li>-->
+      <!--<li class="num" @click="checkStatus(2,alipay_app.switch)">-->
+        <!--<div class="order-num">-->
+          <!--<span class="iconfont a">&#xe65b;</span>-->
+          <!--<label for="one">支付宝</label>-->
+        <!--</div>-->
+        <!--<div>-->
+          <!--<label class="mint-checklist-label fl">-->
+            <!--<span class="mint-checkbox" v-if="alipay_app.switch">-->
+              <!--&lt;!&ndash;<input type="checkbox" :checked="isChecked==2" class="mint-checkbox-input" @click="isChecked=2">&ndash;&gt;-->
+              <!--<input type="checkbox" :checked="isChecked==2" class="mint-checkbox-input">-->
+              <!--<span class="mint-checkbox-core"></span>-->
+            <!--</span>-->
+            <!--<span class="mint-checkbox" v-if="!alipay_app.switch">-->
+              <!--<input type="checkbox" disabled="disabled" class="mint-checkbox-input" value="值A">-->
+              <!--<span class="mint-checkbox-core"></span>-->
+            <!--</span>-->
+          <!--</label>-->
+        <!--</div>-->
+      <!--</li>-->
+    <!--</ul>-->
+
+
     <ul class="pay">
-      <li class="num" @click="checkStatus(1,wechat_app.switch)">
+      <li class="num" @click="checkStatus(1,wechat_app.switch)" v-if="wechat_app.switch">
         <div class="order-num">
           <span class="iconfont w">&#xe605;</span>
           <label for="one">微信</label>
         </div>
         <div>
-          <label class="mint-checklist-label fl">
-            <span class="mint-checkbox" v-if="wechat_app.switch">
-              <!--<input type="checkbox" :checked="isChecked==1" class="mint-checkbox-input" @click="isChecked=1">-->
-              <input type="checkbox" :checked="isChecked==1" class="mint-checkbox-input">
-              <span class="mint-checkbox-core"></span>
-            </span>
-            <span class="mint-checkbox" v-if="!wechat_app.switch">
-              <input type="checkbox" disabled="disabled" class="mint-checkbox-input" value="值A">
-              <span class="mint-checkbox-core"></span>
-            </span>
-          </label>
+          <div class="mint-checklist-label fl">
+              <span class="mint-checkbox" v-if="wechat_app.switch">
+                <input type="checkbox" :checked="isChecked==1" class="mint-checkbox-input">
+                <span class="mint-checkbox-core"></span>
+              </span>
+            <!--<span class="mint-checkbox" v-if="!wechat_app.switch">-->
+            <!--<span class="mint-checkbox" v-if="isChecked!=1">
+                <input type="checkbox" disabled="disabled" class="mint-checkbox-input" value="值A">
+                <span class="mint-checkbox-core"></span>
+              </span>-->
+          </div>
         </div>
       </li>
-      <li class="num" @click="checkStatus(2,alipay_app.switch)">
+      <li class="num" @click="checkStatus(2,alipay_app.switch)" v-if="alipay_app.switch">
         <div class="order-num">
           <span class="iconfont a">&#xe65b;</span>
           <label for="one">支付宝</label>
         </div>
         <div>
-          <label class="mint-checklist-label fl">
-            <span class="mint-checkbox" v-if="alipay_app.switch">
-              <!--<input type="checkbox" :checked="isChecked==2" class="mint-checkbox-input" @click="isChecked=2">-->
-              <input type="checkbox" :checked="isChecked==2" class="mint-checkbox-input">
-              <span class="mint-checkbox-core"></span>
-            </span>
-            <span class="mint-checkbox" v-if="!alipay_app.switch">
-              <input type="checkbox" disabled="disabled" class="mint-checkbox-input" value="值A">
-              <span class="mint-checkbox-core"></span>
-            </span>
-          </label>
+          <div class="mint-checklist-label fl">
+              <span class="mint-checkbox" v-if="alipay_app.switch">
+                <input type="checkbox" :checked="isChecked==2" class="mint-checkbox-input">
+                <span class="mint-checkbox-core"></span>
+              </span>
+            <!--<span class="mint-checkbox" v-if="!alipay_app.switch">-->
+            <!--<span class="mint-checkbox" v-if="isChecked!=2">
+                <input type="checkbox" disabled="disabled" class="mint-checkbox-input" value="值A">
+                <span class="mint-checkbox-core"></span>
+              </span>-->
+          </div>
         </div>
       </li>
     </ul>
@@ -81,6 +123,9 @@
         alipay_app: [],
         payStstus: 0,
         payText : '支付订单'
+//        loadingStatus: 0,
+//        post: {},
+//        data:[]
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -98,7 +143,13 @@
       })
     },
     watch: {
-
+//      '$route' (from, to) {
+////        console.log('1111111')
+//
+//      },
+//      isChecked (newValue) {
+//        console.log(newValue)
+//      }
     },
     methods: {
       checkStatus (idx, isTrue) {
@@ -171,6 +222,8 @@
       console.log(res)
       if (res.statusCode == 1) {
 //        this.loadingStatus = 1
+        console.log('支付数据')
+        console.log(res.data)
         this.goods = res.data.order.goods[0]
         this.shopSet = res.data.shopSet
         this.order = res.data.order
@@ -192,6 +245,8 @@
       console.log(res)
       if (res.statusCode == 1) {
 //        this.loadingStatus = 1
+        console.log('支付数据')
+        console.log(res.data)
         this.goods = res.data.order.goods[0]
         this.shopSet = res.data.shopSet
         this.order = res.data.order

@@ -765,7 +765,7 @@ export var _webapp = {
   },
 
   getSessionkey : function(){
-    return 'b2a1d96eb9d96c0977b8ca0baeb81b62';
+    return 'ece28c6506cacb4dafc8709c7d34dcdb';
   },
 
   getAccessToken : function(){
