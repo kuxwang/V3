@@ -77,7 +77,7 @@ export const _env = (function () {
 
 export const _webapp = {
 
-  debug : true,
+  debug : false,
 
   apiToken: {},
 

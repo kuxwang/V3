@@ -18,43 +18,84 @@
       </div>
 
     </ul>
+    <!--<ul class="pay">-->
+      <!--<li class="num">-->
+        <!--<div class="order-num">-->
+          <!--<span class="iconfont w">&#xe605;</span>-->
+          <!--<label for="one">微信</label>-->
+        <!--</div>-->
+        <!--<div class="right">-->
+          <!--&lt;!&ndash;<label class="mint-checklist-label fl" @click="isChecked=1">&ndash;&gt;-->
+          <!--<label class="mint-checklist-label">-->
+            <!--<span class="mint-checkbox" v-if="wechat_app.switch">-->
+              <!--<input type="checkbox" :checked="true" class="mint-checkbox-input">-->
+              <!--<span class="mint-checkbox-core"></span>-->
+            <!--</span>-->
+            <!--<span class="mint-checkbox" v-if="!wechat_app.switch">-->
+              <!--<input type="checkbox" class="mint-checkbox-input" value="值A" disabled>-->
+              <!--<span class="mint-checkbox-core"></span>-->
+            <!--</span>-->
+          <!--</label>-->
+        <!--</div>-->
+      <!--</li>-->
+      <!--<li class="num">-->
+        <!--<div class="order-num">-->
+          <!--<span class="iconfont a">&#xe65b;</span>-->
+          <!--<label for="one">支付宝</label>-->
+        <!--</div>-->
+        <!--<div class="right">-->
+          <!--<label class="mint-checklist-label"  @click="changes(2)">-->
+            <!--<span class="mint-checkbox" v-if="alipay_app.switch">-->
+              <!--<input type="checkbox" :checked="isChecked==2" class="mint-checkbox-input">-->
+              <!--<span class="mint-checkbox-core"></span>-->
+            <!--</span>-->
+            <!--<span class="mint-checkbox" v-if="!alipay_app.switch">-->
+              <!--<input type="checkbox" class="mint-checkbox-input" value="值A">-->
+              <!--<span class="mint-checkbox-core"></span>-->
+            <!--</span>-->
+            <!--<input type="checkbox" disabled="disabled" class="mint-checkbox-input" value="值A">-->
+          <!--</label>-->
+        <!--</div>-->
+      <!--</li>-->
+    <!--</ul>-->
+
     <ul class="pay">
-      <li class="num">
+      <li class="num" @click="checkStatus(1,wechat_app.switch)" v-if="wechat_app.switch">
         <div class="order-num">
           <span class="iconfont w">&#xe605;</span>
           <label for="one">微信</label>
         </div>
-        <div class="right">
-          <!--<label class="mint-checklist-label fl" @click="isChecked=1">-->
-          <label class="mint-checklist-label">
-            <span class="mint-checkbox" v-if="wechat_app.switch">
-              <input type="checkbox" :checked="true" class="mint-checkbox-input">
-              <span class="mint-checkbox-core"></span>
-            </span>
-            <span class="mint-checkbox" v-if="!wechat_app.switch">
-              <input type="checkbox" class="mint-checkbox-input" value="值A" disabled>
-              <span class="mint-checkbox-core"></span>
-            </span>
-          </label>
+        <div>
+          <div class="mint-checklist-label fl">
+              <span class="mint-checkbox" v-if="wechat_app.switch">
+                <input type="checkbox" :checked="isChecked==1" class="mint-checkbox-input">
+                <span class="mint-checkbox-core"></span>
+              </span>
+            <!--<span class="mint-checkbox" v-if="!wechat_app.switch">-->
+            <!--<span class="mint-checkbox" v-if="isChecked!=1">
+                <input type="checkbox" disabled="disabled" class="mint-checkbox-input" value="值A">
+                <span class="mint-checkbox-core"></span>
+              </span>-->
+          </div>
         </div>
       </li>
-      <li class="num">
+      <li class="num" @click="checkStatus(2,alipay_app.switch)" v-if="alipay_app.switch">
         <div class="order-num">
           <span class="iconfont a">&#xe65b;</span>
           <label for="one">支付宝</label>
         </div>
-        <div class="right">
-          <label class="mint-checklist-label"  @click="changes(2)">
-            <span class="mint-checkbox" v-if="alipay_app.switch">
-              <input type="checkbox" :checked="isChecked==2" class="mint-checkbox-input">
-              <span class="mint-checkbox-core"></span>
-            </span>
-            <span class="mint-checkbox" v-if="!alipay_app.switch">
-              <input type="checkbox" class="mint-checkbox-input" value="值A">
-              <span class="mint-checkbox-core"></span>
-            </span>
-            <input type="checkbox" disabled="disabled" class="mint-checkbox-input" value="值A">
-          </label>
+        <div>
+          <div class="mint-checklist-label fl">
+              <span class="mint-checkbox" v-if="alipay_app.switch">
+                <input type="checkbox" :checked="isChecked==2" class="mint-checkbox-input">
+                <span class="mint-checkbox-core"></span>
+              </span>
+            <!--<span class="mint-checkbox" v-if="!alipay_app.switch">-->
+            <!--<span class="mint-checkbox" v-if="isChecked!=2">
+                <input type="checkbox" disabled="disabled" class="mint-checkbox-input" value="值A">
+                <span class="mint-checkbox-core"></span>
+              </span>-->
+          </div>
         </div>
       </li>
     </ul>
@@ -76,7 +117,7 @@
 <script>
   import {Checklist, Toast} from 'mint-ui';
   import {mapState} from 'Vuex';
-  import {withdrawals_post, recordStatistics_get,withdrawalStatus} from '../../api/api';
+  import {withdrawals_post, recordStatistics_get,withdrawalStatus,get_withdrawals_withdrawals} from '../../api/api';
   export default {
     data () {
       return {
@@ -85,8 +126,8 @@
         shopSet: [],
         order: [],
         payment: [],
-        wechat_app: [],
-        alipay_app: [],
+        wechat_app: {},
+        alipay_app: {},
         payStstus: 0,
         value: 0,
         type: 0,
@@ -95,6 +136,17 @@
       }
     },
     methods: {
+      checkStatus (idx, isTrue) {
+        this.isChecked = idx;
+        if (!isTrue) {
+          Toast({
+            message: '暂未开通',
+            position: 'bottom',
+            duration: 1000
+          })
+        }
+
+      },
       pay () {
         if (this.isChecked) {
           let params = {
@@ -166,11 +218,41 @@
            console.log(this.moneylist)*/
           this.takeStatus()
           console.log(res)
+          console.log('提现数据')
           _this.moneytotal = res.data.ok.c_money_sum
         } else {
           console.log('请求失败')
         }
       })
+
+      get_withdrawals_withdrawals({data : {}}, res => {
+        console.log(res);
+        console.log('提现类型')
+        if(res.statusCode === 1){
+//        console.log(res);
+
+          for(let i =0; i < res.data.length; i++){
+            console.log('res.data[i]')
+            console.log(res.data[i])
+            switch (res.data[i].identification) {
+              case 'alipay_app' :
+                _this.alipay_app = res.data[i];
+
+                break;
+              case 'weichat_app' :
+                _this.wechat_app = res.data[i];
+                break;
+            }
+
+          }
+          console.log('alipay_app')
+          console.log(_this.alipay_app)
+          console.log('weichat_app')
+          console.log(_this.wechat_app)
+
+        }
+
+      });
     }
   }
 
@@ -363,7 +445,7 @@
     position: relative;
   }
   .mint-checkbox {
-      right: 0;
+      right: .2rem;
     position: absolute;
   }
   .order-num {

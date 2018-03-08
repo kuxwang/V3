@@ -26,7 +26,7 @@ Vue.use(Vuex)
 Vue.use(MintUI)
 Vue.config.productionTip = false
 
-// var vsconsole = new Vconsole();
+var vsconsole = new Vconsole();
 
 
 iGetApiToken(function(apiToken){

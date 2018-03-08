@@ -260,6 +260,8 @@ const commissions = {
   teamNext: {url: `${base}/commissions/teamNext`, method: 'GET', header, dataType},
   recordBill: {url: `${base}/commissions/RecordBill`, method: 'GET', header, dataType},
   getRecordBillDetail: {url: `${base}/commissions/RecordBillDetail`, method: 'GET', header, dataType},
+  withdrawals_type: {url: `${base}/commissions/withdrawalsType`, method: 'GET', header, dataType},
+  // withdrawals_type: {url: { m :　'ewei_shop' , do : 'commissions' ,op :　'withdrawalsType'}, method: 'GET', header, dataType},
 };
 
 const goods = {
@@ -474,6 +476,12 @@ export const RecordBill = function (params, callback) {
 export const GetRecordBillDetail = function (params, callback) {
   setParams(Object.assign(params, commissions.getRecordBillDetail), callback)
 };
+
+export const get_withdrawals_withdrawals = function(params, callback){
+  setParams(Object.assign(params, commissions.withdrawals_type), callback)
+};
+
+
 
 /**
  * 首页商品展示 yellowStar

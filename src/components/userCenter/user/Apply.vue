@@ -18,16 +18,17 @@
       </div>-->
       <div class="content special" v-html="goods.content"></div>
 
-      <div class="bottom">
-        <!--<div class="footer">
-          已有<span>{{1000+count}}</span>人成为优源店主
-        </div>-->
-        <!--<div class="tip">
-          <input id="agree" type="radio" value="1" v-model="isChecked" />
-           <label for="agree">我已阅读并同意<span>优源店主服务协议</span></label>
-        </div>-->
-        <div class="btn" @click="apply">申请￥{{goods.marketprice}}/{{goods.title}}</div>
-      </div>
+
+    </div>
+    <div class="bottom">
+      <!--<div class="footer">
+        已有<span>{{1000+count}}</span>人成为优源店主
+      </div>-->
+      <!--<div class="tip">
+        <input id="agree" type="radio" value="1" v-model="isChecked" />
+         <label for="agree">我已阅读并同意<span>优源店主服务协议</span></label>
+      </div>-->
+      <div class="btn" @click="apply">申请￥{{goods.marketprice}}/{{goods.title}}</div>
     </div>
 
   </div>
@@ -100,7 +101,7 @@
   }
   .container {
     .scroll-view(100%);
-
+    padding-bottom: .435rem;
     .title {
       width: 100%;
       height: 1.56rem;
@@ -114,7 +115,6 @@
 
         /*margin-top: .48rem;*/
         margin-bottom: .05rem;
-
       }
     }
     .adv {
@@ -126,49 +126,47 @@
         margin: 0 .1rem;
       }
     }
-    .bottom {
-      position: fixed;
-      /*height: 1.395rem;*/
-      bottom: 0;
-      width: 100%;
-      background-color: #fff;
-      .footer {
-        height: .435rem;
-        background-color: #f6efe6;
-        line-height: .435rem;
-        font-size: .16rem;
-        color: #000;
-        margin-bottom: .085rem;
-        span {
-          font-weight: bold;
-          color: #e1b051;
-        }
-      }
-      .tip {
 
-      }
-      .btn {
-        width: 96%;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        border-radius: 10px;
-        background-color: #e1b051;
-        height: .45rem;
-        margin: .095rem 2% .135rem 2%;
-        font-size: .16rem;
-        color: #fff;
-        line-height: .45rem;
-
-      }
-
-    }
     .content {
       margin-top: .45rem;
     }
 
   }
+  .bottom {
+    position: fixed;
+    /*height: 1.395rem;*/
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    .footer {
+      height: .435rem;
+      background-color: #f6efe6;
+      line-height: .435rem;
+      font-size: .16rem;
+      color: #000;
+      margin-bottom: .085rem;
+      span {
+        font-weight: bold;
+        color: #e1b051;
+      }
+    }
+    .tip {
 
+    }
+    .btn {
+      width: 96%;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      background-color: #e1b051;
+      height: .45rem;
+      margin: .095rem 2% .135rem 2%;
+      font-size: .16rem;
+      color: #fff;
+      line-height: .45rem;
 
+    }
 
+  }
 </style>
 

@@ -185,8 +185,10 @@
     font-size: .15rem;
     text-align: left;
     padding-left: 0rem !important;
-    line-height: 0;
+    /*line-height: 0;*/
   }
+
+
   .special>p>img {
     display: block;
 
