@@ -77,7 +77,7 @@ export const _env = (function () {
 
 export const _webapp = {
 
-  debug : false,
+  debug : true,
 
   apiToken: {},
 
@@ -99,8 +99,6 @@ export const _webapp = {
     }
 
     if (typeof _webapp.apiToken === 'object' && typeof _webapp.apiToken.data === 'object' && _webapp.apiToken.statusCode / 1 === 1) {
-      //_webapp.log("typeof _webapp.apiToken.data.access_token !== 'undefined' ");
-      //_webapp.log(typeof _webapp.apiToken.data.access_token !== 'undefined');
       if (typeof _webapp.apiToken.data.access_token !== 'undefined') {
         return true;
       }
@@ -358,7 +356,7 @@ export const _webapp = {
    */
   getSessionKeySync: function () {
     if(_webapp.debug === true){
-      _webapp.sessionKey = {data : {"sessionkey":"bf38ef1941b955a5a3180c6a85b56749", "timestamp":1500997527}, statusCode : '1'};
+      _webapp.sessionKey = {data : {"sessionkey":"c1811a5cd655774f798ebeddfc0f2033", "timestamp":1500997527}, statusCode : '1'};
       // _webapp.sessionKey = {};
     }
 

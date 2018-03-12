@@ -14,7 +14,7 @@
         <input type="text" v-model="name" placeholder="请输入收货人姓名">
       </li>
       <li>
-        <input type="text" v-model="getAddress" placeholder="请输入收货人地址">
+        <input type="text" v-model="getAddress" disabled placeholder="请输入收货人地址">
       </li>
       <li>
         <input v-model="tel" maxlength="11" placeholder="请输入收货人联系电话" onkeyup="this.value=this.value.replace(/\D/g,'')"
@@ -49,7 +49,7 @@
   export default{
     data(){
       return {
-        mypopup1: false,
+        mypopup1: true,
         slots: slots,
         visibleItemCount: 5,
         address: '',
@@ -58,7 +58,11 @@
         getAddress: '', //收货人地址
         tel: '', //收货人联系电话
         zipCode: '',//邮编
-        area: [] //地区
+//        area: [], //地区
+        province:'',
+        city:'',
+        area:''
+
       }
     },
     computed: {
@@ -79,6 +83,7 @@
       },
       setCity(){//所在城市显示
         this.mypopup1 = true;
+        this.initAddress()
       },
       cityConfirm(){//城市确认
         this.mypopup1 = false;
@@ -88,39 +93,108 @@
         this.mypopup1 = false;
       },
       initAddress() {//城市初始化
-        this.slots[0].values = address.filter((item, index) => {
+        this.slot[0].values = address.filter((item, index) => {
           if (item.apid === 0) {
             return item;
           }
         });
       },
+//      cityValuesChange(picker, values) {
+//        // 防止没有省份时报错
+//        /*if (values[0]) {
+//          this.slots[1].values = address.filter((item, index) => {
+//            if (item.apid === values[0].aid) {
+//              return item;
+//            }
+//          });
+//        }
+//        // 防止没有市时报错
+//        if (values[1]) {
+//          this.slots[2].values = address.filter((item, index) => {
+//            if (item.apid === values[1].aid) {
+//              return item;
+//            }
+//          });
+//        }
+//        // 防止没有区时报错
+//        if (values[2]) {
+//          // 这里可以指定地址符，此处以空格进行连接
+//          this.temp_addr = values[0].aname + ' ' + values[1].aname + ' ' + values[2].aname;
+//          this.area = {
+//            province: values[0].aname,
+//            city: values[1].aname,
+//            area: values[2].aname
+//          }
+//        }*/
+//   /*     let left=picker.getSlotValue(0)
+//        console.log('left')
+//        console.log(left)
+//        let center=picker.getSlotValue(1)
+//        let right=picker.getSlotValue(2)
+//        if(left){
+//          this.slots[1].values = address.filter(item => item.apid === left.aid ? true : false)
+//        }
+//        if(center){
+//          this.slots[2].values = address.filter(item => item.apid === center.aid ? true : false)
+//        }
+//        if(right){
+//          /!*this.info.province=left['aname']
+//          this.info.city=center['aname']
+//          this.info.area=right['aname']
+//          this.area = {
+//            province: values[0].aname,
+//            city: values[1].aname,
+//            area: values[2].aname
+//          }*!/
+//        }*/
+//
+////        let left=picker.getSlotValue(0)
+//        let left=picker.getSlotValue(0)
+//        console.log('left')
+//        console.log(left)
+//        let center=picker.getSlotValue(1)
+//        console.log('center')
+//        console.log(center)
+//        let right=picker.getSlotValue(2)
+////        picker.setSlotValue(1, [1,2,3])
+////        this.slots[1]
+//        this.$set(this.slots[1],values,address.filter(item => item.apid == left.aid ? true : false))
+//        console.log(this.slots)
+////        this.s
+//        /*if(left){
+//          this.slots[1].values = address.filter(item => item.apid == left.aid ? true : false)
+//        }*/
+//        /*if(center){
+//          this.slots[2].values = address.filter(item => item.apid == center.aid ? true : false)
+//        }
+//        if(right){
+//          this.province = left['aname']
+//          this.city = center['aname']
+//          this.area = right['aname']
+//        }*/
+//
+//
+//
+////
+//      },
+
       cityValuesChange(picker, values) {
-        // 防止没有省份时报错
-        if (values[0]) {
-          this.slots[1].values = address.filter((item, index) => {
-            if (item.apid === values[0].aid) {
-              return item;
-            }
-          });
+        let left=picker.getSlotValue(0)
+        let center=picker.getSlotValue(1)
+        let right=picker.getSlotValue(2)
+        if(left){
+          this.slots[1].values = address.filter(item => item.apid === left.aid ? true : false)
         }
-        // 防止没有市时报错
-        if (values[1]) {
-          this.slots[2].values = address.filter((item, index) => {
-            if (item.apid === values[1].aid) {
-              return item;
-            }
-          });
+        if(center){
+          this.slots[2].values = address.filter(item => item.apid === center.aid ? true : false)
         }
-        // 防止没有区时报错
-        if (values[2]) {
-          // 这里可以指定地址符，此处以空格进行连接
-          this.temp_addr = values[0].aname + ' ' + values[1].aname + ' ' + values[2].aname;
-          this.area = {
-            province: values[0].aname,
-            city: values[1].aname,
-            area: values[2].aname
-          }
+        if(right){
+          this.info.province=left['aname']
+          this.info.city=center['aname']
+          this.info.area=right['aname']
         }
+
+
       },
       save () {
         if (!this.temp_addr) {
@@ -135,11 +209,9 @@
         } else if (!this.tel) {
           Toast('请填写收货人手机号')
           return
-        } /*else if (!this.zipCode) {
-          Toast('请填写邮编')
-          return
-        }*/
-        let telreg = /^0?(13[0-9]|15[012356789]|18[0236789]|14[57])[0-9]{8}$/; //验证手机号
+        }
+//        let telreg = /^0?(13[0-9]|15[012356789]|18[0236789]|14[57])[0-9]{8}$/; //验证手机号
+        let telreg = /^0?[0-9]{11}$/; //验证手机号
         let zipCodereg = /^\d{6}$/; //验证邮政编码
         if (!telreg.test(this.tel)) {
           Toast('手机格式错误')
@@ -186,7 +258,7 @@
       }
     },
     mounted () {
-      this.initAddress()
+//      this.initAddress()
     },
     created () {
       setTimeout(()=>{

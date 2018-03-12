@@ -45,7 +45,7 @@
   import {Toast, Picker, Popup, DatetimePicker, Checklist} from 'mint-ui';
   import {address, slots} from '../../../assets/js/address';
   import {mapState, mapMutations, mapGetters} from 'Vuex';
-  import {addresses_post, addresses_put} from '../../../api/api';
+  import {addresses_post, addresses_put,addresses_get} from '../../../api/api';
   export default{
     data(){
       return {
@@ -83,7 +83,9 @@
         this.$router.go(-1);
       },
       setCity(){//所在城市显示
+        this.initAddress()
         this.mypopup1 = true;
+
       },
       cityConfirm(){//城市确认
         this.mypopup1 = false;
@@ -104,7 +106,7 @@
       cityValuesChange(picker, values) {
           console.log(values)
         // 防止没有省份时报错
-        if (values[0]) {
+        /*if (values[0]) {
           this.slots[1].values = address.filter((item, index) => {
             if (item.apid === values[0].aid) {
               return item;
@@ -128,6 +130,28 @@
             city: values[1].aname,
             area: values[2].aname
           }
+        }*/
+        let left=picker.getSlotValue(0)
+
+        let center=picker.getSlotValue(1)
+        let right=picker.getSlotValue(2)
+        console.log(right)
+        if(left){
+          this.slots[1].values = address.filter(item => item.apid === left.aid ? true : false)
+        }
+        if(center){
+          this.slots[2].values = address.filter(item => item.apid === center.aid ? true : false)
+        }
+        if(right){
+//          this.province = left['aname']
+//          this.city = center['aname']
+//          this.area = right['aname']
+
+          this.area = {
+            province: left['aname'],
+            city: center['aname'],
+            area: right['aname']
+          }
         }
       },
       save () {
@@ -144,7 +168,8 @@
           Toast('请填写收货人手机号')
           return
         }
-        let telreg = /^0?(13[0-9]|15[012356789]|18[0236789]|14[57])[0-9]{8}$/; //验证手机号
+//        let telreg = /^0?(13[0-9]|15[012356789]|18[0236789]|14[57])[0-9]{8}$/; //验证手机号
+        let telreg = /^0?[0-9]{11}$/; //验证手机号
         if (!telreg.test(this.tel)) {
           Toast('手机格式错误')
           return
@@ -173,8 +198,7 @@
               city: _this.area.city,
               area: _this.area.area,
               address: _this.getAddress,
-              id: res.addressid,
-
+              id: res.addressid
             }
             console.log(res)
             console.log(info)
@@ -215,6 +239,7 @@
           area: this.oldarea
         }
       }, 100)
+
     }
   }
 </script>
